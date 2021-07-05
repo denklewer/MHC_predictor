@@ -1,0 +1,5 @@
+TMP/
+*.pyc
+.ipynb_checkpoints/
+!trained_models/
+trained_models/*
