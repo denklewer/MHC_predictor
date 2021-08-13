@@ -53,28 +53,46 @@ def read_genetech_data(DATA_PATH, CLASSES_TO_USE, ALLELES):
 def make_per_allele_dfs(total_df, allele_column_name):
     alleles = total_df[allele_column_name].apply(normalize_allele_name).unique()
     print("found {} alleles: {}".format(len(alleles), alleles))
-    per_allele_df = dict()
+    per_allele_mt_df = dict()
+    per_allele_wt_df = dict()
     for allele_name in alleles:
         df = total_df.loc[total_df[allele_column_name] == allele_name].copy()
         print("allele {}: initial length {}".format(allele_name, len(df)))
         print("take unique (MT_epitope, WT_epitope) pairs")
         df = df[['HLA Allele', 'Peptide Length', 'MT Epitope Seq', 'WT Epitope Seq']].drop_duplicates().copy()
         print("result length {}".format(len(df)))
+        df_mt = df.copy()
+        df_mt = df_mt.rename(columns={"MT Epitope Seq": "peptide", "Peptide Length": "length", "HLA Allele":"allele"})
+        df_mt = df_mt[['allele', 'length', "peptide"]]
+        df_wt = df.copy()
+        df_wt = df_wt.rename(columns={"WT Epitope Seq": "peptide",  "Peptide Length": "length", "HLA Allele":"allele"})
+        df_wt = df_wt[['allele', 'length', "peptide"]]
 
-        per_allele_df[allele_name] = df
-    return per_allele_df
+        per_allele_mt_df[allele_name] = df_mt
+        per_allele_wt_df[allele_name] = df_wt
+        
+        addIDcolumn(per_allele_wt_df)
+        addIDcolumn(per_allele_mt_df)
 
+    return per_allele_mt_df, per_allele_wt_df
+
+
+def addIDcolumn(per_allele_df):
+     for allele_name in per_allele_df.keys():
+        per_allele_df[allele_name][RESULT_COLUMNS['id']] =  'seq' + per_allele_df[allele_name].index.astype(str).values
     
 def read_gbm122_data(DATA_PATH):
     REGIONS_NUM = 5
     per_region_total_df = dict()
-    per_region_per_allele_df = dict()
+    per_region_per_allele_mt_df = dict()
+    per_region_per_allele_wt_df = dict()
     for region in range(1, REGIONS_NUM + 1):
         df = pd.read_csv("{}output-Dunn-Region{}-GBM122/MHC_Class_I/Dunn-Region{}-GBM122.all_epitopes.tsv".format(DATA_PATH, region, region),  sep='\t')
 
         print("Region {}, unique (Transcrpit, Epitope pairs): {}".format(region, len(df[['Transcript', 'MT Epitope Seq']].drop_duplicates())))
         per_region_total_df[region] = df.copy()
-        per_region_per_allele_df[region] = make_per_allele_dfs(df, 'HLA Allele')
-    return per_region_total_df , per_region_per_allele_df
+        per_region_per_allele_mt_df[region], per_region_per_allele_wt_df[region]  = make_per_allele_dfs(df, 'HLA Allele')
+
+    return per_region_total_df , per_region_per_allele_mt_df, per_region_per_allele_wt_df
         
         
