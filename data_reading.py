@@ -94,5 +94,20 @@ def read_gbm122_data(DATA_PATH):
         per_region_per_allele_mt_df[region], per_region_per_allele_wt_df[region]  = make_per_allele_dfs(df, 'HLA Allele')
 
     return per_region_total_df , per_region_per_allele_mt_df, per_region_per_allele_wt_df
+
+
+def read_gbm122_data_full(DATA_PATH):
+    REGIONS_NUM = 5
+    per_region_total_df = dict()
+    per_region_per_allele_mt_df = dict()
+    per_region_per_allele_wt_df = dict()
+    for region in range(1, REGIONS_NUM + 1):
+        df = pd.read_csv("{}output-Dunn-Region{}-GBM122/MHC_Class_I/Dunn-Region{}-GBM122.all_epitopes.tsv".format(DATA_PATH, region, region),  sep='\t')
+
+        per_region_total_df[region] = df.copy()
+        per_region_per_allele_mt_df[region], per_region_per_allele_wt_df[region]  = make_per_allele_dfs(df, 'HLA Allele')
+
+    return per_region_total_df , per_region_per_allele_mt_df, per_region_per_allele_wt_df
+        
         
         
