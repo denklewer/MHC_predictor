@@ -12,18 +12,14 @@ PER_ORGANISM_PER_CLASS_ALLELES = {
         ]
     },
     
-    
-
     'Mouse': {
         'I':['H2_Db', 'H2-Ld','H2_Kb', 'H2-Dd', 'H2-Kd'],
         'II': ['H2_IAb', 'H2_IAd','H2-IAd',  'H-2IEd', 'H2-IEd'
                #'H2_d class II', 'H2_b class II'
               ]
     }
-    
+  
 }
-
-
 
 RESULT_COLUMNS = {
     "label":"binder",
