@@ -11,9 +11,12 @@ PER_ORGANISM_PER_CLASS_ALLELES = {
 #             'HLA_DQ'
         ]
     },
+    
+    
+
     'Mouse': {
-        'I':['H2_Db', 'H-2Ld','H2_Kb'],
-        'II': ['H2_IAb', 'H2_IAd',  'H-2IEd'
+        'I':['H2_Db', 'H2-Ld','H2_Kb', 'H2-Dd', 'H2-Kd'],
+        'II': ['H2_IAb', 'H2_IAd','H2-IAd',  'H-2IEd', 'H2-IEd'
                #'H2_d class II', 'H2_b class II'
               ]
     }
