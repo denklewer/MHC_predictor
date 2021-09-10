@@ -223,3 +223,17 @@
 [05-08-21 13:17:23] INFO: GHMM:      0.9 (manually tracked)
 [05-08-21 13:17:23] INFO: Workdir   :/home/denklewer/Projects/MHC_predictor
 [05-08-21 13:21:34] INFO: xmlreader.c:parseHMM(944): parseHMM to count 
+[10-09-21 17:53:57] INFO: Python    :2.7.18 |Anaconda, Inc.| (default, Jun  4 2021, 14:47:46) 
+[GCC 7.3.0]
+[10-09-21 17:53:57] INFO: Numpy     :1.16.6
+[10-09-21 17:53:57] INFO: Scipy     :1.2.3
+[10-09-21 17:53:57] INFO: Pandas    :0.24.2
+[10-09-21 17:53:57] INFO: GHMM:      0.9 (manually tracked)
+[10-09-21 17:53:57] INFO: Workdir   :/home/denklewer/Projects/MHC_predictor/schreiber_peptides_full_processing
+[10-09-21 18:03:01] INFO: Python    :2.7.18 |Anaconda, Inc.| (default, Jun  4 2021, 14:47:46) 
+[GCC 7.3.0]
+[10-09-21 18:03:01] INFO: Numpy     :1.16.6
+[10-09-21 18:03:01] INFO: Scipy     :1.2.3
+[10-09-21 18:03:01] INFO: Pandas    :0.24.2
+[10-09-21 18:03:01] INFO: GHMM:      0.9 (manually tracked)
+[10-09-21 18:03:01] INFO: Workdir   :/home/denklewer/Projects/MHC_predictor/schreiber_peptides_full_processing
