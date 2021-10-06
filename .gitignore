@@ -5,3 +5,4 @@ TMP/
 trained_models/*
 runs/
 logs/
+.idea/
