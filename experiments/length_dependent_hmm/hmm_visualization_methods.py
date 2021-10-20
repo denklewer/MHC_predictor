@@ -1,0 +1,245 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import os
+from logomaker.src import colors
+import logomaker
+from logomaker.src.Glyph import Glyph
+import networkx as nx
+from pyvis.network import Network
+
+
+def save_figure_to_svg(fig, dir, filename):
+    fig.savefig(dir + filename, format="svg", bbox_inches='tight', transparent=False)
+
+
+def probs_to_info_matrix(distribution):
+    amino_acids = list(distribution.parameters[0].keys())
+    dummy_df = pd.DataFrame(columns = sorted(amino_acids), index=[0],  dtype=float)
+    for i, (acid, prob) in enumerate(distribution.parameters[0].items()):
+        dummy_df.loc[0, acid] = prob
+    dummy_df.index.name = "pos"
+    info_matrix = logomaker.transform_matrix(dummy_df, from_type='probability', to_type='information')
+    return info_matrix
+
+
+
+def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True):
+    amino_acids = list(model.keymap[0].keys())
+    color_dict = colors.get_color_dict(None, amino_acids)
+    PATH_TO_SAVE_PICTURES = TARGET_PATH_TO_RESULTS + "/" + model.name + "/"
+    if not os.path.exists(PATH_TO_SAVE_PICTURES):
+        os.makedirs(PATH_TO_SAVE_PICTURES)
+    for state in model.states:
+        if not (state == model.start or state == model.end):
+            if horizontal:
+                fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 3))
+
+                glyph_list = []
+                for i, (acid, prob) in enumerate(state.distribution.parameters[0].items()):
+                    #print(i, acid, prob)
+                    floor = 0
+                    ceiling = floor + abs(prob)
+                    this_color = color_dict[acid]
+                    flip = False
+                    glyph = Glyph(i, acid,
+                                  ax=ax,
+                                  floor=floor,
+                                  width=1,
+                                  ceiling=ceiling,
+                                  color=this_color,
+                                  flip=flip,
+                                  zorder=0,
+                                  font_name='Arial Rounded MT Bold',
+                                  alpha=1.0,
+                                  vpad=0.0)
+                    glyph_list.append(glyph)
+                    xmin = min([g.p - .5*g.width for g in glyph_list])
+                    xmax = max([g.p + .5*g.width for g in glyph_list])
+                    ax.set_xlim([xmin, xmax])
+                    # set ylims
+                    ymin = min([g.floor for g in glyph_list])
+                    # ymax = max([g.ceiling for g in glyph_list])
+                    ymax = 1
+                    ax.set_ylim([ymin, ymax])
+                    plt.xticks(np.arange(0, 20, 1.0), labels=sorted(amino_acids))
+
+                    save_figure_to_svg(fig, dir=PATH_TO_SAVE_PICTURES, filename=f"{state.name}.svg")
+                    plt.close(fig)
+            else:
+                dummy_df = pd.DataFrame(columns = sorted(amino_acids), index = [0],  dtype=float)
+                for i, (acid, prob) in enumerate(state.distribution.parameters[0].items()):
+                    dummy_df.loc[0, acid] = prob
+                dummy_df.index.name = "pos"
+                fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 9))
+                # return dummy_df
+                info_matrix = logomaker.transform_matrix(dummy_df, from_type='probability', to_type='information')
+                ww_logo = logomaker.Logo(info_matrix,ax=ax,
+                                         font_name='Arial Rounded MT Bold',
+                                         #stack_order='small_on_top'
+                                         )
+                save_figure_to_svg(fig, dir=PATH_TO_SAVE_PICTURES, filename=f"{state.name}.svg")
+                plt.close(fig)
+
+
+def make_levels(model, precision=4):
+    print(f"Model: {model.name}")
+    source_gr = model.graph
+    name_to_level = dict()
+    passed_nodes = set()
+    nodes_stack = []
+    nodes_stack.append(model.start)
+    name_to_level[model.start.name] = 1
+
+    while len(nodes_stack) > 0:
+        cur_node = nodes_stack.pop()
+        passed_nodes.add(cur_node)
+        for node_to in source_gr.successors(cur_node):
+            data = source_gr.get_edge_data(cur_node, node_to, default=None)
+            log_probability = data['probability']
+            p = np.exp(log_probability)
+            p = round(p, precision)
+            if node_to not in passed_nodes:
+                if p != 0:
+                    cur_level = name_to_level[cur_node.name] + 1
+                    if not node_to.name in name_to_level:
+                        name_to_level[node_to.name] = cur_level
+                        print(cur_node.name, "->", node_to.name, p,  cur_level )
+                    nodes_stack.append(node_to)
+
+    # repeat for all subgraphs
+    not_seen_states = []
+    for state in model.states:
+        if state not in passed_nodes:
+            not_seen_states.append(state)
+    state_to_in_count = dict()
+    for state in not_seen_states:
+        predecessors = source_gr.predecessors(state)
+        selected_predecessors = []
+        for node_from in predecessors:
+            data = source_gr.get_edge_data(node_from, state, default=None)
+            log_probability = data['probability']
+            p = np.exp(log_probability)
+            p = round(p, precision)
+            if p != 0:
+                selected_predecessors.append(node_from)
+        state_to_in_count[state.name] = len(selected_predecessors)
+    min_in_count_states = [state for state in not_seen_states if state_to_in_count[state.name] == min(state_to_in_count.values())]
+    for state in min_in_count_states:
+        if state not in passed_nodes:
+            print("new starting point")
+            nodes_stack.append(state)
+            name_to_level[state.name] = 1
+            while len(nodes_stack) > 0:
+                cur_node = nodes_stack.pop()
+                passed_nodes.add(cur_node)
+                for node_to in source_gr.successors(cur_node):
+                    data = source_gr.get_edge_data(cur_node, node_to, default=None)
+                    log_probability = data['probability']
+                    p = np.exp(log_probability)
+                    p = round(p, precision)
+                    if node_to not in passed_nodes:
+                        if p != 0:
+                            cur_level = name_to_level[cur_node.name] + 1
+                            if not node_to.name in name_to_level:
+                                name_to_level[node_to.name] = cur_level
+                                print(cur_node.name, "->", node_to.name, p,  cur_level )
+                            nodes_stack.append(node_to)
+
+    return name_to_level
+
+def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, precision = 4):
+    name_to_level = make_levels(model, precision)
+    print(name_to_level)
+    source_gr = model.graph
+    gr = nx.DiGraph()
+
+    # calculate information for sizes
+    per_state_information = dict()
+    for state in model.states:
+        if state not in [model.start, model.end]:
+            info_matrix = probs_to_info_matrix(state.distribution)
+            per_state_information[state.name] = sum(info_matrix.loc[0])
+
+    # Add all states from model's graph (logo pictures should be prepared)
+    for state in model.states :
+        if state == model.start or state == model.end or not use_logos: # start and end states without picture
+            gr.add_node(state.name,
+                        level=name_to_level[state.name],
+                        size=35)
+        else:
+            size_percentage = per_state_information[state.name] / max(per_state_information.values())
+            gr.add_node(state.name,
+                        level=name_to_level[state.name],
+                        size=size_percentage * 35,
+                        shape='image',
+                        #image=f"file:///{logo_pictures_path}{state.name}.svg")
+                        image=f"{logo_pictures_path}{state.name}.svg")
+
+    # Add all non-zero transitions
+    for edge in source_gr.edges:
+        data = source_gr.get_edge_data(edge[0], edge[1], default=None)
+        log_probability = data['probability']
+        p = np.exp(log_probability)
+        p = round(p, precision)
+        if p != 0:
+            gr.add_edge(edge[0].name, edge[1].name, label=p)
+    return gr, name_to_level
+
+
+def make_pyviz_graph(model, TARGET_PATH_TO_RESULTS):
+    graph, name_to_level = convert_graph_to_good_format(model, "")
+                                                      # f"{os.getcwd()}/{TARGET_PATH_TO_RESULTS}/{model.name}/")
+
+    nt = Network('500px', '1000px', directed=True)
+    nt.from_nx(graph)
+    nt.show_buttons()
+    #nt.show_buttons(filter_=['physics'])
+    nt.save_graph(f"{TARGET_PATH_TO_RESULTS}\\{model.name}\\pyviz.html")
+    # nt.show(f"{TARGET_PATH_TO_RESULTS}\\{model.name}\\pyviz.html")
+    return nt
+
+
+def make_logos_for_train_sequences(target_length, per_allele_per_kfold_per_length_training_data, TARGET_PATH_TO_RESULTS):
+    per_allele_per_split_prob_matrix = dict()
+    for allele_name in per_allele_per_kfold_per_length_training_data.keys():
+        target_allele_name = allele_name.replace('-', '_').replace('*', '_').replace(':', '_')
+        per_allele_per_split_prob_matrix[allele_name] = dict()
+        for split_num, per_length_data in per_allele_per_kfold_per_length_training_data[allele_name].items():
+            model_name = f"{target_length}-mer_model-{target_allele_name}-{split_num}"
+            binders_array = per_length_data[target_length]
+            matrix = logomaker.alignment_to_matrix(binders_array)
+            info_matrix = logomaker.transform_matrix(matrix, from_type='counts', to_type='information')
+            prob_matrix = logomaker.transform_matrix(matrix, from_type='counts', to_type='probability')
+            ww_logo = logomaker.Logo(info_matrix, font_name='Arial Rounded MT Bold',)
+            ww_logo.ax.set_title(f"Allele {allele_name}, length {target_length}, split {split_num}")
+            PATH_TO_SAVE_PICTURES = TARGET_PATH_TO_RESULTS + f"{model_name}/"
+            save_figure_to_svg(fig=ww_logo.fig,  dir=PATH_TO_SAVE_PICTURES, filename=f"logo_for_sequences-{target_length}.svg")
+
+
+
+"""
+
+def statistics_for_letter(target_length, letter, positions):
+    per_allele_per_split_selected_peptides = dict()
+    for allele_name in ALLELES:
+        per_allele_per_split_selected_peptides[allele_name] = dict()
+        for split_num, per_length_data in per_allele_per_kfold_per_length_binders_train[allele_name].items():
+            binders_array = per_length_data[target_length]
+            selected_peptides = np.array([peptide for peptide in binders_array  for position in positions if peptide[position] == letter])
+            per_allele_per_split_selected_peptides[allele_name][split_num] = selected_peptides
+    return per_allele_per_split_selected_peptides
+
+statistics_L_0 = statistics_for_letter(8, 'L', [0])
+statistics_L_0_unique = {allele:{split: set(arr) for split, arr in statistics_L_0[allele].items()} for allele in ALLELES}
+statistics_L_1 = statistics_for_letter(8, 'L', [1])
+statistics_L_1_unique = {allele:{split: set(arr) for split, arr in statistics_L_1[allele].items()} for allele in ALLELES}
+
+print("L on a first position:", [len(arr) for arr in statistics_L_0[ALLELES[0]].values()], "Unique", [len(set(arr)) for arr in statistics_L_0_unique[ALLELES[0]].values()])
+print('\t', statistics_L_0[ALLELES[0]][0][:6])
+
+print("L on a second position:", [len(arr) for arr in statistics_L_1[ALLELES[0]].values()], "Unique", [len(set(arr)) for arr in statistics_L_1_unique[ALLELES[0]].values()])
+print('\t', statistics_L_1[ALLELES[0]][0][:6])
+print("L on both positions:", [len(np.intersect1d(arr1, arr2)) for arr1, arr2 in zip(statistics_L_0[ALLELES[0]].values(), statistics_L_1[ALLELES[0]].values())])
+print('\t',np.intersect1d(statistics_L_1[ALLELES[0]][0],statistics_L_0[ALLELES[0]][0])[:6])
+"""
