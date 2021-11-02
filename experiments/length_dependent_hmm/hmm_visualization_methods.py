@@ -104,7 +104,7 @@ def make_levels(model, precision=4):
                     cur_level = name_to_level[cur_node.name] + 1
                     if not node_to.name in name_to_level:
                         name_to_level[node_to.name] = cur_level
-                        print(cur_node.name, "->", node_to.name, p,  cur_level )
+                        #print(cur_node.name, "->", node_to.name, p,  cur_level )
                     nodes_stack.append(node_to)
 
     # repeat for all subgraphs
@@ -143,12 +143,13 @@ def make_levels(model, precision=4):
                             cur_level = name_to_level[cur_node.name] + 1
                             if not node_to.name in name_to_level:
                                 name_to_level[node_to.name] = cur_level
-                                print(cur_node.name, "->", node_to.name, p,  cur_level )
+                                #print(cur_node.name, "->", node_to.name, p,  cur_level )
                             nodes_stack.append(node_to)
 
     return name_to_level
 
-def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, precision = 4):
+def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, precision = 4, edge_value="probability"):
+    assert edge_value in ["probability", "log_probability"]
     name_to_level = make_levels(model, precision)
     print(name_to_level)
     source_gr = model.graph
@@ -183,7 +184,11 @@ def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, prec
         p = np.exp(log_probability)
         p = round(p, precision)
         if p != 0:
-            gr.add_edge(edge[0].name, edge[1].name, label=p)
+            if edge_value == "probability":
+                gr.add_edge(edge[0].name, edge[1].name, label=p)
+            else:
+                gr.add_edge(edge[0].name, edge[1].name, label=log_probability)
+
     return gr, name_to_level
 
 

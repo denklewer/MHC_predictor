@@ -4,15 +4,28 @@ from pomegranate import *
 import json
 import numpy as np
 import pandas as pd
-from pomegranate.io import DataGenerator
+from pomegranate.io import BatchedDataGenerator
 
 
-def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_prefix = "", prepared_models=None,
+def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_prefix="", prepared_models=None,
                 num_states=12, verbose=False, multiple_check_input=True, n_jobs=1, algorithm='baum-welch',
-                lr_decay=0.0, inertia=None, batches_per_epoch=None, batch_size=1, min_iterations=30):
+                lr_decay=0.0,
+                minibatch_training=False,
+                batches_per_epoch=None,
+                batch_size=1, min_iterations=30,
+                init_batch_size=None,
+                emission_pseudocount=0.0,
+                transition_pseudocount=0.0,
+                use_pseudocount=False,
+                edge_inertia=0.0,
+                distribution_inertia=0.0
+                ):
+
     per_split_model = dict()
     per_split_history = dict()
+
     assert type(prepared_models) in [dict, type(None)], "Prepared models should be either None (for new models) or per split models dict"
+
     for split_num, per_length_data in per_kfold_per_length_data.items():
         list_of_arrays = [per_length_data[target_length] for target_length in target_lengths]
         binders_array = np.concatenate(list_of_arrays)
@@ -21,17 +34,53 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
         print("Shuffling for fairness ")
         rng = np.random.default_rng()
         rng.shuffle(binders_array)
+
         sample_X = np.array([[char for char in item] for item in binders_array], dtype=object)
-        sequence_generator = DataGenerator(sample_X, batches_per_epoch=batches_per_epoch, batch_size=batch_size)
-        init_batch_size = max(int(batches_per_epoch / 10), 1) if batches_per_epoch is not None else int(len(sequence_generator)/10)
-        init_batch_size = 1 if batch_size is None and batches_per_epoch is None else init_batch_size
-        print(f"Init batch size is {init_batch_size}")
+        if minibatch_training:
+            sequence_generator = BatchedDataGenerator(sample_X, batches_per_epoch=batches_per_epoch, batch_size=batch_size)
+            total_batches = int(len(sequence_generator) / sequence_generator.batch_size)
+            if init_batch_size is None:
+                if batches_per_epoch is None:
+                    init_batch_size = total_batches
+                else:
+                    assert batches_per_epoch < total_batches, f"Batches per epoch should be {total_batches} or lower for given batch size of {batch_size}"
+                    init_batch_size = batches_per_epoch
+            print(f"Mini_batch: Train Length {len(sequence_generator)}, "
+                  f"batch_size {sequence_generator.batch_size}, batches_per_epoch {sequence_generator.batches_per_epoch}, "
+                  f"init_batch_size {init_batch_size}")
+        else:
+            sequence_generator = sample_X
+            print(f"Simple training: Train Length {len(sequence_generator)}, "
+                  f"init_batch_size {init_batch_size}")
+            if init_batch_size is not None:
+                assert init_batch_size < len(sequence_generator), f"init batch size should be {len(sequence_generator)} or lower "\
+                                                                  f"for given batch size of {batch_size}"
+
+
+    # init_batch_size = max(int(batches_per_epoch / 10), 1) if batches_per_epoch is not None else int(len(sequence_generator)/10)
+            # init_batch_size = 1 if batch_size is None and batches_per_epoch is None else init_batch_size
 
         if prepared_models is None:
             name_postfix = name_prefix + "-" + "-".join(map(str, target_lengths))
             state_names = [f"s{name_postfix}_{i}" for i in range(num_states)]
             target_allele_name = allele_name.replace('-', '_').replace('*', '_').replace(':', '_')
-            model_name = f"{name_postfix}-mer-{num_states}-st-{algorithm}-{lr_decay}-lr-{inertia}-inertia-{batches_per_epoch}-batches_model-{target_allele_name}-{split_num}"
+            # fill model name
+            params = {
+                "st": num_states,
+                "alg": algorithm,
+                #"batches": batches_per_epoch,
+                #"batch_size": batch_size,
+                #"init_batch_size": init_batch_size,
+                #"lr": lr_decay,
+                #"edge_inertia": edge_inertia,
+               # "distribution_inertia": distribution_inertia,
+                #"emission_pseudocount": emission_pseudocount,
+               # "transition_pseudocount": transition_pseudocount,
+                "min_iters": min_iterations,
+               # "use_pseudocount": use_pseudocount
+            }
+            params_string = "-".join([f"{value}-{key}" for key, value in params.items()])
+            model_name = f"{name_postfix}_model"
             model, history = HiddenMarkovModel.from_samples(distribution=DiscreteDistribution,
                                                             n_components=num_states,
                                                             X=sequence_generator,
@@ -45,15 +94,14 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
                                                             verbose=verbose,
                                                             multiple_check_input=multiple_check_input,
                                                             lr_decay=lr_decay,
-                                                            inertia=inertia,
-                                                            batches_per_epoch=batches_per_epoch,
+                                                            edge_inertia=edge_inertia,
+                                                            distribution_inertia=distribution_inertia,
                                                             min_iterations=min_iterations,
-                                                            initialization_batch_size=batches_per_epoch,
-                                                            # lr_decay=1 # between 0.5 and 1. Default is 0, meaning no decay.
+                                                            initialization_batch_size=init_batch_size,
+                                                            emission_pseudocount=emission_pseudocount,
                                                             # init='random' # 'first-k', 'random', 'kmeans++', or 'kmeans||' Only for non-discrete discributions
-                                                            # transition_pseudocount
-                                                            # emission_pseudocount
-                                                            # use_pseudocount
+                                                            transition_pseudocount=transition_pseudocount,
+                                                            use_pseudocount= use_pseudocount,
                                                             # distribution_inertia
                                                             # edge_inertia
                                                             # inertia
@@ -62,6 +110,8 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
                                                             #labels
                                                             #weights  An array of weights, one for each sequence to train on. If None, all sequences are equally weighted
                                                             )
+            model_name = f"{name_postfix}-{params_string}_model-{target_allele_name}-{split_num}"
+            model.name = model_name
         else:
             model = prepared_models[split_num]
             model, history = model.fit(sample_X,
@@ -72,10 +122,9 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
                                        n_jobs=n_jobs,
                                        algorithm=algorithm,
                                        lr_decay=lr_decay,
-                                       inertia=inertia,
-                                       batches_per_epoch=batches_per_epoch,
-                                       initialization_batch_size=init_batch_size
-
+                                       distribution_inertia=distribution_inertia,
+                                       edge_inertia=edge_inertia,
+                                       batches_per_epoch=batches_per_epoch
                                        )
         per_split_model[split_num] = model
         per_split_history[split_num] = history
