@@ -61,8 +61,9 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
             # init_batch_size = 1 if batch_size is None and batches_per_epoch is None else init_batch_size
 
         if prepared_models is None:
-            name_postfix = name_prefix + "-" + "-".join(map(str, target_lengths))
-            state_names = [f"s{name_postfix}_{i}" for i in range(num_states)]
+            lengths_string = "-".join(map(str, target_lengths))
+            name_postfix = name_prefix + "-" + lengths_string
+            state_names = [f"s{i}_{lengths_string}" for i in range(num_states)]
             target_allele_name = allele_name.replace('-', '_').replace('*', '_').replace(':', '_')
             # fill model name
             params = {

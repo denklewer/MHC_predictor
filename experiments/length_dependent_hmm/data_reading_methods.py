@@ -18,7 +18,7 @@ def get_available_alleles(data_path):
 
 
 def read_data(data_path, alleles_to_read, dataset_type, data_type):
-    assert data_type in ["binders", "nonbinders"]
+    assert data_type in ["binders", "nonbinders", 'immunogenic', 'nonimmunogenic']
     assert dataset_type in ["train", "test"]
     per_allele_per_kfold_per_length_peptides = dict()
 
