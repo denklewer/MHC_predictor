@@ -83,7 +83,7 @@ def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True
 
 
 def make_levels(model, precision=4):
-    print(f"Model: {model.name}")
+
     source_gr = model.graph
     name_to_level = dict()
     passed_nodes = set()
@@ -149,9 +149,10 @@ def make_levels(model, precision=4):
     return name_to_level
 
 def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, precision = 4, edge_value="probability"):
+    print(f"Converting graph for model ({model.name}) (Delete zero edges)")
     assert edge_value in ["probability", "log_probability"]
     name_to_level = make_levels(model, precision)
-    print(name_to_level)
+    # print(name_to_level)
     source_gr = model.graph
     gr = nx.DiGraph()
 

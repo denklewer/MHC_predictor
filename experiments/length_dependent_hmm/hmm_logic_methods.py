@@ -5,7 +5,8 @@ import json
 import numpy as np
 import pandas as pd
 from pomegranate.io import BatchedDataGenerator
-
+from hmm_visualization_methods import convert_graph_to_good_format
+import networkx as nx
 
 def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_prefix="", prepared_models=None,
                 num_states=12, verbose=False, multiple_check_input=True, n_jobs=1, algorithm='baum-welch',
@@ -241,3 +242,101 @@ def load_model(TARGET_PATH_TO_RESULTS, model_name):
         json_object = json.load(f)
         model = HiddenMarkovModel.from_json(json_object)
     return model
+
+
+## Paths finding
+def get_all_paths_with_probs(model, edge_value="log_probability"):
+    df = pd.DataFrame(columns=["path", "prob"])
+    # remove empty nodes (for speed up and only possible paths)
+    new_graph, name_to_level = convert_graph_to_good_format(model,"", False, precision=4, edge_value=edge_value)
+    paths = list(nx.all_simple_paths(new_graph, model.start.name, model.end.name)) # Might be very slow
+    print(f"found {len(paths)} paths")
+    edge_to_prob = dict()
+    for path in paths:
+        prob_for_path = 0 if edge_value == "log_probability" else 1
+        path_edges = path.copy()
+        node_from = path_edges.pop(0)
+        while path_edges:
+            node_to = path_edges.pop(0)
+            edge = new_graph.get_edge_data(node_from, node_to)
+            edge_to_prob[(node_from, node_to)] = edge['label']
+            if edge_value == "log_probability":
+                prob_for_path = prob_for_path + edge['label']
+            else:
+                prob_for_path = prob_for_path * edge['label']
+            # print(f"edge {edge}")
+            node_from = node_to
+        # print(f"Total prob for path is {prob_for_path}")
+        row = {"path": path, "prob": prob_for_path}
+        df = df.append(row, ignore_index=True)
+    df = df.sort_values('prob', ascending=False)
+    # print("Take top 50 most probable paths")
+    # df = df.head(50)
+    return df, edge_to_prob
+
+
+def get_state_for_name(model, state_name):
+    state = [state for state in model.states if state.name == state_name][0]
+    return state
+
+
+def get_prob_for_path_and_sequence(model,edge_to_prob, state_path, sequence, edge_value="log_probability"):
+    prob_for_path = 0 if edge_value == "log_probability" else 1
+    path_nodes = state_path.copy()
+    node_from = path_nodes.pop(0)
+    emissions = list(sequence)
+    while path_nodes:
+        node_to = path_nodes.pop(0)
+        tr_prob = edge_to_prob[(node_from.name, node_to.name)]
+        if node_from.name != model.start.name:
+            emission = emissions.pop(0)
+            e_prob = node_from.distribution.parameters[0][emission]
+            e_prob = np.log(e_prob) if edge_value == "log_probability" else e_prob
+            if edge_value == "log_probability":
+                prob_for_path = prob_for_path + e_prob + tr_prob
+            else:
+                prob_for_path = prob_for_path * e_prob * tr_prob
+
+        else:
+            if edge_value == "log_probability":
+                prob_for_path =  prob_for_path + tr_prob
+            else:
+                prob_for_path =  prob_for_path * tr_prob
+        # print(f"edge {edge}")
+        node_from = node_to
+    return prob_for_path
+
+def get_peptide_to_paths_df(model, peptides, edge_value="log_probability"):
+    print(f"Model {model.name}")
+    print(f"\tFind all paths")
+    paths_df, edge_to_prob = get_all_paths_with_probs(model, edge_value=edge_value)
+    # df = pd.DataFrame(columns=["peptide", "path", "prob"])
+    result_peptides = []
+    result_paths = []
+    result_probs = []
+    print(f"\tCalculate probs for peptides")
+    for peptide in peptides:
+        for path in paths_df['path']:
+            state_path = [get_state_for_name(model, state_name) for state_name in path]
+            prob_for_path = get_prob_for_path_and_sequence(model, edge_to_prob, state_path, peptide, edge_value=edge_value)
+            result_peptides.append(peptide)
+            result_paths.append(path)
+            result_probs.append(prob_for_path)
+    df = pd.DataFrame({"peptide": result_peptides, "path":result_paths, "prob":result_probs})
+    if edge_value == "log_probability":
+        df.replace([-np.inf], -50000, inplace=True)
+    return df
+
+
+def get_model_representation(model, peptides, edge_value="log_probability"):
+    assert isinstance(peptides, set)
+    assert edge_value in ['log_probability', 'probability']
+    peptide_to_path_df = get_peptide_to_paths_df(model, peptides, edge_value=edge_value)
+    unique_paths = peptide_to_path_df['path'].sort_values().apply(str).unique()
+    path_to_index = {path : i for  i , path in enumerate(unique_paths)}
+    peptide_to_path_df['path_index'] = peptide_to_path_df["path"].map(str).map(path_to_index)
+    #pivot
+    pivot_df = peptide_to_path_df.pivot(index='peptide', columns='path_index', values='prob')
+    return pivot_df, path_to_index
+    
+    
