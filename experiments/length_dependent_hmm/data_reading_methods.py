@@ -25,7 +25,7 @@ def read_data(data_path, alleles_to_read, dataset_type, data_type):
     for allele_name in alleles_to_read:
         per_allele_per_kfold_per_length_peptides[allele_name] = dict()
         target_allele_name = allele_name.replace('-', '_').replace('*', '_').replace(':', '_')
-        file_name = f"{target_allele_name}_{data_type}_{dataset_type}.csv"
+        file_name = "{}_{}_{}.csv".format(target_allele_name, data_type, dataset_type)
         total_df = pd.read_csv(data_path + file_name,sep=";")
         n_splits = list(total_df['split'].unique())
         lengths = list(total_df['length'].unique())
