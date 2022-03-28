@@ -7,11 +7,13 @@ import logomaker
 from logomaker.src.Glyph import Glyph
 import networkx as nx
 from pyvis.network import Network
+from collections import defaultdict
 
 
 def save_figure_to_svg(fig, dir, filename):
     fig.savefig(dir + filename, format="svg", bbox_inches='tight', transparent=False)
-
+def save_figure_to_png(fig, dir, filename):
+    fig.savefig(dir + filename, format="png", bbox_inches='tight', transparent=False)
 
 def probs_to_info_matrix(distribution):
     amino_acids = list(distribution.parameters[0].keys())
@@ -82,10 +84,56 @@ def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True
                 plt.close(fig)
 
 
+def plot_motifs_for_paths(model, TARGET_PATH_TO_RESULTS, paths_df, top=None):
+    PATH_TO_SAVE_PICTURES = TARGET_PATH_TO_RESULTS + "/" + model.name + "/paths/"
+    if not os.path.exists(PATH_TO_SAVE_PICTURES):
+        os.makedirs(PATH_TO_SAVE_PICTURES)
+    result_df = pd.DataFrame()
+    state_name_to_index = dict()
+    for i,state in enumerate(model.states):
+        state_name_to_index[state.name] = i
+    states = model.states
+    if top:
+        paths_df = paths_df.sort_values("prob", ascending=False)[:top]
+    for index, row in paths_df.iterrows():
+        probs_url = f"path_{index}_probs.png"
+        info_url = f"path_{index}_info.png"
+        result_dict = {
+            "id": index,
+            "info_picture": '<img src="'+ info_url + '" width="320" >',
+            "probs_picture": '<img src="'+ probs_url + '" width="320" >',
+            "motif_url": info_url,
+            "prob": row['prob']
+        }
+
+        df = pd.DataFrame()
+        for position, state_name in enumerate(row['path'], start=-1):
+            if state_name not in [model.start.name, model.end.name]:
+                params = states[state_name_to_index[state_name]].distribution.parameters[0]
+                df = df.append(params, ignore_index=True)
+                result_dict[f'pos_{position}'] = state_name
+
+        info_matrix = logomaker.transform_matrix(df, from_type='probability', to_type='information')
+        fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 2))
+        info_logo = logomaker.Logo(info_matrix, font_name='Arial Rounded MT Bold', ax=ax)
+        save_figure_to_png(fig, dir=PATH_TO_SAVE_PICTURES, filename=info_url)
+        plt.close(fig)
+        fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 2))
+        probs_logo = logomaker.Logo(df, font_name='Arial Rounded MT Bold', ax=ax)
+        save_figure_to_png(fig, dir=PATH_TO_SAVE_PICTURES, filename=probs_url)
+        plt.close(fig)
+
+
+        result_df = result_df.append(result_dict, ignore_index=True)
+    result_df.to_html(f'{PATH_TO_SAVE_PICTURES}/paths.html', escape=False)
+
+    return result_df
+
 def make_levels(model, precision=4):
 
     source_gr = model.graph
     name_to_level = dict()
+    name_to_size = dict()
     passed_nodes = set()
     nodes_stack = []
     nodes_stack.append(model.start)
@@ -151,25 +199,27 @@ def make_levels(model, precision=4):
 def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, precision = 4, edge_value="probability"):
     print(f"Converting graph for model ({model.name}) (Delete zero edges)")
     assert edge_value in ["probability", "log_probability"]
-    name_to_level = make_levels(model, precision)
-    # print(name_to_level)
+    name_to_level = make_levels(model, precision)    # print(name_to_level)
     source_gr = model.graph
     gr = nx.DiGraph()
 
     # calculate information for sizes
     per_state_information = dict()
+    per_level_information = defaultdict(float)
     for state in model.states:
         if state not in [model.start, model.end]:
             info_matrix = probs_to_info_matrix(state.distribution)
             per_state_information[state.name] = sum(info_matrix.loc[0])
+            per_level_information[name_to_level[state.name]] += per_state_information[state.name]
 
     # Add all states from model's graph (logo pictures should be prepared)
-    for state in model.states :
+    for state in model.states:
         if state == model.start or state == model.end or not use_logos: # start and end states without picture
             gr.add_node(state.name,
                         level=name_to_level[state.name],
                         size=35)
         else:
+            # info_portion = per_state_information[state.name] / per_level_information[name_to_level[state.name]]
             size_percentage = per_state_information[state.name] / max(per_state_information.values())
             gr.add_node(state.name,
                         level=name_to_level[state.name],
@@ -193,15 +243,15 @@ def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, prec
     return gr, name_to_level
 
 
-def make_pyviz_graph(model, TARGET_PATH_TO_RESULTS):
-    graph, name_to_level = convert_graph_to_good_format(model, "")
+def make_pyviz_graph(model, TARGET_PATH_TO_RESULTS, precision=4):
+    graph, name_to_level = convert_graph_to_good_format(model, "", precision=precision)
                                                       # f"{os.getcwd()}/{TARGET_PATH_TO_RESULTS}/{model.name}/")
 
-    nt = Network('500px', '1000px', directed=True)
+    nt = Network('500px', '1600', directed=True)
     nt.from_nx(graph)
     nt.show_buttons()
     #nt.show_buttons(filter_=['physics'])
-    nt.save_graph(f"{TARGET_PATH_TO_RESULTS}\\{model.name}\\pyviz.html")
+    nt.save_graph(f"{TARGET_PATH_TO_RESULTS}\\{model.name}\\pyviz-pr-{precision}.html")
     # nt.show(f"{TARGET_PATH_TO_RESULTS}\\{model.name}\\pyviz.html")
     return nt
 
