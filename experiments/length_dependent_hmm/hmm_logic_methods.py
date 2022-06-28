@@ -7,6 +7,7 @@ from pomegranate.io import BatchedDataGenerator, SequenceGenerator
 from hmm_visualization_methods import convert_graph_to_good_format
 import networkx as nx
 from tqdm import tqdm
+from collections import defaultdict
 
 
 def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_prefix="",
@@ -24,7 +25,8 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
                 use_pseudocount=False,
                 edge_inertia=0.0,
                 distribution_inertia=0.0,
-                stop_threshold=5e-5
+                stop_threshold=5e-5,
+                use_test=True
                 ):
 
     per_split_model = dict()
@@ -77,7 +79,7 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
             sequence_test_generator = sample_X_test
         else:
             sequence_generator = sample_X
-            sequence_test_generator = SequenceGenerator(sample_X_test)
+            sequence_test_generator = SequenceGenerator(sample_X_test) if use_test else None
             print(f"Simple training: Train Length {len(sequence_generator)}, "
                   f"init_batch_size {init_batch_size}")
             if init_batch_size is not None:
@@ -828,7 +830,7 @@ def get_peptide_to_paths_df_external_paths(model, peptides, paths_df, edge_value
 #     for peptide in peptides:
 #         for path in paths_df['path']:
 #             state_path = [name_to_state[state_name] for state_name in path]
-#             prob_for_path = get_prob_for_path_and_sequence(model, edge_to_prob, state_path, peptide, edge_value=edge_value)
+#             prob_for_path = get_prob_for_path_and_sequence(convert_graph_to_good_formatmodel, edge_to_prob, state_path, peptide, edge_value=edge_value)
 #             result_peptides.append(peptide)
 #             result_paths.append(path)
 #             result_probs.append(prob_for_path)
@@ -853,15 +855,24 @@ def get_all_viterbi_paths_for_model_and_sequences(model, peptides, edge_value="l
     result_paths = list()
 
     path_code_to_path = dict()
+    path_code_to_cnt = defaultdict(int)
+    path_code_to_mean_viterbi_prob = defaultdict(float)
 
     for i, peptide in tqdm(enumerate(peptides), total=len(peptides)):
         prob_for_path, path = model.viterbi(peptide)
         path_state_indexes = "|".join([str(path_tuple[0]) for path_tuple in path]) # path as string
         path_code_to_path[path_state_indexes] = [path_tuple[1] for path_tuple in path]
+        n = path_code_to_cnt[path_state_indexes] 
+        mean_viterbi = path_code_to_mean_viterbi_prob[path_state_indexes]
+        mean_viterbi = (mean_viterbi * n  + prob_for_path) / (n+1)
+        path_code_to_mean_viterbi_prob[path_state_indexes] = mean_viterbi
+        path_code_to_cnt[path_state_indexes] += 1
+        
     print("Select unique paths...")
     print(f"\tUnique paths: {len(path_code_to_path)}")
     unique_paths = list(path_code_to_path.values())
-
+    mean_viterbies = list(path_code_to_mean_viterbi_prob.values())
+    cnts = list(path_code_to_cnt.values())
     for path in tqdm(unique_paths):
         prob_for_path = 0 if edge_value == "log_probability" else 1
         path_edges = path.copy()
@@ -883,7 +894,7 @@ def get_all_viterbi_paths_for_model_and_sequences(model, peptides, edge_value="l
         # normalize
         result_normalized_probs.append(prob_for_path / len(path))
 
-    paths_df = pd.DataFrame({"path": result_paths, "prob": result_probs,  "normalized_prob": result_normalized_probs, "len": result_lens})
+    paths_df = pd.DataFrame({"path": result_paths, "prob": result_probs,  "normalized_prob": result_normalized_probs, "len": result_lens, "mean_viterbi": mean_viterbies, "peptide_cnts": cnts})
     paths_df = paths_df.sort_values('normalized_prob', ascending=False)
     paths_df = paths_df.reset_index(drop=True)
     return paths_df
