@@ -11,9 +11,9 @@ sys.path.append(PATH_TO_PREDICTOR_HOME)
 METHOD = "hmm_pomegranate"
 
 # Read data
-DATA_PATH = 'D:/Google Drive/Work/ITMO/data/length_dependent_hmm/per_length_per_kfold_split/' # windows
+DATA_PATH = '/data/' # windows
 # DATA_PATH = '/home/denklewer/Data/length_dependent_hmm/' #ubuntu
-TARGET_PATH_TO_RESULTS = "experiment_results/groups_retrain_single_allele_balanced_data/" #!CHANGE for bwv!
+TARGET_PATH_TO_RESULTS = "/result/" #!CHANGE for bwv!
 
 
 ALLELES = get_available_alleles(DATA_PATH)
