@@ -9,6 +9,9 @@ import networkx as nx
 from tqdm import tqdm
 from collections import defaultdict
 
+MINUS_INF_CONSTANT = -20
+MINUS_INF_CONSTANT_NORMALIZED = -0.5
+
 
 def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_prefix="",
                 per_kfold_per_length_test_data=None,
@@ -26,13 +29,14 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
                 edge_inertia=0.0,
                 distribution_inertia=0.0,
                 stop_threshold=5e-5,
-                use_test=True
+                use_test=True,
+                step_to_save_model=30
                 ):
-
     per_split_model = dict()
     per_split_history = dict()
 
-    assert type(prepared_models) in [dict, type(None)], "Prepared models should be either None (for new models) or per split models dict"
+    assert type(prepared_models) in [dict, type(
+        None)], "Prepared models should be either None (for new models) or per split models dict"
 
     for split_num, per_length_data in per_kfold_per_length_data.items():
         per_length_current_weights = per_kfold_per_length_weights_for_data[split_num]
@@ -40,11 +44,11 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
         per_length_counts = {target_length: len(per_length_data[target_length]) for target_length in target_lengths}
 
         list_of_arrays = [per_length_data[target_length] for target_length in target_lengths]
-        list_of_arrays_for_weights = [np.array(per_length_current_weights[target_length]) for target_length in target_lengths]
+        list_of_arrays_for_weights = [np.array(per_length_current_weights[target_length]) for target_length in
+                                      target_lengths]
         list_of_test_arrays = [per_length_test_data[target_length] for target_length in target_lengths]
         binders_array = np.concatenate(list_of_arrays)
         weights_array = np.concatenate(list_of_arrays_for_weights)
-
 
         binders_test_array = np.concatenate(list_of_test_arrays)
         print("split {}".format(split_num))
@@ -63,9 +67,10 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
         # just shuffle test data
         rng.shuffle(binders_test_array)
         sample_X = np.array([[char for char in item] for item in binders_array], dtype=object)
-        sample_X_test =  np.array([[char for char in item] for item in binders_test_array], dtype=object)
+        sample_X_test = np.array([[char for char in item] for item in binders_test_array], dtype=object)
         if minibatch_training:
-            sequence_generator = BatchedDataGenerator(sample_X, batches_per_epoch=batches_per_epoch, batch_size=batch_size)
+            sequence_generator = BatchedDataGenerator(sample_X, batches_per_epoch=batches_per_epoch,
+                                                      batch_size=batch_size)
             total_batches = int(len(sequence_generator) / sequence_generator.batch_size)
             if init_batch_size is None:
                 if batches_per_epoch is None:
@@ -83,12 +88,11 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
             print(f"Simple training: Train Length {len(sequence_generator)}, "
                   f"init_batch_size {init_batch_size}")
             if init_batch_size is not None:
-                assert init_batch_size < len(sequence_generator), f"init batch size should be {len(sequence_generator)} or lower "\
-
-
-
-    # init_batch_size = max(int(batches_per_epoch / 10), 1) if batches_per_epoch is not None else int(len(sequence_generator)/10)
-            # init_batch_size = 1 if batch_size is None and batches_per_epoch is None else init_batch_size
+                assert init_batch_size < len(
+                    sequence_generator), f"init batch size should be {len(sequence_generator)} or lower " \
+ \
+                    # init_batch_size = max(int(batches_per_epoch / 10), 1) if batches_per_epoch is not None else int(len(sequence_generator)/10)
+        # init_batch_size = 1 if batch_size is None and batches_per_epoch is None else init_batch_size
 
         if prepared_models is None:
             lengths_string = "-".join(map(str, target_lengths))
@@ -99,16 +103,16 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
             params = {
                 "st": num_states,
                 "alg": algorithm,
-                #"batches": batches_per_epoch,
-                #"batch_size": batch_size,
-                #"init_batch_size": init_batch_size,
-                #"lr": lr_decay,
-                #"edge_inertia": edge_inertia,
-               # "distribution_inertia": distribution_inertia,
-                #"emission_pseudocount": emission_pseudocount,
-               # "transition_pseudocount": transition_pseudocount,
+                # "batches": batches_per_epoch,
+                # "batch_size": batch_size,
+                # "init_batch_size": init_batch_size,
+                # "lr": lr_decay,
+                # "edge_inertia": edge_inertia,
+                # "distribution_inertia": distribution_inertia,
+                # "emission_pseudocount": emission_pseudocount,
+                # "transition_pseudocount": transition_pseudocount,
                 "min_iters": min_iterations
-               # "use_pseudocount": use_pseudocount
+                # "use_pseudocount": use_pseudocount
             }
             if max_iterations != 1e8:
                 params["max_iters"] = max_iterations
@@ -136,20 +140,20 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
                                                             emission_pseudocount=emission_pseudocount,
                                                             # init='random' # 'first-k', 'random', 'kmeans++', or 'kmeans||' Only for non-discrete discributions
                                                             transition_pseudocount=transition_pseudocount,
-                                                            use_pseudocount= use_pseudocount,
+                                                            use_pseudocount=use_pseudocount,
                                                             # inertia
                                                             n_jobs=n_jobs,
                                                             algorithm=algorithm,
-                                                            weights = weights_array
-                                                            #labels
-                                                            #weights  An array of weights, one for each sequence to train on. If None, all sequences are equally weighted
+                                                            weights=weights_array
+                                                            # labels
+                                                            # weights  An array of weights, one for each sequence to train on. If None, all sequences are equally weighted
                                                             )
             model_name = f"{name_postfix}-{params_string}_model-{target_allele_name}-{split_num}"
             model.name = model_name
         else:
             model = prepared_models[split_num]
             model, history = model.fit(sample_X,
-                                       sequences_test =sequence_test_generator,
+                                       sequences_test=sequence_test_generator,
                                        stop_threshold=stop_threshold,
                                        return_history=True,
                                        verbose=verbose,
@@ -160,10 +164,11 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
                                        distribution_inertia=distribution_inertia,
                                        edge_inertia=edge_inertia,
                                        batches_per_epoch=batches_per_epoch,
-                                       min_iterations= min_iterations,
+                                       min_iterations=min_iterations,
+                                       max_iterations=max_iterations,
                                        emission_pseudocount=emission_pseudocount,
                                        transition_pseudocount=transition_pseudocount,
-                                       use_pseudocount= use_pseudocount,
+                                       use_pseudocount=use_pseudocount,
                                        weights=weights_array
                                        )
         per_split_model[split_num] = model
@@ -174,12 +179,12 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
 
 
 # Add states to existing model
-def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sates_names=[],  new_name="new_model", new_probs="fair"):
-
+def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sates_names=[], new_name="new_model",
+                                          new_probs="fair"):
     old_start_index = source_model.start_index
     old_end_index = source_model.end_index
     old_states = source_model.states.copy()
-    old_state_name_to_index = {state.name : i for i, state in enumerate(old_states) }
+    old_state_name_to_index = {state.name: i for i, state in enumerate(old_states)}
     old_states_names = {state.name for state in old_states}
     old_transitions = source_model.dense_transition_matrix()
     state_distributions = []
@@ -188,7 +193,7 @@ def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sate
     print(f"Initial length {len(model.states)}")
     keymap = model.keymap[0]
     for i in range(ADD_STATES_NUM):
-        d = DiscreteDistribution({key: prob for key, prob in zip(keymap,np.random.uniform(0, 1, size=len(keymap)))})
+        d = DiscreteDistribution({key: prob for key, prob in zip(keymap, np.random.uniform(0, 1, size=len(keymap)))})
         state_distributions.append(d)
 
     state_names = new_sates_names
@@ -198,7 +203,7 @@ def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sate
     model.name = new_name
     model.start.name = f"{new_name}-start"
     model.end.name = f"{new_name}-end"
-    model.bake(verbose=True, merge=None) # merge None because we don't want to delete the states without nodes
+    model.bake(verbose=True, merge=None)  # merge None because we don't want to delete the states without nodes
     print(f"After length {len(model.states)}")
 
     # total states after adding
@@ -224,7 +229,7 @@ def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sate
             prob = old_transitions[old_start_index, old_state_name_to_index[state.name]]
         else:
             if new_probs == "fair":
-                prob = median_from_start_prob # we want to have fair prob(median)
+                prob = median_from_start_prob  # we want to have fair prob(median)
                 # prob = 1 / ADD_STATES_NUM  # we want to have 0.5 probability in final normalized version for new states
             elif new_probs == "tiny":
                 prob = 0.04
@@ -244,7 +249,8 @@ def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sate
         median_from_prob = 0
         for to_state in states:
             if from_state.name in old_states_names and to_state.name in old_states_names:
-                from_probs.append(old_transitions[old_state_name_to_index[from_state.name], old_state_name_to_index[to_state.name]])
+                from_probs.append(
+                    old_transitions[old_state_name_to_index[from_state.name], old_state_name_to_index[to_state.name]])
         if from_state.name in old_states_names:
             median_from_prob = np.mean(from_probs)
 
@@ -253,17 +259,17 @@ def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sate
                 prob = old_transitions[old_state_name_to_index[from_state.name], old_state_name_to_index[to_state.name]]
             elif from_state.name in old_states_names:
                 if new_probs == "fair":
-                    prob = median_from_prob # probabilities from old to new will be median of all from probabilities
+                    prob = median_from_prob  # probabilities from old to new will be median of all from probabilities
                     # prob = 1 / ADD_STATES_NUM  # probabilities from old to new will be 1/(num_new)
                 elif new_probs == "tiny":
                     prob = 0.04
                 else:
                     raise RuntimeError("new_probs argument should be 'fair' or  'tiny'")
-            else: # from new state
+            else:  # from new state
                 if to_state.name in old_states_names:
-                    prob = 1.0 # to old state prob is 1
+                    prob = 1.0  # to old state prob is 1
                 else:
-                    prob = 0 # from new to old prob is 0
+                    prob = 0  # from new to old prob is 0
             if prob != 0:
                 # print(f"ADD transition from {from_state.name} {to_state.name} with prob {prob}")
                 model.add_transition(from_state, to_state, prob)
@@ -271,16 +277,18 @@ def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sate
     # Connect states to the end of the model if a non-zero probability
     for state in states:
         if state.name in old_states_names:
-            prob = old_transitions[ old_state_name_to_index[state.name], old_end_index]
+            prob = old_transitions[old_state_name_to_index[state.name], old_end_index]
         else:
             prob = 1.0  # if from new state  equal probs from all the states + end state
         if prob != 0:
-            #print(f"ADD transition from {state.name} {model.end.name} with prob {prob}")
+            # print(f"ADD transition from {state.name} {model.end.name} with prob {prob}")
             model.add_transition(state, model.end, prob)
     model.bake(verbose=False)
     return model
 
-def init_grouped_structure_model(states_per_group = 5, number_of_groups=5, amino_acids="ACDEFGHIKLMNPQRSTVWY"):
+
+def init_grouped_structure_model(states_per_group=5, number_of_groups=5, amino_acids="ACDEFGHIKLMNPQRSTVWY"):
+    print("Initialize grouped structure model")
     START_WEIGHT = 1
     INTRAGROUP_WEIGHT = 4
     INTERGROUP_WEIGHT = 1
@@ -290,7 +298,8 @@ def init_grouped_structure_model(states_per_group = 5, number_of_groups=5, amino
 
     for group_number in range(number_of_groups):
         for state_num in range(states_per_group):
-            d = DiscreteDistribution({key: prob for key, prob in zip(amino_acids_list,np.random.uniform(0, 1, size=len(amino_acids_list)))})
+            d = DiscreteDistribution(
+                {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
             distributions.append(d)
 
     num_states = states_per_group * number_of_groups
@@ -298,12 +307,11 @@ def init_grouped_structure_model(states_per_group = 5, number_of_groups=5, amino
 
     transition_matrix = numpy.zeros((num_states, num_states))
 
-
     for group_number in range(number_of_groups):
         for i in range(states_per_group):
             # fill transitions inside each group with 3
 
-            total_rest_portion = INTRAGROUP_WEIGHT*states_per_group
+            total_rest_portion = INTRAGROUP_WEIGHT * states_per_group
             for j in range(states_per_group):
                 state_num_from = group_number * states_per_group + i
                 state_num_to = group_number * states_per_group + j
@@ -321,11 +329,93 @@ def init_grouped_structure_model(states_per_group = 5, number_of_groups=5, amino
     # start only for first group
     start_probabilities = [START_WEIGHT if i < states_per_group else 0 for i in range(num_states)]
     # do not restrict ending in multiple states, so probs are equal to transitions inside
-    end_probabilities = [0 if i < states_per_group * (number_of_groups - 1) else INTRAGROUP_WEIGHT for i in range(num_states)]
+    end_probabilities = [0 if i < states_per_group * (number_of_groups - 1) else INTRAGROUP_WEIGHT for i in
+                         range(num_states)]
     assert sum(start_probabilities) == states_per_group * START_WEIGHT
     assert sum(end_probabilities) == states_per_group * END_WEIGHT
 
-    model =HiddenMarkovModel.from_matrix(
+    model = HiddenMarkovModel.from_matrix(
+        name=model_name,
+        transition_probabilities=transition_matrix,
+        starts=start_probabilities,
+        distributions=distributions,
+        ends=end_probabilities,
+        state_names=state_names,
+        verbose=False)
+
+    model.bake(verbose=False)
+    return model
+
+
+def init_grouped_structure_model_with_joiner(states_per_group=5, number_of_groups=5,
+                                             amino_acids="ACDEFGHIKLMNPQRSTVWY"):
+    START_WEIGHT = 1
+    INTRAGROUP_WEIGHT = 4
+    INTERGROUP_WEIGHT = 1
+    END_WEIGHT = 4
+    amino_acids_list = list(amino_acids)
+
+    number_of_joiners = number_of_groups - 1
+    distributions = list()
+
+    for group_number in range(number_of_groups):
+        for state_num in range(states_per_group):
+            d = DiscreteDistribution(
+                {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+            distributions.append(d)
+    for joiner_number in range(number_of_joiners):
+        d = DiscreteDistribution(
+            {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+        distributions.append(d)
+
+    num_states = states_per_group * number_of_groups + number_of_joiners
+    state_names = ["s{:03d}".format(i) for i in range(num_states)]
+
+    transition_matrix = numpy.zeros((num_states, num_states))
+
+    for group_number in range(number_of_groups):
+        for i in range(states_per_group):
+            # fill transitions inside each group with 3
+
+            total_rest_portion = INTRAGROUP_WEIGHT * states_per_group
+            for j in range(states_per_group):
+                state_num_from = group_number * states_per_group + i
+                state_num_to = group_number * states_per_group + j
+                if state_num_from != state_num_to:
+                    transition_matrix[state_num_from][state_num_to] = INTRAGROUP_WEIGHT
+
+            # transition to next group is only through the joiner
+            if group_number != number_of_groups - 1:
+                state_num_from = group_number * states_per_group + i
+                state_num_to = number_of_groups * states_per_group + group_number
+                # print(f"from {state_num_from} to {state_num_to}")
+                transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+    # connect joiners to the next group
+    for joiner_number in range(number_of_joiners):
+        group_number = joiner_number + 1
+        state_num_from = number_of_groups * states_per_group + joiner_number
+        for j in range(states_per_group):
+            state_num_to = group_number * states_per_group + j
+            transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+
+    model_name = 'grouped_model'
+    first_joiner_idx = number_of_groups * states_per_group
+    last_joiner_idx = number_of_groups * states_per_group + number_of_joiners - 1
+    # start only for first group and first joiner
+    start_probabilities = [START_WEIGHT
+                           if i < states_per_group or i == number_of_groups * states_per_group
+                           else 0
+                           for i in range(num_states)]
+    # do not restrict ending in multiple states, so probs are equal to transitions inside
+
+    end_probabilities = [INTRAGROUP_WEIGHT
+                         if (states_per_group * (number_of_groups - 1) <= i < first_joiner_idx) or i == last_joiner_idx
+                         else 0
+                         for i in range(num_states)]
+    assert sum(start_probabilities) == (states_per_group + 1) * START_WEIGHT, start_probabilities
+    assert sum(end_probabilities) == (states_per_group + 1) * END_WEIGHT, end_probabilities + [last_joiner_idx]
+
+    model = HiddenMarkovModel.from_matrix(
         name=model_name,
         transition_probabilities=transition_matrix,
         starts=start_probabilities,
@@ -338,17 +428,13 @@ def init_grouped_structure_model(states_per_group = 5, number_of_groups=5, amino
     return model
 
 
-
-
-
-
 # Add states to existing model
-def add_more_states_to_the_end(source_model, ADD_STATES_NUM, new_sates_names=[],  new_name="new_model", new_probs="fair", edge_pseudocount=None):
-
+def add_more_states_to_the_end(source_model, ADD_STATES_NUM, new_sates_names=[], new_name="new_model", new_probs="fair",
+                               edge_pseudocount=None):
     old_start_index = source_model.start_index
     old_end_index = source_model.end_index
     old_states = source_model.states.copy()
-    old_state_name_to_index = {state.name : i for i, state in enumerate(old_states) }
+    old_state_name_to_index = {state.name: i for i, state in enumerate(old_states)}
     old_states_names = {state.name for state in old_states}
     old_transitions = source_model.dense_transition_matrix()
     state_distributions = []
@@ -357,7 +443,7 @@ def add_more_states_to_the_end(source_model, ADD_STATES_NUM, new_sates_names=[],
     print(f"Initial length {len(model.states)}")
     keymap = model.keymap[0]
     for i in range(ADD_STATES_NUM):
-        d = DiscreteDistribution({key: prob for key, prob in zip(keymap,np.random.uniform(0, 1, size=len(keymap)))})
+        d = DiscreteDistribution({key: prob for key, prob in zip(keymap, np.random.uniform(0, 1, size=len(keymap)))})
         state_distributions.append(d)
 
     state_names = new_sates_names
@@ -367,7 +453,7 @@ def add_more_states_to_the_end(source_model, ADD_STATES_NUM, new_sates_names=[],
     model.name = new_name
     model.start.name = f"{new_name}-start"
     model.end.name = f"{new_name}-end"
-    model.bake(verbose=True, merge=None) # merge None because we don't want to delete the states without nodes
+    model.bake(verbose=True, merge=None)  # merge None because we don't want to delete the states without nodes
     print(f"After length {len(model.states)}")
 
     # total states after adding
@@ -400,7 +486,8 @@ def add_more_states_to_the_end(source_model, ADD_STATES_NUM, new_sates_names=[],
         for j, to_state in enumerate(states):
             if from_state.name in old_states_names and to_state.name in old_states_names:
                 if to_state.name != model.end.name:
-                    prob = old_transitions[old_state_name_to_index[from_state.name], old_state_name_to_index[to_state.name]]
+                    prob = old_transitions[
+                        old_state_name_to_index[from_state.name], old_state_name_to_index[to_state.name]]
                 # else:
                 #
                 #     prob = 0
@@ -411,7 +498,7 @@ def add_more_states_to_the_end(source_model, ADD_STATES_NUM, new_sates_names=[],
                     prob = 0.05
                 else:
                     raise RuntimeError("new_probs argument shoul be 'fair' or  'tiny'")
-            else: # from new state
+            else:  # from new state
                 prob = 0
             if prob != 0:
                 # print(f"ADD transition from {from_state.name} {to_state.name} with prob {prob}")
@@ -424,19 +511,19 @@ def add_more_states_to_the_end(source_model, ADD_STATES_NUM, new_sates_names=[],
         else:
             prob = 1.0  # if from new state  equal probs from all the states + end state
         if prob != 0:
-            #print(f"ADD transition from {state.name} {model.end.name} with prob {prob}")
+            # print(f"ADD transition from {state.name} {model.end.name} with prob {prob}")
             model.add_transition(state, model.end, prob, pseudocount=edge_pseudocount)
     model.bake(verbose=False)
     return model
 
 
-def copy_model_with_pseudocounts(source_model, precision = 4, edge_pseudocount=None):
+def copy_model_with_pseudocounts(source_model, precision=4, edge_pseudocount=None):
     new_model = source_model.copy()
 
     transitions = new_model.dense_transition_matrix()
     # total states after adding
     states = new_model.states
-    state_name_to_index = {state.name : i for i, state in enumerate(states) }
+    state_name_to_index = {state.name: i for i, state in enumerate(states)}
     states_names = {state.name for state in states}
     start_index = new_model.start_index
     end_index = new_model.end_index
@@ -476,12 +563,13 @@ def copy_model_with_pseudocounts(source_model, precision = 4, edge_pseudocount=N
         prob = transitions[state_name_to_index[state.name], end_index]
         prob = round(prob, precision)
         if prob != 0:
-            #print(f"ADD transition from {state.name} {model.end.name} with prob {prob}")
+            # print(f"ADD transition from {state.name} {model.end.name} with prob {prob}")
             new_model.add_transition(state, new_model.end, prob, pseudocount=edge_pseudocount)
         else:
             new_model.add_transition(state, new_model.end, prob, pseudocount=0)
     new_model.bake(verbose=False)
     return new_model
+
 
 def create_model_with_separated_amino_acids(target_length=9):
     groups = {
@@ -495,29 +583,29 @@ def create_model_with_separated_amino_acids(target_length=9):
     }
 
     keymap = {'H': 0,
-               'R': 1,
-               'V': 2,
-               'S': 3,
-               'N': 4,
-               'Q': 5,
-               'W': 6,
-               'K': 7,
-               'M': 8,
-               'D': 9,
-               'I': 10,
-               'Y': 11,
-               'C': 12,
-               'L': 13,
-               'G': 14,
-               'F': 15,
-               'A': 16,
-               'P': 17,
-               'T': 18,
-               'E': 19}
+              'R': 1,
+              'V': 2,
+              'S': 3,
+              'N': 4,
+              'Q': 5,
+              'W': 6,
+              'K': 7,
+              'M': 8,
+              'D': 9,
+              'I': 10,
+              'Y': 11,
+              'C': 12,
+              'L': 13,
+              'G': 14,
+              'F': 15,
+              'A': 16,
+              'P': 17,
+              'T': 18,
+              'E': 19}
 
     distributions = []
 
-    num_states = len(groups)*target_length
+    num_states = len(groups) * target_length
     transition_matrix = numpy.zeros((num_states, num_states))
 
     for state_position in range(target_length):
@@ -531,22 +619,21 @@ def create_model_with_separated_amino_acids(target_length=9):
             distributions.append(DiscreteDistribution(distr_probs))
         if state_position > 0:
             current_indecies = [i for i in range(state_position * len(groups), (state_position + 1) * len(groups))]
-            previous_indecies = [i for i in range((state_position-1) * len(groups), state_position * len(groups))]
+            previous_indecies = [i for i in range((state_position - 1) * len(groups), state_position * len(groups))]
             for i in previous_indecies:
                 for j in current_indecies:
-                    transition_matrix[i][j] = 1/len(groups)
+                    transition_matrix[i][j] = 1 / len(groups)
 
     model_name = 'splited_model'
     state_names = ["s{:03d}".format(i) for i in range(num_states)]
 
-
     # transition_matrix = numpy.ones((num_states, num_states)) / num_states
-    start_probabilities = [1/len(groups) if i < len(groups) else 0 for i in range(num_states)]
-    end_probabilities = [1 if i >= num_states-len(groups) else 0 for i in range(num_states)]
+    start_probabilities = [1 / len(groups) if i < len(groups) else 0 for i in range(num_states)]
+    end_probabilities = [1 if i >= num_states - len(groups) else 0 for i in range(num_states)]
     # numpy.ones(num_states) / num_states
     # end_probabilities = numpy.ones(num_states) / num_states
 
-    model =HiddenMarkovModel.from_matrix(
+    model = HiddenMarkovModel.from_matrix(
         name=model_name,
         transition_probabilities=transition_matrix,
         starts=start_probabilities,
@@ -557,8 +644,7 @@ def create_model_with_separated_amino_acids(target_length=9):
     return model
 
 
-
-def save_model(TARGET_PATH_TO_RESULTS, model, history=None ):
+def save_model(TARGET_PATH_TO_RESULTS, model, history=None):
     json_object = model.to_json()
     MODEL_FOLDER = f"{TARGET_PATH_TO_RESULTS}{model.name}/"
     if not os.path.exists(MODEL_FOLDER):
@@ -589,22 +675,26 @@ def load_model(TARGET_PATH_TO_RESULTS, model_name):
 
 
 ## Paths finding
-def get_all_paths_with_probs(model, edge_value="log_probability", cutoff=None, precision=4, min_path_length=9, max_path_length=9):
+def get_all_paths_with_probs(model, edge_value="log_probability", cutoff=None, precision=4, min_path_length=9,
+                             max_path_length=9):
     # df = pd.DataFrame(columns=["path", "prob"])
     # remove empty nodes (for speed up and only possible paths)
 
-    new_graph, name_to_level = convert_graph_to_good_format(model,"", False, precision=precision, edge_value=edge_value)
+    new_graph, name_to_level = convert_graph_to_good_format(model, "", False, precision=precision,
+                                                            edge_value=edge_value)
     # +start +end
     min_path_length = min_path_length + 2
     max_path_length = max_path_length + 2
     cutoff = cutoff + 2
     print("Path finding (slow operation)...")
     path_generator = nx.all_simple_paths(new_graph, model.start.name, model.end.name, cutoff=cutoff)
-    print(f"\tCondition: Took only paths with transitions above {10**-precision}...")
+    print(f"\tCondition: Took only paths with transitions above {10 ** -precision}...")
     print(f"\tCondition: Cutoff for path finding was {cutoff - 2}...")
-    print(f"\tCondition: Took only paths of acceptable lengths: min {min_path_length - 2} , max {max_path_length - 2}...")
+    print(
+        f"\tCondition: Took only paths of acceptable lengths: min {min_path_length - 2} , max {max_path_length - 2}...")
 
-    paths = [path for path in tqdm(path_generator) if max_path_length >= len(path) >= min_path_length] # Might be very slow
+    paths = [path for path in tqdm(path_generator) if
+             max_path_length >= len(path) >= min_path_length]  # Might be very slow
     print(f"Paths with correct length: {len(paths)}")
     # print(f"Total paths found: {len(paths)}")
     result_paths = list()
@@ -612,7 +702,7 @@ def get_all_paths_with_probs(model, edge_value="log_probability", cutoff=None, p
     result_normalized_probs = list()
     result_lens = list()
     edge_to_prob = dict()
-    i=0
+    i = 0
     print(f"Calculating probs for selected paths...")
     for path in tqdm(paths):
         prob_for_path = 0 if edge_value == "log_probability" else 1
@@ -642,7 +732,8 @@ def get_all_paths_with_probs(model, edge_value="log_probability", cutoff=None, p
         result_normalized_probs.append(prob_for_path / len(path))
         # row = {"path": path, "prob": prob_for_path}
         # df = df.append(row, ignore_index=True)
-    df = pd.DataFrame({"path": result_paths, "prob": result_probs,  "normalized_prob": result_normalized_probs, "len": result_lens})
+    df = pd.DataFrame(
+        {"path": result_paths, "prob": result_probs, "normalized_prob": result_normalized_probs, "len": result_lens})
     df = df.sort_values('normalized_prob', ascending=False)
     df = df.reset_index(drop=True)
 
@@ -687,7 +778,8 @@ def get_state_to_name_dict(model):
 #         node_from = node_to
 #     return prob_for_path
 
-def get_emission_prob_for_path_and_sequence(path, sequence,name_to_state, start_state_name, edge_value="log_probability"):
+def get_emission_prob_for_path_and_sequence(path, sequence, name_to_state, start_state_name,
+                                            edge_value="log_probability"):
     prob_for_path = 0 if edge_value == "log_probability" else 1
     path_nodes = path.copy()
     node_from = path_nodes.pop(0)
@@ -713,6 +805,7 @@ def get_emission_prob_for_path_and_sequence(path, sequence,name_to_state, start_
         node_from = node_to
     return prob_for_path
 
+
 def get_peptide_to_paths_df(model, peptides, edge_value="log_probability", top_paths=None, precision=4):
     print(f"Model {model.name}")
     name_to_state = get_state_to_name_dict(model)
@@ -720,13 +813,14 @@ def get_peptide_to_paths_df(model, peptides, edge_value="log_probability", top_p
     cutoff = max(map(len, peptides))
     min_length = min(map(len, peptides))
     max_length = max(map(len, peptides))
-    paths_df, edge_to_prob = get_all_paths_with_probs(model, edge_value=edge_value, cutoff=cutoff, precision=precision, min_path_length=min_length, max_path_length=max_length)
+    paths_df, edge_to_prob = get_all_paths_with_probs(model, edge_value=edge_value, cutoff=cutoff, precision=precision,
+                                                      min_path_length=min_length, max_path_length=max_length)
 
     # paths_df = paths_df.loc[paths_df['len'].between(min_length, max_length)].copy()
     paths_df = paths_df.sort_values('normalized_prob', ascending=False)
     paths_df = paths_df.reset_index(drop=True)
     if top_paths:
-        paths_df = paths_df[:top_paths] # assumed to be sorted
+        paths_df = paths_df[:top_paths]  # assumed to be sorted
         print(f"Took only {top_paths} top paths")
 
     # df = pd.DataFrame(columns=["peptide", "path", "prob"])
@@ -744,16 +838,18 @@ def get_peptide_to_paths_df(model, peptides, edge_value="log_probability", top_p
                 emission_matrix[name_to_index[name], acid_to_index[acid]] = np.log(prob)
 
     print(f"\tCalculate probs for peptides")
-    for _, path, tr_prob, tr_normalized_prob, path_length in tqdm(paths_df.itertuples(),total=paths_df.shape[0]):
+    for _, path, tr_prob, tr_normalized_prob, path_length in tqdm(paths_df.itertuples(), total=paths_df.shape[0]):
         curr_path = path[1:]
         curr_path_indexes = [name_to_index[name] for name in curr_path]
         path_index = path_to_index[str(path)]
         for i, peptide in enumerate(peptides):
             if edge_value == "log_probability":
-                emission_prob = sum([emission_matrix[state_index, acid_to_index[emission]] for state_index, emission in zip(curr_path_indexes, peptide)])
+                emission_prob = sum([emission_matrix[state_index, acid_to_index[emission]] for state_index, emission in
+                                     zip(curr_path_indexes, peptide)])
                 prob_for_path = tr_prob + emission_prob
             else:
-                emission_prob = get_emission_prob_for_path_and_sequence(path, peptide, name_to_state, model.start.name, edge_value=edge_value)
+                emission_prob = get_emission_prob_for_path_and_sequence(path, peptide, name_to_state, model.start.name,
+                                                                        edge_value=edge_value)
                 prob_for_path = tr_prob * emission_prob
             result_repr_matrix[i, path_index] = prob_for_path
             # result_paths.append(path)
@@ -773,7 +869,7 @@ def get_peptide_to_paths_df_external_paths(model, peptides, paths_df, edge_value
     paths_df = paths_df.sort_values('normalized_prob', ascending=False)
     paths_df = paths_df.reset_index(drop=True)
     if top_paths:
-        paths_df = paths_df[:top_paths] # assumed to be sorted
+        paths_df = paths_df[:top_paths]  # assumed to be sorted
         print(f"Took only {top_paths} top paths")
 
     # df = pd.DataFrame(columns=["peptide", "path", "prob"])
@@ -791,25 +887,39 @@ def get_peptide_to_paths_df_external_paths(model, peptides, paths_df, edge_value
                 emission_matrix[name_to_index[name], acid_to_index[acid]] = np.log(prob)
 
     print(f"\tCalculate probs for peptides")
-    for _, path, tr_prob, tr_normalized_prob, path_length in tqdm(paths_df.itertuples(),total=paths_df.shape[0]):
+
+    for _, path, tr_prob, tr_normalized_prob, path_length, mean_viterbi, path_pep_cnt in tqdm(paths_df.itertuples(),
+                                                                                              total=paths_df.shape[0]):
         curr_path = path.split(">")
         curr_path = curr_path[1:]
         curr_path_indexes = [name_to_index[name] for name in curr_path]
         path_index = path_to_index[str(path)]
         for i, peptide in enumerate(peptides):
             if edge_value == "log_probability":
-                emission_prob = sum([emission_matrix[state_index, acid_to_index[emission]] for state_index, emission in zip(curr_path_indexes, peptide)])
-                prob_for_path = tr_prob + emission_prob
+
+                if len(peptide) == len(curr_path_indexes) - 1:  # -1 because we have end state at the end
+                    emission_prob = sum(
+                        [emission_matrix[state_index, acid_to_index[emission]] for state_index, emission in
+                         zip(curr_path_indexes, peptide)])
+                    prob_for_path = tr_prob + emission_prob
+                else:
+                    prob_for_path = -np.nan
             else:
-                emission_prob = get_emission_prob_for_path_and_sequence(path, peptide, name_to_state, model.start.name, edge_value=edge_value)
-                prob_for_path = tr_prob * emission_prob
-            result_repr_matrix[i, path_index] = prob_for_path / len(path)
+                if len(peptide) == len(curr_path_indexes):
+                    emission_prob = get_emission_prob_for_path_and_sequence(path, peptide, name_to_state,
+                                                                            model.start.name, edge_value=edge_value)
+                    prob_for_path = tr_prob * emission_prob
+
+                else:
+                    prob_for_path = 0
+
+            result_repr_matrix[i, path_index] = prob_for_path
             # result_paths.append(path)
             # result_probs.append(prob_for_path)
 
     df = pd.DataFrame(result_repr_matrix, index=peptides)
-    if edge_value == "log_probability":
-        df.replace([-np.inf], -55, inplace=True)
+    # if edge_value == "log_probability":
+    #     df.replace([-np.inf], MINUS_INF_CONSTANT_NORMALIZED, inplace=True)
     return df, paths_df, emission_matrix, name_to_index
 
 
@@ -860,14 +970,14 @@ def get_all_viterbi_paths_for_model_and_sequences(model, peptides, edge_value="l
 
     for i, peptide in tqdm(enumerate(peptides), total=len(peptides)):
         prob_for_path, path = model.viterbi(peptide)
-        path_state_indexes = "|".join([str(path_tuple[0]) for path_tuple in path]) # path as string
+        path_state_indexes = "|".join([str(path_tuple[0]) for path_tuple in path])  # path as string
         path_code_to_path[path_state_indexes] = [path_tuple[1] for path_tuple in path]
-        n = path_code_to_cnt[path_state_indexes] 
+        n = path_code_to_cnt[path_state_indexes]
         mean_viterbi = path_code_to_mean_viterbi_prob[path_state_indexes]
-        mean_viterbi = (mean_viterbi * n  + prob_for_path) / (n+1)
+        mean_viterbi = (mean_viterbi * n + prob_for_path) / (n + 1)
         path_code_to_mean_viterbi_prob[path_state_indexes] = mean_viterbi
         path_code_to_cnt[path_state_indexes] += 1
-        
+
     print("Select unique paths...")
     print(f"\tUnique paths: {len(path_code_to_path)}")
     unique_paths = list(path_code_to_path.values())
@@ -879,7 +989,7 @@ def get_all_viterbi_paths_for_model_and_sequences(model, peptides, edge_value="l
         node_from = path_edges.pop(0)
         while path_edges:
             node_to = path_edges.pop(0)
-            data = model_graph.get_edge_data(node_from, node_to,default=None)
+            data = model_graph.get_edge_data(node_from, node_to, default=None)
             log_probability = data['probability']
             # print(node_from, node_to,  np.exp(edge['label']), "total_prob", prob_for_path)
             if edge_value == "log_probability":
@@ -894,7 +1004,9 @@ def get_all_viterbi_paths_for_model_and_sequences(model, peptides, edge_value="l
         # normalize
         result_normalized_probs.append(prob_for_path / len(path))
 
-    paths_df = pd.DataFrame({"path": result_paths, "prob": result_probs,  "normalized_prob": result_normalized_probs, "len": result_lens, "mean_viterbi": mean_viterbies, "peptide_cnts": cnts})
+    paths_df = pd.DataFrame(
+        {"path": result_paths, "prob": result_probs, "normalized_prob": result_normalized_probs, "len": result_lens,
+         "mean_viterbi": mean_viterbies, "peptide_cnts": cnts})
     paths_df = paths_df.sort_values('normalized_prob', ascending=False)
     paths_df = paths_df.reset_index(drop=True)
     return paths_df
@@ -906,9 +1018,9 @@ def get_model_representation2(model, peptides, edge_value="log_probability", top
     peptide_to_path_df = get_peptide_to_paths_df(model, peptides, edge_value=edge_value, top_paths=top_paths)
     print("Got result dataset")
     unique_paths = peptide_to_path_df['path'].sort_values().apply(str).unique()
-    path_to_index = {path : i for  i , path in enumerate(unique_paths)}
+    path_to_index = {path: i for i, path in enumerate(unique_paths)}
     peptide_to_path_df['path_index'] = peptide_to_path_df["path"].map(str).map(path_to_index)
-    #pivot
+    # pivot
     pivot_df = peptide_to_path_df.pivot(index='peptide', columns='path_index', values='prob')
     print("Finished")
     return pivot_df, path_to_index
@@ -918,7 +1030,8 @@ def get_model_representation(model, peptides, paths_df=None, edge_value="log_pro
     assert isinstance(peptides, set)
     assert edge_value in ['log_probability', 'probability']
     pivot_df, paths_df, emission_matrix, name_to_index = \
-        get_peptide_to_paths_df_external_paths(model, peptides,  paths_df=paths_df, edge_value=edge_value, top_paths=top_paths)
+        get_peptide_to_paths_df_external_paths(model, peptides, paths_df=paths_df, edge_value=edge_value,
+                                               top_paths=top_paths)
     # old version with finding paths
     #     print("Precision will not be counted since we have external paths")
     #     pivot_df, paths_df, emission_matrix, name_to_index = get_peptide_to_paths_df(model, peptides,, edge_value=edge_value, top_paths=top_paths)
@@ -931,3 +1044,5 @@ def get_model_representation(model, peptides, paths_df=None, edge_value="log_pro
     # pivot_df = peptide_to_path_df.pivot(index='peptide', columns='path_index', values='prob')
     print("Finished")
     return pivot_df, paths_df, emission_matrix, name_to_index
+
+# %%
