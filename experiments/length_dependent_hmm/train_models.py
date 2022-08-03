@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import sys
+import os
 from data_reading_methods import get_available_alleles, read_data
 from data_reading_methods import merge_per_allele_sets_into_combination_sets
 from data_reading_methods import extract_count_df, calculate_weights_based_on_length_counts
@@ -11,9 +12,9 @@ sys.path.append(PATH_TO_PREDICTOR_HOME)
 METHOD = "hmm_pomegranate"
 
 # Read data
-DATA_PATH = '/data/' # windows
+DATA_PATH = os.getenv('DATA_PATH')
 # DATA_PATH = '/home/denklewer/Data/length_dependent_hmm/' #ubuntu
-TARGET_PATH_TO_RESULTS = "/result/" #!CHANGE for bwv!
+TARGET_PATH_TO_RESULTS = os.getenv('RESULT_PATH')
 
 
 ALLELES = get_available_alleles(DATA_PATH)
