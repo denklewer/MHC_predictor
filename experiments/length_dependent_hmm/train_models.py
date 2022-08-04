@@ -89,14 +89,14 @@ params['alg'] = algorithm
 params['min_iters'] = 5
 params['max_iters'] = 70
 params['stop_threshold'] = stop_threshold
-params['emission_pseudocount'] = 1
+params['emission_pseudocount'] = 0
 params['transition_pseudocount'] = 0
 params['verbose'] = True
 params['lr_decay'] = 0
 params['edge_inertia'] = 0.25
 params['distribution_inertia'] = 0
-params['groups'] = 9
-params['states_per_group'] = 5
+params['groups'] = 1
+params['states_per_group'] = 45
 
 assert params['st'] % params['groups'] == 0
 assert params['st'] % params['states_per_group'] == 0

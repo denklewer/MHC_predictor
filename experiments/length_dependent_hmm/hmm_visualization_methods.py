@@ -52,7 +52,7 @@ def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True
                                   color=this_color,
                                   flip=flip,
                                   zorder=0,
-                                  font_name='Arial Rounded MT Bold',
+                                  # font_name='Arial Rounded MT Bold',
                                   alpha=1.0,
                                   vpad=0.0)
                     glyph_list.append(glyph)
@@ -77,7 +77,7 @@ def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True
                 # return dummy_df
                 info_matrix = logomaker.transform_matrix(dummy_df, from_type='probability', to_type='information')
                 ww_logo = logomaker.Logo(info_matrix,ax=ax,
-                                         font_name='Arial Rounded MT Bold',
+                                         # font_name='Arial Rounded MT Bold',
                                          #stack_order='small_on_top'
                                          )
                 save_figure_to_svg(fig, dir=PATH_TO_SAVE_PICTURES, filename=f"{state.name}.svg")
@@ -115,11 +115,11 @@ def plot_motifs_for_paths(model, TARGET_PATH_TO_RESULTS, paths_df, top=None):
 
         info_matrix = logomaker.transform_matrix(df, from_type='probability', to_type='information')
         fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 2))
-        info_logo = logomaker.Logo(info_matrix, font_name='Arial Rounded MT Bold', ax=ax)
+        info_logo = logomaker.Logo(info_matrix, ax=ax)
         save_figure_to_png(fig, dir=PATH_TO_SAVE_PICTURES, filename=info_url)
         plt.close(fig)
         fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 2))
-        probs_logo = logomaker.Logo(df, font_name='Arial Rounded MT Bold', ax=ax)
+        probs_logo = logomaker.Logo(df, ax=ax)
         save_figure_to_png(fig, dir=PATH_TO_SAVE_PICTURES, filename=probs_url)
         plt.close(fig)
 
@@ -267,7 +267,9 @@ def make_logos_for_train_sequences(target_length, per_allele_per_kfold_per_lengt
             matrix = logomaker.alignment_to_matrix(binders_array)
             info_matrix = logomaker.transform_matrix(matrix, from_type='counts', to_type='information')
             prob_matrix = logomaker.transform_matrix(matrix, from_type='counts', to_type='probability')
-            ww_logo = logomaker.Logo(info_matrix, font_name='Arial Rounded MT Bold',)
+            ww_logo = logomaker.Logo(info_matrix,
+                                     # font_name='Arial Rounded MT Bold',
+                                     )
             ww_logo.ax.set_title(f"Allele {allele_name}, length {target_length}, split {split_num}")
             PATH_TO_SAVE_PICTURES = TARGET_PATH_TO_RESULTS + f"{model_name}/"
             save_figure_to_svg(fig=ww_logo.fig,  dir=PATH_TO_SAVE_PICTURES, filename=f"logo_for_sequences-{target_length}.svg")
