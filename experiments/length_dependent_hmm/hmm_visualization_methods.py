@@ -2,12 +2,15 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+
+import pomegranate
 from logomaker.src import colors
 import logomaker
 from logomaker.src.Glyph import Glyph
 import networkx as nx
 from pyvis.network import Network
 from collections import defaultdict
+from scipy.stats import norm
 
 
 def save_figure_to_svg(fig, dir, filename):
@@ -26,62 +29,104 @@ def probs_to_info_matrix(distribution):
 
 
 
-def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True):
-    amino_acids = list(model.keymap[0].keys())
-    color_dict = colors.get_color_dict(None, amino_acids)
+def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True, discrete=True, initial_params=None):
+
     PATH_TO_SAVE_PICTURES = TARGET_PATH_TO_RESULTS + "/" + model.name + "/"
     if not os.path.exists(PATH_TO_SAVE_PICTURES):
         os.makedirs(PATH_TO_SAVE_PICTURES)
     for state in model.states:
         if not (state == model.start or state == model.end):
-            if horizontal:
-                fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 3))
+            if discrete:
+                amino_acids = list(model.keymap[0].keys())
+                color_dict = colors.get_color_dict(None, amino_acids)
+                if horizontal:
+                    fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 3))
 
-                glyph_list = []
-                for i, (acid, prob) in enumerate(state.distribution.parameters[0].items()):
-                    #print(i, acid, prob)
-                    floor = 0
-                    ceiling = floor + abs(prob)
-                    this_color = color_dict[acid]
-                    flip = False
-                    glyph = Glyph(i, acid,
-                                  ax=ax,
-                                  floor=floor,
-                                  width=1,
-                                  ceiling=ceiling,
-                                  color=this_color,
-                                  flip=flip,
-                                  zorder=0,
-                                  # font_name='Arial Rounded MT Bold',
-                                  alpha=1.0,
-                                  vpad=0.0)
-                    glyph_list.append(glyph)
-                    xmin = min([g.p - .5*g.width for g in glyph_list])
-                    xmax = max([g.p + .5*g.width for g in glyph_list])
-                    ax.set_xlim([xmin, xmax])
-                    # set ylims
-                    ymin = min([g.floor for g in glyph_list])
-                    # ymax = max([g.ceiling for g in glyph_list])
-                    ymax = 1
-                    ax.set_ylim([ymin, ymax])
-                    plt.xticks(np.arange(0, 20, 1.0), labels=sorted(amino_acids))
+                    glyph_list = []
+                    for i, (acid, prob) in enumerate(state.distribution.parameters[0].items()):
+                        #print(i, acid, prob)
+                        floor = 0
+                        ceiling = floor + abs(prob)
+                        this_color = color_dict[acid]
+                        flip = False
+                        glyph = Glyph(i, acid,
+                                      ax=ax,
+                                      floor=floor,
+                                      width=1,
+                                      ceiling=ceiling,
+                                      color=this_color,
+                                      flip=flip,
+                                      zorder=0,
+                                      # font_name='Arial Rounded MT Bold',
+                                      alpha=1.0,
+                                      vpad=0.0)
+                        glyph_list.append(glyph)
+                        xmin = min([g.p - .5*g.width for g in glyph_list])
+                        xmax = max([g.p + .5*g.width for g in glyph_list])
+                        ax.set_xlim([xmin, xmax])
+                        # set ylims
+                        ymin = min([g.floor for g in glyph_list])
+                        # ymax = max([g.ceiling for g in glyph_list])
+                        ymax = 1
+                        ax.set_ylim([ymin, ymax])
+                        plt.xticks(np.arange(0, 20, 1.0), labels=sorted(amino_acids))
 
+                        save_figure_to_svg(fig, dir=PATH_TO_SAVE_PICTURES, filename=f"{state.name}.svg")
+                        plt.close(fig)
+                else:
+                    dummy_df = pd.DataFrame(columns = sorted(amino_acids), index = [0],  dtype=float)
+                    for i, (acid, prob) in enumerate(state.distribution.parameters[0].items()):
+                        dummy_df.loc[0, acid] = prob
+                    dummy_df.index.name = "pos"
+                    fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 9))
+                    # return dummy_df
+                    info_matrix = logomaker.transform_matrix(dummy_df, from_type='probability', to_type='information')
+                    ww_logo = logomaker.Logo(info_matrix,ax=ax,
+                                             # font_name='Arial Rounded MT Bold',
+                                             #stack_order='small_on_top'
+                                             )
                     save_figure_to_svg(fig, dir=PATH_TO_SAVE_PICTURES, filename=f"{state.name}.svg")
                     plt.close(fig)
-            else:
-                dummy_df = pd.DataFrame(columns = sorted(amino_acids), index = [0],  dtype=float)
-                for i, (acid, prob) in enumerate(state.distribution.parameters[0].items()):
-                    dummy_df.loc[0, acid] = prob
-                dummy_df.index.name = "pos"
-                fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 9))
-                # return dummy_df
-                info_matrix = logomaker.transform_matrix(dummy_df, from_type='probability', to_type='information')
-                ww_logo = logomaker.Logo(info_matrix,ax=ax,
-                                         # font_name='Arial Rounded MT Bold',
-                                         #stack_order='small_on_top'
-                                         )
+            elif type(state.distribution) is pomegranate.IndependentComponentsDistribution:
+                list_of_dists = state.distribution.parameters[0]
+                fig, axes = plt.subplots(ncols=1, nrows=len(list_of_dists), figsize=(5, len(list_of_dists)* 3))
+                for i, distr in enumerate(list_of_dists):
+
+                    distr_params = distr.parameters
+                    mean_value = distr_params[0]
+                    std_value = distr_params[1]
+
+                    mean_for_picture = mean_value
+                    std_for_picture = std_value
+                    if initial_params is not None:
+                        assert type(initial_params) == list
+                        initial_distr = initial_params[i]
+                        initial_mean = initial_distr['mean']
+                        initial_std = initial_distr['std']
+                        mean_for_picture = initial_mean
+                        std_for_picture = max(initial_std, std_for_picture) + abs(mean_value-initial_mean)
+                    x = np.linspace(mean_for_picture-4*std_for_picture, mean_for_picture+4*std_for_picture, 1000)
+                    y1= norm.pdf(x, loc=mean_value, scale=std_value)
+                    axes[i].plot(x, y1, 'b', lw=2, label=f'pdf')
+                    if initial_params is not None:
+                        y2= norm.pdf(x, loc=initial_mean, scale=initial_std)
+                        axes[i].plot(x, y2, 'r', lw=2, label=f'pdf_initial')
+                    axes[i].text(0.0, 0.75, f'{np.round(mean_value,3)}', fontsize=35, transform=axes[i].transAxes)
+                    axes[i].text(0.7, 0.75, f'{np.round(std_value,3)}', fontsize=35, transform=axes[i].transAxes)
                 save_figure_to_svg(fig, dir=PATH_TO_SAVE_PICTURES, filename=f"{state.name}.svg")
                 plt.close(fig)
+            else:
+                # normal distr here
+                distr_params = state.distribution.parameters
+                mean_value = distr_params[0]
+                std_value = distr_params[1]
+                fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 3))
+                x = np.linspace(mean_value-4*std_value, mean_value+4*std_value, 1000)
+                y = norm.pdf(x, loc=mean_value, scale=std_value)
+                ax.plot(x, y, 'r', lw=2, label='pdf')
+                save_figure_to_svg(fig, dir=PATH_TO_SAVE_PICTURES, filename=f"{state.name}.svg")
+                plt.close(fig)
+
 
 
 def plot_motifs_for_paths(model, TARGET_PATH_TO_RESULTS, paths_df, top=None):
@@ -208,9 +253,16 @@ def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, prec
     per_level_information = defaultdict(float)
     for state in model.states:
         if state not in [model.start, model.end]:
-            info_matrix = probs_to_info_matrix(state.distribution)
-            per_state_information[state.name] = sum(info_matrix.loc[0])
-            per_level_information[name_to_level[state.name]] += per_state_information[state.name]
+            if type(state.distribution) == pomegranate.DiscreteDistribution:
+                info_matrix = probs_to_info_matrix(state.distribution)
+                per_state_information[state.name] = sum(info_matrix.loc[0])
+                per_level_information[name_to_level[state.name]] += per_state_information[state.name]
+            elif type(state.distribution) is pomegranate.NormalDistribution:
+                per_state_information[state.name] = state.distribution.parameters[1]
+                per_level_information[name_to_level[state.name]] += per_state_information[state.name]
+            elif type(state.distribution) is pomegranate.IndependentComponentsDistribution:
+                per_state_information[state.name] = 1
+                per_level_information[name_to_level[state.name]] += per_state_information[state.name]
 
     # Add all states from model's graph (logo pictures should be prepared)
     for state in model.states:

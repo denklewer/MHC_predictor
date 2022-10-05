@@ -43,7 +43,7 @@ def read_data(data_path, alleles_to_read, dataset_type, data_type):
 
 def merge_per_allele_sets_into_combination_sets(per_allele_per_kfold_per_length_binders_train,
                                                 per_allele_per_kfold_per_length_binders_test,
-                                                combination_size, selected_alelles, total_splits):
+                                                combination_size, selected_alelles, total_splits, list_of_transform_dicts=None):
     f"""
     works with result of {read_data}
     takes combination size and merges all datasets together in all possible wais using {itertools.combinations}
@@ -79,11 +79,15 @@ def merge_per_allele_sets_into_combination_sets(per_allele_per_kfold_per_length_
                     print(f"Length {target_length}:" , end=" ")
                 for old_allele in combination:
                     single_allele_data_array_train = per_allele_per_kfold_per_length_binders_train[old_allele][split_num][target_length]
+                    if list_of_transform_dicts:
+                        single_allele_data_array_train = np.array([np.array([tuple(transform_dict[aa] for transform_dict in list_of_transform_dicts) for aa in peptide]) for peptide in single_allele_data_array_train])
 
                     if split_num == 0:
                         print(f"{old_allele} - {len(single_allele_data_array_train)}", end= " ")
                     data_arrays_train.append(single_allele_data_array_train)
                     single_allele_data_array_test = per_allele_per_kfold_per_length_binders_test[old_allele][split_num][target_length]
+                    if list_of_transform_dicts:
+                        single_allele_data_array_test = np.array([np.array([tuple(transform_dict[aa] for transform_dict in list_of_transform_dicts) for aa in peptide]) for peptide in single_allele_data_array_test])
                     if split_num == 0:
                         # print(f"{old_allele} - {len(single_allele_data_array_test)}", end= " ")
                         pass

@@ -8,3 +8,9 @@ logs/
 .idea/
 !/experiments/length_dependent_hmm/experiment_results/*
 /experiments/length_dependent_hmm/experiment_results/*
+!experiments/length_dependent_hmm/gibbs_input/*
+experiments/length_dependent_hmm/gibbs_input/*
+!experiments/length_dependent_hmm/gibbs_result/*
+experiments/length_dependent_hmm/gibbs_result/*
+!experiments/length_dependent_hmm/test/*
+experiments/length_dependent_hmm/test/*

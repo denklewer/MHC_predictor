@@ -43,14 +43,22 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
         per_length_test_data = per_kfold_per_length_test_data[split_num]
         per_length_counts = {target_length: len(per_length_data[target_length]) for target_length in target_lengths}
 
-        list_of_arrays = [per_length_data[target_length] for target_length in target_lengths]
-        list_of_arrays_for_weights = [np.array(per_length_current_weights[target_length]) for target_length in
-                                      target_lengths]
-        list_of_test_arrays = [per_length_test_data[target_length] for target_length in target_lengths]
-        binders_array = np.concatenate(list_of_arrays)
-        weights_array = np.concatenate(list_of_arrays_for_weights)
+        # list_of_arrays = [per_length_data[target_length] for target_length in target_lengths]
+        # list_of_arrays_for_weights = [np.array(per_length_current_weights[target_length]) for target_length in
+        #                               target_lengths]
+        # list_of_test_arrays = [per_length_test_data[target_length] for target_length in target_lengths]
+        # binders_array = np.concatenate(list_of_arrays)
+        # weights_array = np.concatenate(list_of_arrays_for_weights)
+        #
+        # binders_test_array = np.concatenate(list_of_test_arrays)
 
-        binders_test_array = np.concatenate(list_of_test_arrays)
+        binders_array = np.array([per_length_data[target_length][i] for target_length in target_lengths
+                                  for i in range(len(per_length_data[target_length]))], dtype=object)
+        weights_array = np.array([per_length_current_weights[target_length][i] for target_length in target_lengths
+                                  for i in range(len(per_length_current_weights[target_length]))], dtype=object)
+
+        binders_test_array = np.array([per_length_test_data[target_length][i] for target_length in target_lengths
+                                       for i in range(len(per_length_test_data[target_length]))], dtype=object)
         print("split {}".format(split_num))
         print("train size {}".format(len(binders_array)))
         # total_length = len(binders_array)
@@ -151,6 +159,7 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
             model_name = f"{name_postfix}-{params_string}_model-{target_allele_name}-{split_num}"
             model.name = model_name
         else:
+            print("Use pseudocount is", use_pseudocount)
             model = prepared_models[split_num]
             model, history = model.fit(sample_X,
                                        sequences_test=sequence_test_generator,
@@ -176,6 +185,8 @@ def train_model(allele_name, per_kfold_per_length_data, target_lengths, name_pre
         per_split_history[split_num] = history
         break
     return per_split_model, per_split_history
+
+
 
 
 # Add states to existing model
@@ -289,10 +300,18 @@ def add_more_states_and_reset_transitions(source_model, ADD_STATES_NUM, new_sate
 
 def init_grouped_structure_model(states_per_group=5, number_of_groups=5, amino_acids="ACDEFGHIKLMNPQRSTVWY"):
     print("Initialize grouped structure model")
+
     START_WEIGHT = 1
     INTRAGROUP_WEIGHT = 4
     INTERGROUP_WEIGHT = 1
     END_WEIGHT = 4
+    if number_of_groups == 1:
+        START_WEIGHT = 1
+        INTRAGROUP_WEIGHT = 1
+        INTERGROUP_WEIGHT = 1
+        END_WEIGHT = 1
+
+
     amino_acids_list = list(amino_acids)
     distributions = list()
 
@@ -427,6 +446,505 @@ def init_grouped_structure_model_with_joiner(states_per_group=5, number_of_group
     model.bake(verbose=True)
     return model
 
+
+
+
+def init_grouped_structure_model_with_predefined_joiners(
+        joiner_positions,
+        joiner_parameters,
+        states_per_group=5, # may be int or list of numbers for each group
+        amino_acids="ACDEFGHIKLMNPQRSTVWY",
+        freeze_distr=False,
+
+):
+    START_WEIGHT = 1
+    INTRAGROUP_WEIGHT = 4
+    INTERGROUP_WEIGHT = 1
+    END_WEIGHT = 4
+    amino_acids_list = list(amino_acids)
+
+    number_of_joiners = len(joiner_parameters)
+    number_of_groups = len(joiner_positions) + 1
+    if type(states_per_group) == list:
+        assert number_of_groups == len(states_per_group), f"Number of groups is expected to be {number_of_groups} but got {len(states_per_group)} in a list of states per group"
+    else:
+        states_per_group = [states_per_group for i in range(number_of_groups)]
+    distributions = list()
+    
+    for group_number in range(number_of_groups):
+        states_in_group = states_per_group[group_number]
+        for state_num in range(states_in_group):
+            d = DiscreteDistribution(
+                {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+            distributions.append(d)
+    joiner_label_to_index_in_model = dict()
+    for joiner_name, curr_joiner_params in joiner_parameters.items():
+        d = DiscreteDistribution(
+            {key: prob for key, prob in curr_joiner_params.items()})
+        joiner_label_to_index_in_model[joiner_name] = len(distributions)
+        if freeze_distr:
+            d.freeze()
+        distributions.append(d)
+    # print("joiners positions", joiner_label_to_index_in_model)
+
+    num_states = sum(states_per_group) + number_of_joiners
+    state_names = ["s{:03d}".format(i) for i in range(num_states)]
+
+    transition_matrix = numpy.zeros((num_states, num_states))
+
+    for group_number in range(number_of_groups):
+        states_in_group = states_per_group[group_number]
+        for i in range(states_in_group):
+            # fill transitions inside each group with 3
+
+            total_rest_portion = INTRAGROUP_WEIGHT * states_per_group
+            for j in range(states_in_group):
+                state_num_from = sum(states_per_group[:group_number]) + i
+                state_num_to =  sum(states_per_group[:group_number]) + j
+                if state_num_from != state_num_to:
+                    transition_matrix[state_num_from][state_num_to] = INTRAGROUP_WEIGHT
+
+            # transition to next group is only through the joiners
+            if group_number != number_of_groups - 1:
+                state_num_from = sum(states_per_group[:group_number]) + i
+                for joiner_label in joiner_positions[group_number]:
+                    state_num_to = joiner_label_to_index_in_model[joiner_label]
+                    transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+    # connect joiners to the next group
+    for joiner_group in joiner_positions.keys():
+        for joiner_label in joiner_positions[joiner_group]:
+            group_number = joiner_group + 1
+            state_num_from = joiner_label_to_index_in_model[joiner_label]
+            states_in_group =  states_per_group[group_number]
+            for j in range(states_in_group):
+                state_num_to = sum(states_per_group[:group_number]) + j
+                transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+
+    model_name = 'grouped_model'
+
+    first_joiner_idx =  sum(states_per_group)
+    first_joiners = set(joiner_label_to_index_in_model[label] for label in joiner_positions[0])
+    last_joiners = set(joiner_label_to_index_in_model[label] for label in joiner_positions[max(joiner_positions.keys())])
+    last_joiner_idx =  sum(states_per_group) + number_of_joiners - 1
+    # start only for first group and first joiner
+    start_probabilities = [START_WEIGHT
+                           if i < states_per_group[0] or i in first_joiners
+                           else 0
+                           for i in range(num_states)]
+    # do not restrict ending in multiple states, so probs are equal to transitions inside
+
+    end_probabilities = [INTRAGROUP_WEIGHT
+                         if (sum(states_per_group[:-1]) <= i < first_joiner_idx) or i in last_joiners
+                         else 0
+                         for i in range(num_states)]
+    assert sum(start_probabilities) == (states_per_group[0] + 1) * START_WEIGHT, start_probabilities
+    assert sum(end_probabilities) == (states_per_group[-1] + 1) * END_WEIGHT, end_probabilities + list(last_joiners)
+
+    model = HiddenMarkovModel.from_matrix(
+        name=model_name,
+        transition_probabilities=transition_matrix,
+        starts=start_probabilities,
+        distributions=distributions,
+        ends=end_probabilities,
+        state_names=state_names,
+        verbose=True)
+
+
+    model.bake(verbose=True)
+    return model
+
+
+def init_grouped_structure_model_with_predefined_joiners_and_cycles(
+        joiner_positions,
+        joiner_parameters,
+        states_per_group=5, # may be int or list of numbers for each group
+        amino_acids="ACDEFGHIKLMNPQRSTVWY",
+        freeze_distr=False,
+
+):
+    START_WEIGHT = 1
+    INTRAGROUP_WEIGHT = 4
+    INTERGROUP_WEIGHT = 30
+    END_WEIGHT = 4
+    amino_acids_list = list(amino_acids)
+
+    number_of_joiners = len(joiner_parameters)
+    number_of_groups = len(joiner_positions) - 1
+    
+    if type(states_per_group) == list:
+        assert number_of_groups == len(states_per_group), f"Number of groups is expected to be {number_of_groups} but got {len(states_per_group)} in a list of states per group"
+    else:
+        states_per_group = [states_per_group for i in range(number_of_groups)]
+    distributions = list()
+    
+
+    
+    for group_number in range(number_of_groups):
+        states_in_group = states_per_group[group_number]
+        for state_num in range(states_in_group):
+            d = DiscreteDistribution(
+                {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+            distributions.append(d)
+    joiner_label_to_index_in_model = dict()
+    for joiner_name, curr_joiner_params in joiner_parameters.items():
+        d = DiscreteDistribution(
+            {key: prob for key, prob in curr_joiner_params.items()})
+        joiner_label_to_index_in_model[joiner_name] = len(distributions)
+        if freeze_distr:
+            d.freeze()
+        distributions.append(d)
+        
+    # initialize cycle states
+
+    start_d = DiscreteDistribution(
+                {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+    end_d = DiscreteDistribution(
+            {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+    distributions.append(start_d)
+    distributions.append(end_d)
+
+    
+    # print("joiners positions", joiner_label_to_index_in_model)
+
+    num_states = sum(states_per_group) + number_of_joiners +  2 # groups, joiners, 2 cycles
+    state_names = ["s{:03d}".format(i) for i in range(num_states)]
+
+    transition_matrix = numpy.zeros((num_states, num_states))
+
+    for group_number in range(number_of_groups):
+        states_in_group = states_per_group[group_number]
+        for i in range(states_in_group):
+            # fill transitions inside each group with INTRAGROUP_WEIGHT
+
+            total_rest_portion = INTRAGROUP_WEIGHT * states_per_group
+            for j in range(states_in_group):
+                state_num_from = sum(states_per_group[:group_number]) + i
+                state_num_to =  sum(states_per_group[:group_number]) + j
+                if state_num_from != state_num_to:
+                    transition_matrix[state_num_from][state_num_to] = INTRAGROUP_WEIGHT
+
+            # transition to next group is only through the joiners
+            state_num_from = sum(states_per_group[:group_number]) + i
+            for joiner_label in joiner_positions[group_number + 1]:
+                state_num_to = joiner_label_to_index_in_model[joiner_label]
+                transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+    # connect joiners to the next group (except last joiner)
+    
+    for joiner_group in joiner_positions.keys():
+        if joiner_group != max(joiner_positions.keys()): # do not connect last joner 
+            for joiner_label in joiner_positions[joiner_group]:
+                group_number = joiner_group
+                state_num_from = joiner_label_to_index_in_model[joiner_label]
+                states_in_group =  states_per_group[group_number]
+                for j in range(states_in_group):
+                    state_num_to = sum(states_per_group[:group_number]) + j
+                    transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+
+    
+
+    model_name = 'grouped_model'
+    
+
+    first_joiner_idx =  sum(states_per_group)
+    first_joiners = set(joiner_label_to_index_in_model[label] for label in joiner_positions[0])
+    last_joiners = set(joiner_label_to_index_in_model[label] for label in joiner_positions[max(joiner_positions.keys())])
+    last_joiner_idx =  sum(states_per_group) + number_of_joiners - 1
+    # connect start cycle to the first joiners
+    start_cycle_idx = sum(states_per_group) + number_of_joiners
+    end_cycle_idx = start_cycle_idx + 1
+    
+    for joiner_idx in first_joiners:
+        transition_matrix[start_cycle_idx][joiner_idx] = INTERGROUP_WEIGHT
+    
+    for joiner_idx in last_joiners:
+        transition_matrix[joiner_idx][end_cycle_idx] = INTRAGROUP_WEIGHT    
+    #cycle in start and end cycle states
+    transition_matrix[end_cycle_idx][end_cycle_idx] = INTRAGROUP_WEIGHT
+    transition_matrix[start_cycle_idx][start_cycle_idx] = INTRAGROUP_WEIGHT
+
+    
+    
+    # start only for first cycle and first joiner
+    start_probabilities = [START_WEIGHT
+                           if i == start_cycle_idx or i in first_joiners
+                           else 0
+                           for i in range(num_states)]
+    # do not restrict ending in multiple states, so probs are equal to transitions inside
+
+    end_probabilities = [INTRAGROUP_WEIGHT
+                         if i == end_cycle_idx or i in last_joiners
+                         else 0
+                         for i in range(num_states)]
+    assert sum(start_probabilities) == (len(joiner_positions[0]) + 1) * START_WEIGHT, start_probabilities
+    assert sum(end_probabilities) ==  (len(joiner_positions[max(joiner_positions.keys())]) + 1)  * END_WEIGHT, end_probabilities + list(last_joiners)
+
+    model = HiddenMarkovModel.from_matrix(
+        name=model_name,
+        transition_probabilities=transition_matrix,
+        starts=start_probabilities,
+        distributions=distributions,
+        ends=end_probabilities,
+        state_names=state_names,
+        verbose=True)
+
+    model.bake(verbose=True)
+    return model
+
+
+def init_grouped_structure_model_joiners_and_cycles(
+        states_per_group=5, # may be int or list of numbers for each group
+        number_of_groups=5,
+        amino_acids="ACDEFGHIKLMNPQRSTVWY",
+        freeze_distr=False,
+        CYCLE_PSEUDOCOUNT=1
+
+):
+
+    INTRAGROUP_WEIGHT = 4
+    INTERGROUP_WEIGHT = 1
+
+    START_WEIGHT = 1
+    TO_CYCLE_WEIGHT = 3
+    IN_CYCLE_WEIGHT = 5
+    END_WEIGHT = 1
+    FROM_CYCLE_WEIGHT = 1
+    amino_acids_list = list(amino_acids)
+
+    joiner_positions = {0: [0], 1: [1]}
+    number_of_joiners = sum(len(positions) for positions in joiner_positions.values())
+    number_of_groups = number_of_groups
+
+    if type(states_per_group) == list:
+        assert number_of_groups == len(states_per_group), f"Number of groups is expected to be {number_of_groups} but got {len(states_per_group)} in a list of states per group"
+    else:
+        states_per_group = [states_per_group for i in range(number_of_groups)]
+    distributions = list()
+
+
+    # initialize group states
+    for group_number in range(number_of_groups):
+        states_in_group = states_per_group[group_number]
+        for state_num in range(states_in_group):
+            d_dict = {key: prob for key, prob in zip(amino_acids_list, np.random.default_rng().uniform(0, 1, size=len(amino_acids_list)))}
+            d_sum = sum(d_dict.values())
+            d_dict = {key: value/d_sum for key, value in d_dict.items()}
+            d = DiscreteDistribution(d_dict)
+            distributions.append(d)
+    #initialize joiner states (random here)
+    joiner_label_to_index_in_model = dict()
+    for joiner_name in range(number_of_joiners):
+        # d = DiscreteDistribution(
+        #     {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+        d_dict = {key: prob for key, prob in zip(amino_acids_list, np.random.default_rng().uniform(0, 1, size=len(amino_acids_list)))}
+        d_sum = sum(d_dict.values())
+        d_dict = {key: value/d_sum for key, value in d_dict.items()}
+        d = DiscreteDistribution(d_dict)
+        joiner_label_to_index_in_model[joiner_name] = len(distributions)
+
+        distributions.append(d)
+
+    # initialize cycle states
+    # start_d = None
+    # start_d = DiscreteDistribution(
+    #             {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+    d_dict = {key: prob for key, prob in zip(amino_acids_list, np.random.default_rng().uniform(0, 1, size=len(amino_acids_list)))}
+    d_sum = sum(d_dict.values())
+    d_dict = {key: value/d_sum for key, value in d_dict.items()}
+    start_d = DiscreteDistribution(d_dict)
+    if freeze_distr:
+        start_d.freeze()
+    # end_d = None
+    # end_d = DiscreteDistribution(
+    #         {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+    d_dict = {key: prob for key, prob in zip(amino_acids_list, np.random.default_rng().uniform(0, 1, size=len(amino_acids_list)))}
+    d_sum = sum(d_dict.values())
+    d_dict = {key: value/d_sum for key, value in d_dict.items()}
+    end_d = DiscreteDistribution(d_dict)
+    if freeze_distr:
+        end_d.freeze()
+    distributions.append(start_d)
+    distributions.append(end_d)
+
+
+    # print("joiners positions", joiner_label_to_index_in_model)
+
+    num_states = sum(states_per_group) + number_of_joiners +  2 # groups, joiners, 2 cycles
+    state_names = ["s{:03d}".format(i) for i in range(num_states)]
+
+    transition_matrix = numpy.zeros((num_states, num_states))
+
+    # Transitions inside groups
+    for group_number in range(number_of_groups):
+        states_in_group = states_per_group[group_number]
+        for i in range(states_in_group):
+            # fill transitions inside each group with INTRAGROUP_WEIGHT
+            for j in range(states_in_group):
+                state_num_from = sum(states_per_group[:group_number]) + i
+                state_num_to =  sum(states_per_group[:group_number]) + j
+                if state_num_from != state_num_to:
+                    transition_matrix[state_num_from][state_num_to] = INTRAGROUP_WEIGHT
+
+            # transition to next group is 1
+            if group_number != number_of_groups - 1:
+                for j in range(states_in_group):
+                    state_num_from = sum(states_per_group[:group_number]) + i
+                    state_num_to = sum(states_per_group[:group_number+1]) + j
+                    transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+
+
+
+    model_name = 'grouped_model'
+
+
+    first_joiner_idx =  sum(states_per_group)
+    first_joiners = set(joiner_label_to_index_in_model[label] for label in joiner_positions[0])
+    last_joiners = set(joiner_label_to_index_in_model[label] for label in joiner_positions[max(joiner_positions.keys())])
+    last_joiner_idx =  sum(states_per_group) + number_of_joiners - 1
+    # connect start cycle to the first joiners
+    start_cycle_idx = sum(states_per_group) + number_of_joiners
+    end_cycle_idx = start_cycle_idx + 1
+
+
+    # connect first joiner to first group
+    for joiner_index in first_joiners:
+        group_number = 0
+        state_num_from = joiner_index
+        states_in_group =  states_per_group[group_number]
+        for j in range(states_in_group):
+            state_num_to = sum(states_per_group[:group_number]) + j
+            transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+    # connect last group to the last joiner
+    for joiner_index in last_joiners:
+        group_number = group_number -1
+        state_num_to = joiner_index
+        states_in_group =  states_per_group[group_number]
+        for j in range(states_in_group):
+            state_num_from = sum(states_per_group[:group_number]) + j
+            transition_matrix[state_num_from][state_num_to] = INTERGROUP_WEIGHT
+
+    # connect first cycle to first joiner
+    for joiner_idx in first_joiners:
+        transition_matrix[start_cycle_idx][joiner_idx] = FROM_CYCLE_WEIGHT
+    # connect last joiners to last cycle
+    for joiner_idx in last_joiners:
+        transition_matrix[joiner_idx][end_cycle_idx] = TO_CYCLE_WEIGHT
+    #cycle in start and end cycle states
+    transition_matrix[end_cycle_idx][end_cycle_idx] = IN_CYCLE_WEIGHT
+    transition_matrix[start_cycle_idx][start_cycle_idx] = IN_CYCLE_WEIGHT
+
+
+
+    # start only for first cycle and first joiner
+    start_probabilities = [START_WEIGHT
+                           if i == start_cycle_idx or i in first_joiners
+                           else 0
+                           for i in range(num_states)]
+    start_probabilities[start_cycle_idx] = TO_CYCLE_WEIGHT
+    # do not restrict ending in multiple states, so probs are equal to transitions inside
+
+    end_probabilities = [END_WEIGHT
+                         if i == end_cycle_idx or i in last_joiners
+                         else 0
+                         for i in range(num_states)]
+
+    # assert sum(start_probabilities) == len(joiner_positions[0])* START_WEIGHT + TO_CYCLE_WEIGHT, start_probabilities
+    # assert sum(end_probabilities) ==  (len(joiner_positions[max(joiner_positions.keys())]) + 1)  * END_WEIGHT, end_probabilities + list(last_joiners)
+
+    model = HiddenMarkovModel.from_matrix(
+        name=model_name,
+        transition_probabilities=transition_matrix,
+        starts=start_probabilities,
+        distributions=distributions,
+        ends=end_probabilities,
+        state_names=state_names,
+        verbose=True)
+    model.add_transition(model.states[start_cycle_idx], model.states[start_cycle_idx], IN_CYCLE_WEIGHT, pseudocount=CYCLE_PSEUDOCOUNT)
+    model.add_transition(model.start, model.states[start_cycle_idx], IN_CYCLE_WEIGHT, pseudocount=CYCLE_PSEUDOCOUNT)
+    for joiner_idx in first_joiners:
+        model.add_transition(model.states[start_cycle_idx], model.states[joiner_idx], IN_CYCLE_WEIGHT, pseudocount=CYCLE_PSEUDOCOUNT)
+
+    model.add_transition(model.states[end_cycle_idx], model.states[end_cycle_idx], IN_CYCLE_WEIGHT, pseudocount=CYCLE_PSEUDOCOUNT)
+    model.add_transition(model.states[end_cycle_idx],model.end, IN_CYCLE_WEIGHT, pseudocount=CYCLE_PSEUDOCOUNT)
+    for joiner_idx in last_joiners:
+        model.add_transition(model.states[joiner_idx], model.states[end_cycle_idx], IN_CYCLE_WEIGHT, pseudocount=CYCLE_PSEUDOCOUNT)
+
+
+        # model.add_transition(model.states[end_cycle_idx], model.states[end_cycle_idx], IN_CYCLE_WEIGHT, pseudocount=CYCLE_PSEUDOCOUNT)
+
+    model.bake(verbose=True)
+    return model
+
+
+def init_simpliest_model_with_predefined_joiners_and_cycle(
+        joiner_parameters,
+        amino_acids="ACDEFGHIKLMNPQRSTVWY",
+        freeze_distr=False,
+
+):
+    START_WEIGHT = 1
+    INTRAJOINERS_WEIGHT = 1
+    TO_EMPTY_STATE_WEIGHT = 1
+    FROM_EMPTY_STATE_WEIGHT = 1
+    SELF_EMPTY_STATE_WEIGHT = 1
+    END_WEIGHT = 1
+    amino_acids_list = list(amino_acids)
+
+    number_of_joiners = len(joiner_parameters)
+
+    distributions = list()
+
+    joiner_label_to_index_in_model = dict()
+    for joiner_name, curr_joiner_params in joiner_parameters.items():
+        d = DiscreteDistribution(
+            {key: prob for key, prob in curr_joiner_params.items()})
+        joiner_label_to_index_in_model[joiner_name] = len(distributions)
+        if freeze_distr:
+            d.freeze()
+        distributions.append(d)
+
+    # initialize cycle states
+    cycle_d = DiscreteDistribution(
+                {key: prob for key, prob in zip(amino_acids_list, np.random.uniform(0, 1, size=len(amino_acids_list)))})
+    cycle_index = len(distributions)
+
+    distributions.append(cycle_d)
+    # print("joiners positions", joiner_label_to_index_in_model)
+
+    num_states =  number_of_joiners +  1 # groups, joiners, 1 cycle
+    state_names = ["s{:03d}".format(i) for i in range(num_states)]
+
+    transition_matrix = numpy.zeros((num_states, num_states))
+    # Connect joiners together
+    for joiner_index_from in joiner_label_to_index_in_model.values():
+        for joiner_index_to in joiner_label_to_index_in_model.values():
+            if joiner_index_from != joiner_index_to:
+                transition_matrix[joiner_index_from][joiner_index_to] = INTRAJOINERS_WEIGHT
+        # also connect each joiner to empty state
+        transition_matrix[joiner_index_from][cycle_index] = TO_EMPTY_STATE_WEIGHT
+        transition_matrix[cycle_index][joiner_index_from] = FROM_EMPTY_STATE_WEIGHT
+    # connect cycle to self
+    transition_matrix[cycle_index][cycle_index] = SELF_EMPTY_STATE_WEIGHT
+
+
+    model_name = 'grouped_model'
+    # connect all to start  and end
+
+    start_probabilities = [START_WEIGHT  for i in range(num_states)]
+    # do not restrict ending in multiple states, so probs are equal to transitions inside
+
+    end_probabilities = [END_WEIGHT   for i in range(num_states)]
+
+    model = HiddenMarkovModel.from_matrix(
+        name=model_name,
+        transition_probabilities=transition_matrix,
+        starts=start_probabilities,
+        distributions=distributions,
+        ends=end_probabilities,
+        state_names=state_names,
+        verbose=True)
+
+    model.bake(verbose=True)
+    return model
 
 # Add states to existing model
 def add_more_states_to_the_end(source_model, ADD_STATES_NUM, new_sates_names=[], new_name="new_model", new_probs="fair",
@@ -866,7 +1384,7 @@ def get_peptide_to_paths_df_external_paths(model, peptides, paths_df, edge_value
     name_to_state = get_state_to_name_dict(model)
 
     # paths_df = paths_df.loc[paths_df['len'].between(min_length, max_length)].copy()
-    paths_df = paths_df.sort_values('normalized_prob', ascending=False)
+    paths_df = paths_df.sort_values('norm_viterbi_prob', ascending=False)
     paths_df = paths_df.reset_index(drop=True)
     if top_paths:
         paths_df = paths_df[:top_paths]  # assumed to be sorted
@@ -888,7 +1406,7 @@ def get_peptide_to_paths_df_external_paths(model, peptides, paths_df, edge_value
 
     print(f"\tCalculate probs for peptides")
 
-    for _, path, tr_prob, tr_normalized_prob, path_length, mean_viterbi, path_pep_cnt in tqdm(paths_df.itertuples(),
+    for _, path, core_simplified_path, mean_viterbi, mean_bw_probs, tr_prob, path_length, path_pep_cnt  in tqdm(paths_df.itertuples(),
                                                                                               total=paths_df.shape[0]):
         curr_path = path.split(">")
         curr_path = curr_path[1:]
@@ -949,6 +1467,7 @@ def get_peptide_to_paths_df_external_paths(model, peptides, paths_df, edge_value
 #         df.replace([-np.inf], -55, inplace=True)
 #     return df
 
+
 def get_all_viterbi_paths_for_model_and_sequences(model, peptides, edge_value="log_probability", precision=4):
     print(f"Model {model.name}")
     model_graph = model.graph
@@ -971,6 +1490,378 @@ def get_all_viterbi_paths_for_model_and_sequences(model, peptides, edge_value="l
     for i, peptide in tqdm(enumerate(peptides), total=len(peptides)):
         prob_for_path, path = model.viterbi(peptide)
         path_state_indexes = "|".join([str(path_tuple[0]) for path_tuple in path])  # path as string
+        path_code_to_path[path_state_indexes] = [path_tuple[1] for path_tuple in path]
+        n = path_code_to_cnt[path_state_indexes]
+        mean_viterbi = path_code_to_mean_viterbi_prob[path_state_indexes]
+        mean_viterbi = (mean_viterbi * n + prob_for_path) / (n + 1)
+        path_code_to_mean_viterbi_prob[path_state_indexes] = mean_viterbi
+        path_code_to_cnt[path_state_indexes] += 1
+
+    print("Select unique paths...")
+    print(f"\tUnique paths: {len(path_code_to_path)}")
+    unique_paths = list(path_code_to_path.values())
+    mean_viterbies = list(path_code_to_mean_viterbi_prob.values())
+    cnts = list(path_code_to_cnt.values())
+    for path in tqdm(unique_paths):
+        prob_for_path = 0 if edge_value == "log_probability" else 1
+        path_edges = path.copy()
+        node_from = path_edges.pop(0)
+        while path_edges:
+            node_to = path_edges.pop(0)
+            data = model_graph.get_edge_data(node_from, node_to, default=None)
+            log_probability = data['probability']
+            # print(node_from, node_to,  np.exp(edge['label']), "total_prob", prob_for_path)
+            if edge_value == "log_probability":
+                prob_for_path = prob_for_path + log_probability
+            else:
+                prob_for_path = prob_for_path * np.exp(log_probability)
+            # print(f"edge {edge}")
+            node_from = node_to
+        result_paths.append(">".join([node.name for node in path]))
+        result_lens.append(len(path) - 2)
+        result_probs.append(prob_for_path)
+        # normalize
+        result_normalized_probs.append(prob_for_path / len(path))
+
+    paths_df = pd.DataFrame(
+        {"path": result_paths, "prob": result_probs, "normalized_prob": result_normalized_probs, "len": result_lens,
+         "mean_viterbi": mean_viterbies, "peptide_cnts": cnts})
+    paths_df = paths_df.sort_values('normalized_prob', ascending=False)
+    paths_df = paths_df.reset_index(drop=True)
+    return paths_df
+
+def generate_radom_paths_for_model_mark_core(model, n, per_model_important_states,edge_value="log_probability"):
+    name_to_state = get_state_to_name_dict(model)
+    name_to_index = {name: i for i, name in enumerate(name_to_state.keys())}
+    acid_to_index = {acid: i for i, acid in enumerate(sorted(model.keymap[0].keys()))}
+    emission_matrix = np.zeros(shape=(len(name_to_index), len(acid_to_index)))
+    for name, state in name_to_state.items():
+        if name != model.start.name and name != model.end.name:
+            for acid, prob in state.distribution.parameters[0].items():
+                emission_matrix[name_to_index[name], acid_to_index[acid]] = np.log(prob)
+    print(f"Model {model.name}")
+    model_graph = model.graph
+    result_tr_probs = list()
+    result_normalized_probs = list()
+    result_lens = list()
+    result_paths = list()
+    result_simplified_paths = list()
+    result_viterbi_probs = list()
+    result_total_probs = list()
+    result_bw_probs = list()
+    result_start_core = list()
+    result_end_core = list()
+    peptides = list()
+    print(f"Generate {n} peptides and paths")
+    for i in range(n):
+        peptide_arr, path = model.sample(path=True)
+        peptide = "".join(peptide_arr)
+        peptides.append(peptide)
+        viterbi_prob, viterbi_path = model.viterbi(peptide)
+        bw_prob = model.log_probability(peptide)
+        tr_prob = 0 if edge_value == "log_probability" else 1
+        path_nodes = [node for node in path]
+        path_length = len(path_nodes)
+        result_paths.append(">".join([node.name for node in path_nodes]))
+        count_al = [i for i,node in enumerate(path_nodes[1:]) if node.name in per_model_important_states[model.name]  ]
+        start_core = count_al[0] if len(count_al) > 0 else np.nan
+        end_core = count_al[-1] if len(count_al) > 0 else np.nan
+        curr_path = path_nodes[1:]
+        curr_path_indexes = [name_to_index[node.name] for node in curr_path]
+
+        probs_dif = 1- np.round((viterbi_prob-bw_prob)/ path_length,2)
+
+
+        if np.isnan(start_core) or np.isnan(end_core):
+            simplified_path = np.array([probs_dif if node.name in per_model_important_states[model.name] else 0 for node in path_nodes[1:-1]]).astype(np.float64)
+        else:
+            simplified_path = np.array([probs_dif if node.name in per_model_important_states[model.name] else 0 for node in path_nodes[1:-1]]).astype(np.float64)
+            assert start_core is not np.nan
+            assert end_core is not np.nan
+            # simplified_path[start_core:end_core+1] = probs_dif
+        result_simplified_paths.append(simplified_path)
+        node_from = path_nodes.pop(0)
+        while path_nodes:
+            node_to = path_nodes.pop(0)
+            data = model_graph.get_edge_data(node_from, node_to, default=None)
+            log_probability = data['probability']
+            # print(node_from, node_to,  np.exp(edge['label']), "total_prob", prob_for_path)
+            if edge_value == "log_probability":
+                tr_prob = tr_prob + log_probability
+            else:
+                tr_prob = tr_prob * np.exp(log_probability)
+            # print(f"edge {edge}")
+            node_from = node_to
+
+
+        if edge_value == "log_probability":
+            emission_prob = sum(
+                [emission_matrix[state_index, acid_to_index[emission]] for state_index, emission in
+                 zip(curr_path_indexes, peptide)])
+            prob_for_path = tr_prob + emission_prob
+        else:
+                emission_prob = get_emission_prob_for_path_and_sequence(path, peptide, name_to_state,
+                                                                        model.start.name, edge_value=edge_value)
+                prob_for_path = tr_prob * emission_prob
+
+        result_lens.append(path_length - 2)
+        result_tr_probs.append(tr_prob)
+        result_normalized_probs.append(tr_prob / path_length)
+        result_viterbi_probs.append(viterbi_prob)
+        result_bw_probs.append(bw_prob)
+        result_total_probs.append(prob_for_path)
+        result_start_core.append(start_core)
+        result_end_core.append(end_core)
+    paths_df = pd.DataFrame(
+        {"path": result_paths,
+         "simplified_path": result_simplified_paths,
+         "core_start": result_start_core, "core_end": result_end_core,
+         "tr_prob": result_tr_probs, "normalized_prob": result_normalized_probs, "len": result_lens,
+         "viterbi_probs": result_viterbi_probs,
+         "bw_probs": result_bw_probs,
+         "total_probs": result_total_probs}, index=peptides)
+    return paths_df
+
+
+def get_all_viterbi_paths_for_model_and_sequences_mark_core(model, peptides, per_model_important_states,
+                                                            edge_value="log_probability", precision=4, unique_paths=True, generate_peptides=False, generate_count=50000):
+    """
+    Wil leave only last peptide in the peptide df if path was duplicated by multiple peptides
+    :param model:
+    :param peptides:
+    :param per_model_important_states:
+    :param edge_value:
+    :param precision:
+    :return:
+    """
+    print(f"Model {model.name}")
+    model_graph = model.graph
+
+    if generate_peptides:
+        assert peptides is None, "If you want to generate peptides -- you don't need peptides as argument"
+        peptides = list()
+
+    print("Get viterbi paths for each peptide...")
+
+    result_probs = list()
+    result_lens = list()
+    result_paths = list()
+    result_simplified_paths = list()
+    result_peptides = list()
+    result_viterbi_probs = list()
+    result_bw_probs = list()
+    result_start_core = list()
+    result_end_core = list()
+    result_cnts = list()
+
+    path_code_to_path = dict()
+    path_code_to_cnt = defaultdict(int)
+    path_code_to_total_viterbi_prob = defaultdict(float)
+    path_code_to_total_bw_prob = defaultdict(float)
+    path_code_to_peptide = defaultdict(str)
+
+    peptide_count = generate_count if generate_peptides else len(peptides)
+
+    for i in tqdm(range(peptide_count)):
+        if not generate_peptides:  # peptides are given, calculate all from peptide
+            peptide = peptides[i]
+            viterbi_prob, path = model.viterbi(peptide)
+            path = [path_tuple[1] for path_tuple in path]
+            bw_prob = model.log_probability(peptide)
+        else:
+            peptide_arr, path = model.sample(path=True)
+            peptide = "".join(peptide_arr)
+            peptides.append(peptide)
+            viterbi_prob, viterbi_path = model.viterbi(peptide)
+            bw_prob = model.log_probability(peptide)
+
+        if unique_paths:
+            path_index = "|".join([state.name for state in path])  # path as string
+        else:
+            path_index = peptide
+            path_code_to_peptide[path_index] = peptide
+        path_code_to_path[path_index] = path
+        path_code_to_total_viterbi_prob[path_index] += viterbi_prob
+        path_code_to_total_bw_prob[path_index] += bw_prob
+        path_code_to_cnt[path_index] += 1
+    print("Subselect unique paths (if unique path argument passed)..")
+    print(f"\tUnique paths: {len(path_code_to_path)} ")
+    # unique_paths = list(path_code_to_path.values())
+    # mean_viterbies = list(viterbi_prob/ cnt for viterbi_prob, cnt in zip(path_code_to_total_viterbi_prob.values(), path_code_to_cnt.values()))
+    # mean_bws = list(bw_prob/ cnt for bw_prob, cnt in zip(path_code_to_total_bw_prob.values(), path_code_to_cnt.values()))
+
+    for path_code, path_nodes in tqdm(path_code_to_path.items()):
+        count_al = [i for i,node in enumerate(path_nodes[1:]) if node.name in per_model_important_states[model.name]]
+        start_core = count_al[0] if len(count_al) > 0 else np.nan
+        end_core = count_al[-1] if len(count_al) > 0 else np.nan
+        peptide_cnt = path_code_to_cnt[path_code]
+        viterbi_prob = path_code_to_total_viterbi_prob[path_code] / peptide_cnt
+        bw_prob = path_code_to_total_bw_prob[path_code] / peptide_cnt
+        path_length = len(path_nodes)
+
+
+
+        tr_prob_for_path = 0 if edge_value == "log_probability" else 1
+        result_paths.append(">".join([node.name for node in path_nodes]))
+        path_nodes_copy = path_nodes.copy()
+
+        node_from = path_nodes_copy.pop(0)
+        while path_nodes_copy:
+            node_to = path_nodes_copy.pop(0)
+            data = model_graph.get_edge_data(node_from, node_to, default=None)
+            log_probability = data['probability']
+            # print(node_from, node_to,  np.exp(edge['label']), "total_prob", prob_for_path)
+            if edge_value == "log_probability":
+                tr_prob_for_path = tr_prob_for_path + log_probability
+            else:
+                tr_prob_for_path = tr_prob_for_path * np.exp(log_probability)
+            # print(f"edge {edge}")
+            node_from = node_to
+
+        # normalize by peptide length
+        peptide_len = path_length - 2
+        viterbi_prob = viterbi_prob / peptide_len
+        bw_prob = bw_prob / peptide_len
+        tr_prob_for_path = tr_prob_for_path / peptide_len
+
+        probs_dif = 1- np.round(viterbi_prob-bw_prob,2)
+
+        if np.isnan(start_core) or np.isnan(end_core):
+            simplified_path = np.array([probs_dif if node.name in per_model_important_states[model.name] else 0 for node in path_nodes[1:-1]]).astype(np.float64)
+        else:
+            simplified_path = np.array([probs_dif if node.name in per_model_important_states[model.name] else 0 for node in path_nodes[1:-1]]).astype(np.float64)
+            assert start_core is not np.nan
+            assert end_core is not np.nan
+
+        result_simplified_paths.append(simplified_path)
+        result_lens.append(peptide_len)
+        result_probs.append(tr_prob_for_path)
+        result_viterbi_probs.append(viterbi_prob)
+        result_bw_probs.append(bw_prob)
+        result_start_core.append(start_core)
+        result_end_core.append(end_core)
+        result_cnts.append(path_code_to_cnt[path_code])
+        if not unique_paths:
+            result_peptides.append(path_code_to_peptide[path_code])
+    if unique_paths:
+        paths_df = pd.DataFrame(
+            {"path": result_paths,
+             "simplified_path": result_simplified_paths,
+             "core_start": result_start_core, "core_end": result_end_core,
+             "norm_tr_prob": result_probs, "len": result_lens,
+             "norm_viterbi_prob": result_viterbi_probs,
+             "norm_bw_prob": result_bw_probs,
+             "peptide_cnt": result_cnts})
+    else:
+        paths_df = pd.DataFrame(
+        {"path": result_paths,
+         "simplified_path": result_simplified_paths,
+         "core_start": result_start_core, "core_end": result_end_core,
+         "norm_tr_prob": result_probs, "len": result_lens,
+         "norm_viterbi_prob": result_viterbi_probs,
+         "norm_bw_prob": result_bw_probs,
+         "peptide_cnt": result_cnts}, index=result_peptides)
+
+    return paths_df
+
+
+
+
+
+
+
+def get_all_viterbi_paths_for_model_and_sequences_preserve_peptides_check_importance_masks(model, peptides, per_model_important_states, edge_value="log_probability", precision=4):
+    print(f"Model {model.name}")
+    model_graph = model.graph
+
+    # new_graph, name_to_level = convert_graph_to_good_format(model,"", False, precision=precision, edge_value=edge_value)
+    # transition_matrix = model.dense_transition_matrix()
+    print("Get viterbi paths for each peptide...")
+    repeated_paths = list()
+    repeated_path_state_indexes = list()
+
+    result_probs = list()
+    result_normalized_probs = list()
+    result_lens = list()
+    result_paths = list()
+    result_peptides = list()
+    result_simplified_paths = list()
+
+    path_code_to_path = dict()
+    path_code_to_cnt = defaultdict(int)
+    path_code_to_mean_viterbi_prob = defaultdict(float)
+
+
+    for i, peptide in tqdm(enumerate(peptides), total=len(peptides)):
+        prob_for_path, path = model.viterbi(peptide)
+        path_state_indexes = "|".join([str(path_tuple[0]) for path_tuple in path])  # path as string
+        path_code_to_path[path_state_indexes] = [path_tuple[1] for path_tuple in path]
+        n = path_code_to_cnt[path_state_indexes]
+        mean_viterbi = path_code_to_mean_viterbi_prob[path_state_indexes]
+        mean_viterbi = (mean_viterbi * n + prob_for_path) / (n + 1)
+        path_code_to_mean_viterbi_prob[path_state_indexes] = mean_viterbi
+        path_code_to_cnt[path_state_indexes] += 1
+
+    print("Select unique paths...")
+    print(f"\tUnique paths: {len(path_code_to_path)}")
+    unique_paths = list(path_code_to_path.values())
+    mean_viterbies = list(path_code_to_mean_viterbi_prob.values())
+    cnts = list(path_code_to_cnt.values())
+    for path in tqdm(unique_paths):
+        prob_for_path = 0 if edge_value == "log_probability" else 1
+        path_edges = path.copy()
+        saved_path_nodes = path_edges.copy()
+        node_from = path_edges.pop(0)
+        while path_edges:
+            node_to = path_edges.pop(0)
+            data = model_graph.get_edge_data(node_from, node_to, default=None)
+            log_probability = data['probability']
+            # print(node_from, node_to,  np.exp(edge['label']), "total_prob", prob_for_path)
+            if edge_value == "log_probability":
+                prob_for_path = prob_for_path + log_probability
+            else:
+                prob_for_path = prob_for_path * np.exp(log_probability)
+            # print(f"edge {edge}")
+            node_from = node_to
+        result_paths.append(">".join([node.name for node in path]))
+        result_lens.append(len(path) - 2)
+        result_probs.append(prob_for_path)
+        result_simplified_paths.append(np.array([1 if node.name in per_model_important_states[model.name] else 0 for node in saved_path_nodes[1:]]))
+        # normalize
+        result_normalized_probs.append(prob_for_path / len(path))
+
+    paths_df = pd.DataFrame(
+        {"path": result_paths, "simplified_path": result_simplified_paths ,"prob": result_probs, "normalized_prob": result_normalized_probs, "len": result_lens,
+         "mean_viterbi": mean_viterbies, "peptide_cnts": cnts})
+    paths_df = paths_df.sort_values('normalized_prob', ascending=False)
+    paths_df = paths_df.reset_index(drop=True)
+    return paths_df
+
+def get_all_viterbi_paths_for_model_and_sequences_preserve_peptides(model, peptides, edge_value="log_probability", precision=4):
+    print(f"Model {model.name}")
+    model_graph = model.graph
+
+    # new_graph, name_to_level = convert_graph_to_good_format(model,"", False, precision=precision, edge_value=edge_value)
+    # transition_matrix = model.dense_transition_matrix()
+    print("Get viterbi paths for each peptide...")
+    repeated_paths = list()
+    repeated_path_state_indexes = list()
+
+    result_probs = list()
+    result_normalized_probs = list()
+    result_lens = list()
+    result_paths = list()
+    result_peptides = list()
+
+    path_code_to_path = dict()
+    path_code_to_cnt = defaultdict(int)
+    path_code_to_mean_viterbi_prob = defaultdict(float)
+
+    
+    for i, peptide in tqdm(enumerate(peptides), total=len(peptides)):
+        prob_for_path, path = model.viterbi(peptide)
+        path_state_indexes = "|".join([str(path_tuple[0]) for path_tuple in path])  # path as string
+
         path_code_to_path[path_state_indexes] = [path_tuple[1] for path_tuple in path]
         n = path_code_to_cnt[path_state_indexes]
         mean_viterbi = path_code_to_mean_viterbi_prob[path_state_indexes]
@@ -1045,4 +1936,3 @@ def get_model_representation(model, peptides, paths_df=None, edge_value="log_pro
     print("Finished")
     return pivot_df, paths_df, emission_matrix, name_to_index
 
-# %%
