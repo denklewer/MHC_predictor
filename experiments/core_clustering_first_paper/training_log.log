@@ -1,0 +1,416 @@
+run 0
+split 0
+train size 22245
+Shuffling for fairness 
+data shuffled
+Example of data ['R', 'L', 'P', 'P', 'T', 'P', 'A', 'S', 'K']
+Use pseudocount is True
+[1] Improvement: 44693.351511873654	Time (s): 1.258
+[2] Improvement: 12129.313171032467	Time (s): 1.352
+[3] Improvement: 4423.356488658814	Time (s): 1.364
+[4] Improvement: 2107.42622744292	Time (s): 1.258
+[5] Improvement: 1602.4527868618025	Time (s): 1.345
+[6] Improvement: 1389.780565612833	Time (s): 1.347
+[7] Improvement: 1204.6500689956592	Time (s): 1.275
+[8] Improvement: 1108.1470366152935	Time (s): 1.358
+[9] Improvement: 1027.683698190609	Time (s): 1.359
+[10] Improvement: 838.9819546296494	Time (s): 1.421
+[11] Improvement: 757.10909694375	Time (s): 1.318
+[12] Improvement: 801.5810794178396	Time (s): 2.316
+[13] Improvement: 739.1487622481072	Time (s): 1.312
+[14] Improvement: 716.6452055525733	Time (s): 1.378
+[15] Improvement: 718.1747617791407	Time (s): 1.403
+[16] Improvement: 609.347999417223	Time (s): 1.388
+[17] Improvement: 585.4190790834837	Time (s): 1.268
+[18] Improvement: 666.5990983874071	Time (s): 1.371
+[19] Improvement: 775.5605933484621	Time (s): 1.276
+[20] Improvement: 757.504079692997	Time (s): 1.372
+[21] Improvement: 975.8762954812264	Time (s): 1.357
+[22] Improvement: 915.6241085046204	Time (s): 1.289
+[23] Improvement: 911.6528486685129	Time (s): 1.357
+[24] Improvement: 889.7788022789173	Time (s): 1.375
+[25] Improvement: 827.1614591196412	Time (s): 1.257
+[26] Improvement: 964.4159378974	Time (s): 1.749
+[27] Improvement: 2068.9997738504317	Time (s): 1.433
+[28] Improvement: 1485.9886065546889	Time (s): 1.269
+[29] Improvement: 939.935017024749	Time (s): 1.349
+[30] Improvement: 793.1306226813467	Time (s): 1.257
+[31] Improvement: 664.8452685585944	Time (s): 1.771
+[32] Improvement: 570.2239734119503	Time (s): 1.437
+[33] Improvement: 688.1733403711114	Time (s): 1.274
+[34] Improvement: 799.8145832127193	Time (s): 1.356
+[35] Improvement: 811.307094093645	Time (s): 1.357
+[36] Improvement: 1006.9941569844959	Time (s): 1.261
+[37] Improvement: 1051.586268668645	Time (s): 1.346
+[38] Improvement: 954.2528199570952	Time (s): 1.335
+[39] Improvement: 1331.6358599488158	Time (s): 1.365
+[40] Improvement: 902.351429434726	Time (s): 1.255
+[41] Improvement: 847.2392616086872	Time (s): 1.348
+[42] Improvement: 559.8241499401629	Time (s): 1.269
+[43] Improvement: 409.2953946790658	Time (s): 1.341
+[44] Improvement: 169.43950174434576	Time (s): 1.351
+[45] Improvement: 101.97853752307128	Time (s): 1.358
+[46] Improvement: -8.8947990675224	Time (s): 1.262
+[47] Improvement: -73.3310335703427	Time (s): 1.347
+[48] Improvement: -79.29744893184397	Time (s): 1.254
+[49] Improvement: -61.40143868746236	Time (s): 1.35
+[50] Improvement: -74.94913482561242	Time (s): 1.355
+[51] Improvement: -35.793678856338374	Time (s): 1.516
+[52] Improvement: -54.18382281216327	Time (s): 1.392
+[53] Improvement: -27.868103925138712	Time (s): 1.349
+[54] Improvement: -12.38581667188555	Time (s): 1.345
+[55] Improvement: 38.400404338142835	Time (s): 1.346
+[56] Improvement: 88.15603978000581	Time (s): 1.356
+[57] Improvement: 228.93802251049783	Time (s): 1.249
+[58] Improvement: 251.58424643229228	Time (s): 1.357
+[59] Improvement: 246.65846589324065	Time (s): 1.34
+[60] Improvement: 203.33382331766188	Time (s): 1.251
+[61] Improvement: 145.3200350488769	Time (s): 1.322
+[62] Improvement: 71.99154885264579	Time (s): 1.339
+[63] Improvement: 29.93295732617844	Time (s): 1.237
+[64] Improvement: 14.28783810546156	Time (s): 1.331
+[65] Improvement: 11.456361443153583	Time (s): 1.239
+[66] Improvement: 44.92549060995225	Time (s): 1.327
+[67] Improvement: 40.21654209133703	Time (s): 1.35
+[68] Improvement: 52.80890850990545	Time (s): 1.238
+[69] Improvement: 62.29732822731603	Time (s): 1.35
+[70] Improvement: 62.011624415172264	Time (s): 1.35
+[71] Improvement: 42.13111822772771	Time (s): 1.259
+[72] Improvement: 46.039409727207385	Time (s): 1.35
+[73] Improvement: 23.865709713776596	Time (s): 1.344
+[74] Improvement: -31.32731861853972	Time (s): 1.346
+Total Training Improvement: 100538.68165658705
+Total Training Time (s): 101.7159
+run 1
+split 0
+train size 22245
+Shuffling for fairness 
+data shuffled
+Example of data ['S', 'I', 'Y', 'R', 'P', 'S', 'K', 'N', 'L', 'D', 'K']
+Use pseudocount is True
+[1] Improvement: 35402.786119486555	Time (s): 1.356
+[2] Improvement: 11352.730939037632	Time (s): 1.375
+[3] Improvement: 4253.667274351697	Time (s): 1.267
+[4] Improvement: 1880.3573000228498	Time (s): 1.387
+[5] Improvement: 1327.6531445458531	Time (s): 1.377
+[6] Improvement: 998.7312114371452	Time (s): 1.272
+[7] Improvement: 654.0723892227979	Time (s): 1.371
+[8] Improvement: 596.345029888209	Time (s): 1.362
+[9] Improvement: 351.7589861439774	Time (s): 1.261
+[10] Improvement: 205.69383904733695	Time (s): 1.359
+[11] Improvement: 117.71594387560617	Time (s): 1.475
+[12] Improvement: 86.67786450812127	Time (s): 1.509
+[13] Improvement: 273.21227050898597	Time (s): 1.553
+[14] Improvement: 102.68814340047538	Time (s): 1.47
+[15] Improvement: 58.36634163942654	Time (s): 1.551
+[16] Improvement: 119.08758488320746	Time (s): 1.571
+[17] Improvement: 69.82009498460684	Time (s): 1.512
+[18] Improvement: 90.1535229611909	Time (s): 1.573
+[19] Improvement: 138.54725388227962	Time (s): 1.585
+[20] Improvement: 138.03064871171955	Time (s): 1.488
+[21] Improvement: 181.25333817047067	Time (s): 1.553
+[22] Improvement: 170.05840245762374	Time (s): 1.588
+[23] Improvement: 480.05832525889855	Time (s): 1.564
+[24] Improvement: 468.8036533429986	Time (s): 1.486
+[25] Improvement: 314.08965451747645	Time (s): 1.573
+[26] Improvement: 137.82687141245697	Time (s): 1.479
+[27] Improvement: 83.43746998952702	Time (s): 1.555
+[28] Improvement: 33.556646081618965	Time (s): 1.531
+[29] Improvement: -25.43393155001104	Time (s): 1.596
+[30] Improvement: -18.99597876763437	Time (s): 1.479
+[31] Improvement: -48.3146374267526	Time (s): 1.573
+[32] Improvement: -17.52352308749687	Time (s): 1.467
+[33] Improvement: 9.546893546823412	Time (s): 1.562
+[34] Improvement: 3.740930018480867	Time (s): 1.52
+[35] Improvement: -3.008034452330321	Time (s): 1.596
+[36] Improvement: 28.848338700365275	Time (s): 1.557
+[37] Improvement: 26.092213303782046	Time (s): 1.604
+[38] Improvement: 25.01040805852972	Time (s): 1.431
+[39] Improvement: 15.976182329584844	Time (s): 1.603
+[40] Improvement: -5.789699702407233	Time (s): 1.549
+[41] Improvement: 4.026821285719052	Time (s): 1.49
+[42] Improvement: 8.403178414679132	Time (s): 1.58
+[43] Improvement: 11.211486638057977	Time (s): 1.575
+[44] Improvement: 3.17292156862095	Time (s): 1.479
+[45] Improvement: 12.100878473254852	Time (s): 1.592
+[46] Improvement: 95.49564421619289	Time (s): 1.577
+[47] Improvement: 95.26822010381147	Time (s): 1.468
+[48] Improvement: 285.814290939481	Time (s): 1.551
+[49] Improvement: 153.59695827611722	Time (s): 1.461
+[50] Improvement: 78.81531683704816	Time (s): 1.547
+[51] Improvement: 43.85951026552357	Time (s): 1.522
+[52] Improvement: 26.643804135848768	Time (s): 1.489
+[53] Improvement: 17.62128779629711	Time (s): 1.521
+[54] Improvement: 31.674912287620828	Time (s): 1.537
+[55] Improvement: 45.351991018047556	Time (s): 1.459
+[56] Improvement: 44.11130362865515	Time (s): 1.573
+[57] Improvement: 46.71208611456677	Time (s): 1.596
+[58] Improvement: 88.2116481331177	Time (s): 1.584
+[59] Improvement: 62.78105449315626	Time (s): 1.483
+[60] Improvement: 35.1784793761326	Time (s): 1.558
+[61] Improvement: 19.211864992510527	Time (s): 1.455
+[62] Improvement: 16.870962793007493	Time (s): 1.553
+[63] Improvement: 24.653841295512393	Time (s): 1.561
+[64] Improvement: 17.548660240718164	Time (s): 1.546
+[65] Improvement: 14.319999194471166	Time (s): 1.471
+[66] Improvement: 17.986433802056126	Time (s): 1.535
+[67] Improvement: 15.504323054337874	Time (s): 1.445
+[68] Improvement: 25.60472756391391	Time (s): 1.553
+[69] Improvement: 17.218593798344955	Time (s): 1.823
+[70] Improvement: 13.11516855971422	Time (s): 1.585
+[71] Improvement: 13.571615653345361	Time (s): 1.447
+[72] Improvement: 8.487635085126385	Time (s): 1.541
+[73] Improvement: 6.340159859624691	Time (s): 1.497
+Total Training Improvement: 61477.81520463631
+Total Training Time (s): 111.4726
+run 2
+split 0
+train size 22245
+Shuffling for fairness 
+data shuffled
+Example of data ['E', 'T', 'D', 'P', 'F', 'V', 'Q', 'E', 'F']
+Use pseudocount is True
+[1] Improvement: 40098.90361544641	Time (s): 1.508
+[2] Improvement: 9581.76915006293	Time (s): 1.521
+[3] Improvement: 3541.7485789493658	Time (s): 1.46
+[4] Improvement: 1716.842347797472	Time (s): 1.608
+[5] Improvement: 1232.4379843587521	Time (s): 1.573
+[6] Improvement: 984.2978947868105	Time (s): 1.434
+[7] Improvement: 998.7155573253985	Time (s): 1.513
+[8] Improvement: 881.4493546317099	Time (s): 1.591
+[9] Improvement: 741.2344644495752	Time (s): 1.612
+[10] Improvement: 672.9580129875103	Time (s): 1.456
+[11] Improvement: 611.0189963701414	Time (s): 1.582
+[12] Improvement: 513.2017774371197	Time (s): 1.474
+[13] Improvement: 556.4068211351987	Time (s): 1.581
+[14] Improvement: 600.7028741471004	Time (s): 1.497
+[15] Improvement: 614.1626468555769	Time (s): 1.623
+[16] Improvement: 546.3476319639012	Time (s): 1.453
+[17] Improvement: 761.019419165561	Time (s): 1.648
+[18] Improvement: 531.5109126793686	Time (s): 1.492
+[19] Improvement: 472.73400553374086	Time (s): 1.711
+[20] Improvement: 424.9012568197213	Time (s): 1.732
+[21] Improvement: 402.5926056612516	Time (s): 1.837
+[22] Improvement: 363.77929815428797	Time (s): 1.927
+[23] Improvement: 339.097894527833	Time (s): 1.693
+[24] Improvement: 379.5434400636004	Time (s): 1.505
+[25] Improvement: 259.10951176739763	Time (s): 1.638
+[26] Improvement: 209.3486507179914	Time (s): 1.519
+[27] Improvement: 168.37481991993263	Time (s): 2.057
+[28] Improvement: 119.09562400565483	Time (s): 2.331
+[29] Improvement: 93.77994113974273	Time (s): 1.641
+[30] Improvement: 147.9482087698998	Time (s): 1.473
+[31] Improvement: 69.1673501500627	Time (s): 1.502
+[32] Improvement: 69.48100890335627	Time (s): 1.643
+[33] Improvement: 90.05499792215414	Time (s): 1.581
+[34] Improvement: 132.5415690955706	Time (s): 1.669
+[35] Improvement: 118.79260595201049	Time (s): 1.567
+[36] Improvement: 130.4589310764568	Time (s): 1.735
+[37] Improvement: 183.82080751366448	Time (s): 3.528
+[38] Improvement: 97.0049289346207	Time (s): 2.459
+[39] Improvement: 94.55730038764887	Time (s): 1.754
+[40] Improvement: 100.04252667399123	Time (s): 1.821
+[41] Improvement: 149.73509526718408	Time (s): 1.53
+[42] Improvement: 112.76965178200044	Time (s): 2.049
+[43] Improvement: 108.1101019999478	Time (s): 2.269
+[44] Improvement: 120.54123129695654	Time (s): 1.753
+[45] Improvement: 106.10756913071964	Time (s): 1.624
+[46] Improvement: 131.99732634425163	Time (s): 1.705
+[47] Improvement: 116.28652651340235	Time (s): 1.6
+[48] Improvement: 98.65551273908932	Time (s): 1.671
+[49] Improvement: 104.39363671722822	Time (s): 1.63
+[50] Improvement: 118.45415281655733	Time (s): 1.599
+[51] Improvement: 104.5522649474442	Time (s): 1.533
+[52] Improvement: 91.73727718763985	Time (s): 1.624
+[53] Improvement: 118.96194228518289	Time (s): 1.753
+[54] Improvement: 92.97386888565961	Time (s): 2.312
+[55] Improvement: 63.842503346153535	Time (s): 2.398
+[56] Improvement: 72.84084917104337	Time (s): 2.452
+[57] Improvement: 49.50527862936724	Time (s): 2.362
+[58] Improvement: 58.19383541517891	Time (s): 2.462
+[59] Improvement: 79.66819604195189	Time (s): 2.27
+[60] Improvement: 60.40415443072561	Time (s): 2.394
+[61] Improvement: 76.7525487850653	Time (s): 2.47
+[62] Improvement: 60.13270897360053	Time (s): 2.28
+[63] Improvement: 54.99802545784041	Time (s): 2.349
+[64] Improvement: 59.806140337954275	Time (s): 4.564
+[65] Improvement: 114.55760676926002	Time (s): 2.515
+[66] Improvement: 74.87847817875445	Time (s): 1.994
+[67] Improvement: 39.104677577503026	Time (s): 1.699
+[68] Improvement: 50.10864798608236	Time (s): 1.572
+[69] Improvement: 53.901152761420235	Time (s): 1.643
+[70] Improvement: 23.73728415905498	Time (s): 1.703
+[71] Improvement: 53.29636630858295	Time (s): 1.692
+[72] Improvement: 87.38469214725774	Time (s): 1.704
+[73] Improvement: 117.60462069616187	Time (s): 1.655
+[74] Improvement: 113.04882447374985	Time (s): 1.648
+[75] Improvement: 123.18577521445695	Time (s): 1.623
+[76] Improvement: 94.06177089584526	Time (s): 1.603
+[77] Improvement: 99.4482516873395	Time (s): 1.669
+[78] Improvement: 158.28358459554147	Time (s): 1.706
+[79] Improvement: 117.66962304781191	Time (s): 1.661
+[80] Improvement: 92.39972519036382	Time (s): 1.57
+[81] Improvement: 86.55744600808248	Time (s): 1.665
+[82] Improvement: 91.43041384592652	Time (s): 1.572
+[83] Improvement: 136.94277544680517	Time (s): 1.673
+[84] Improvement: 125.66140747827012	Time (s): 1.673
+[85] Improvement: 84.0687484680675	Time (s): 1.678
+[86] Improvement: 99.49005137034692	Time (s): 1.585
+[87] Improvement: 111.19609994825441	Time (s): 1.685
+[88] Improvement: 107.05939542606939	Time (s): 1.589
+[89] Improvement: 138.55243486817926	Time (s): 1.677
+[90] Improvement: 187.36247358226683	Time (s): 1.653
+Total Training Improvement: 74443.3680508741
+Total Training Time (s): 164.1284
+run 3
+split 0
+train size 22245
+Shuffling for fairness 
+data shuffled
+Example of data ['S', 'I', 'F', 'K', 'Q', 'P', 'V', 'T', 'K']
+Use pseudocount is True
+[1] Improvement: 32969.70623370295	Time (s): 1.552
+[2] Improvement: 9402.476332847611	Time (s): 1.626
+[3] Improvement: 3889.368450931972	Time (s): 1.653
+[4] Improvement: 2182.7671353230253	Time (s): 1.559
+[5] Improvement: 1515.7553687642794	Time (s): 1.65
+[6] Improvement: 1182.620771258953	Time (s): 1.655
+[7] Improvement: 994.2775830985047	Time (s): 1.548
+[8] Improvement: 1211.933294314891	Time (s): 1.655
+[9] Improvement: 969.9447201647563	Time (s): 1.673
+[10] Improvement: 889.2003741178196	Time (s): 1.545
+[11] Improvement: 2454.276052618632	Time (s): 1.66
+[12] Improvement: 2083.4076647391776	Time (s): 1.565
+[13] Improvement: 1486.365001082071	Time (s): 1.673
+[14] Improvement: 1482.1383350801188	Time (s): 1.657
+[15] Improvement: 1069.7085230854573	Time (s): 1.672
+[16] Improvement: 751.9534529425437	Time (s): 1.564
+[17] Improvement: 833.2068837606348	Time (s): 1.663
+[18] Improvement: 708.7431057975627	Time (s): 1.584
+[19] Improvement: 638.4316903083818	Time (s): 1.674
+[20] Improvement: 485.17990619444754	Time (s): 1.639
+[21] Improvement: 354.88862525927834	Time (s): 1.694
+[22] Improvement: 315.80251625028905	Time (s): 1.605
+[23] Improvement: 296.21015737601556	Time (s): 1.65
+[24] Improvement: 245.11998880270403	Time (s): 1.571
+[25] Improvement: 223.61953778611496	Time (s): 1.655
+[26] Improvement: 324.08291992463637	Time (s): 1.665
+[27] Improvement: 333.87835395289585	Time (s): 1.562
+[28] Improvement: 444.2072848964017	Time (s): 1.659
+[29] Improvement: 754.2351494738832	Time (s): 1.666
+[30] Improvement: 918.1850724435644	Time (s): 1.567
+[31] Improvement: 788.0011342370417	Time (s): 1.683
+[32] Improvement: 766.6717150659533	Time (s): 1.665
+[33] Improvement: 523.3789836618816	Time (s): 1.539
+[34] Improvement: 406.1992611431051	Time (s): 1.653
+[35] Improvement: 346.37147749681026	Time (s): 1.659
+[36] Improvement: 326.06926648237277	Time (s): 1.554
+[37] Improvement: 287.0534983300604	Time (s): 1.656
+[38] Improvement: 246.85237726173364	Time (s): 1.579
+[39] Improvement: 192.39684239507187	Time (s): 1.644
+[40] Improvement: 268.2525993528543	Time (s): 1.637
+[41] Improvement: 334.18587083218154	Time (s): 1.563
+[42] Improvement: 401.0860661624465	Time (s): 1.651
+[43] Improvement: 488.21209739602637	Time (s): 1.656
+[44] Improvement: 450.51963539607823	Time (s): 1.564
+[45] Improvement: 450.74006462772377	Time (s): 1.644
+[46] Improvement: 450.67628409783356	Time (s): 1.652
+[47] Improvement: 479.76763282716274	Time (s): 1.695
+[48] Improvement: 574.3885038217995	Time (s): 1.706
+[49] Improvement: 612.6979394039372	Time (s): 1.65
+[50] Improvement: 473.6995413406985	Time (s): 1.558
+[51] Improvement: 317.38458523445297	Time (s): 1.654
+[52] Improvement: 219.95029881619848	Time (s): 1.646
+[53] Improvement: 91.79275518027134	Time (s): 1.656
+[54] Improvement: 54.78907377028372	Time (s): 1.551
+[55] Improvement: -0.03997299843467772	Time (s): 1.661
+[56] Improvement: -10.197985442122445	Time (s): 1.559
+[57] Improvement: -64.37582409649622	Time (s): 1.639
+[58] Improvement: -102.70300510595553	Time (s): 1.659
+[59] Improvement: -92.11691690038424	Time (s): 1.664
+[60] Improvement: -78.68888741580304	Time (s): 1.548
+Total Training Improvement: 80614.70539867436
+Total Training Time (s): 99.2584
+run 4
+split 0
+train size 22245
+Shuffling for fairness 
+data shuffled
+Example of data ['K', 'L', 'F', 'A', 'A', 'E', 'T', 'L', 'K']
+Use pseudocount is True
+[1] Improvement: 37514.871920979815	Time (s): 1.629
+[2] Improvement: 8668.282565620728	Time (s): 1.542
+[3] Improvement: 2503.4350253260927	Time (s): 1.639
+[4] Improvement: 1240.1367764704628	Time (s): 1.66
+[5] Improvement: 1142.539152041194	Time (s): 1.552
+[6] Improvement: 1007.4473715720233	Time (s): 1.71
+[7] Improvement: 820.0615595491836	Time (s): 1.661
+[8] Improvement: 840.9267616491998	Time (s): 1.558
+[9] Improvement: 720.1411608778872	Time (s): 1.673
+[10] Improvement: 743.9796798654133	Time (s): 1.531
+[11] Improvement: 796.9387752622133	Time (s): 1.667
+[12] Improvement: 754.8659565707203	Time (s): 1.654
+[13] Improvement: 831.6601241038879	Time (s): 1.662
+[14] Improvement: 778.806005483144	Time (s): 1.575
+[15] Improvement: 679.4131831378909	Time (s): 1.627
+[16] Improvement: 646.5891955115367	Time (s): 1.553
+[17] Improvement: 673.4522752510384	Time (s): 1.661
+[18] Improvement: 577.2165848683799	Time (s): 1.639
+[19] Improvement: 564.6879578676308	Time (s): 1.643
+[20] Improvement: 635.984038635157	Time (s): 1.562
+[21] Improvement: 652.8848927537911	Time (s): 1.656
+[22] Improvement: 768.1612130517606	Time (s): 1.564
+[23] Improvement: 858.7231001798064	Time (s): 1.675
+[24] Improvement: 966.1063981305342	Time (s): 1.617
+[25] Improvement: 1208.758329601842	Time (s): 1.569
+[26] Improvement: 1235.534401908284	Time (s): 1.654
+[27] Improvement: 1350.4629527446814	Time (s): 1.658
+[28] Improvement: 1347.627581456909	Time (s): 1.565
+[29] Improvement: 1128.5775593577418	Time (s): 1.667
+[30] Improvement: 983.5954308871878	Time (s): 1.647
+[31] Improvement: 951.3585489941761	Time (s): 1.57
+[32] Improvement: 779.0455069377786	Time (s): 1.654
+[33] Improvement: 766.2236879132688	Time (s): 1.655
+[34] Improvement: 887.0066643581958	Time (s): 1.554
+[35] Improvement: 921.3048766056309	Time (s): 1.637
+[36] Improvement: 689.014076358173	Time (s): 1.545
+[37] Improvement: 658.2546921670437	Time (s): 1.642
+[38] Improvement: 411.70115198672283	Time (s): 1.658
+[39] Improvement: 228.1257418434834	Time (s): 1.544
+[40] Improvement: 252.6480363124283	Time (s): 1.628
+[41] Improvement: 117.52785820630379	Time (s): 1.62
+[42] Improvement: 39.6533048870042	Time (s): 1.532
+[43] Improvement: 22.109664065297693	Time (s): 1.635
+[44] Improvement: 61.08416197367478	Time (s): 1.623
+[45] Improvement: 49.73815165727865	Time (s): 1.639
+[46] Improvement: 68.62400203256402	Time (s): 1.628
+[47] Improvement: 75.98265202064067	Time (s): 2.313
+[48] Improvement: 64.75008992606308	Time (s): 1.73
+[49] Improvement: 169.61462400166783	Time (s): 1.713
+[50] Improvement: 194.5503310461063	Time (s): 1.785
+[51] Improvement: 121.74986270745285	Time (s): 1.737
+[52] Improvement: 161.958586186287	Time (s): 1.559
+[53] Improvement: 119.24667356302962	Time (s): 1.595
+[54] Improvement: 158.35791074042208	Time (s): 1.556
+[55] Improvement: 105.50445366522763	Time (s): 1.763
+[56] Improvement: 200.63049773895182	Time (s): 1.83
+[57] Improvement: 308.1580336174229	Time (s): 1.666
+[58] Improvement: 309.3677856987342	Time (s): 1.55
+[59] Improvement: 269.5706349898828	Time (s): 1.602
+[60] Improvement: 256.60019629076123	Time (s): 1.488
+[61] Improvement: 245.60554973455146	Time (s): 1.779
+[62] Improvement: 245.3430647366913	Time (s): 1.651
+[63] Improvement: 218.7139268044848	Time (s): 1.499
+[64] Improvement: 159.06532940850593	Time (s): 1.614
+[65] Improvement: 77.26213435537647	Time (s): 1.859
+[66] Improvement: 39.123009015689604	Time (s): 1.884
+[67] Improvement: 72.96353509044275	Time (s): 1.958
+[68] Improvement: 616.3435500689084	Time (s): 1.676
+[69] Improvement: 607.7486690849764	Time (s): 1.737
+[70] Improvement: 416.20577295077965	Time (s): 1.798
+[71] Improvement: 321.83325249445625	Time (s): 1.625
+[72] Improvement: 135.22802377713379	Time (s): 1.575
+[73] Improvement: 35.655083962134086	Time (s): 1.631
+[74] Improvement: -0.012334210565313697	Time (s): 1.524
+Total Training Improvement: 85252.40895648138
+Total Training Time (s): 123.7810

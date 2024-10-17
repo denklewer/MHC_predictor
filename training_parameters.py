@@ -1,0 +1,499 @@
+import param
+from peptides_utils import defineClass
+from copy import copy, deepcopy
+class DataScenarioParams(param.Parameterized):
+    data_scenario = param.Selector(objects=["simulated", "simulated_preprocessed", "MixMHCpred", "preprocessed_IEDB"])
+    data_path_base =param.Foldername('G:/My Drive/Work/ITMO/data', check_exists=False)
+    input_data_path = param.Foldername(check_exists=False)
+    splits_to_read = param.Integer(default=1)
+
+    def update_input_data_path(self, experiment_name):
+        pass
+
+
+class SimulatedPreprocessedDataParams(DataScenarioParams):
+    data_scenario = "simulated_preprocessed"
+    simulated_scenario = param.String("random_cores")
+    simulated_exact_file_name = param.String("sim_data_motifs_2_ratio_(0.5, 0.5)_lengths_(8,)_noize_0.csv")
+
+    def update_input_data_path(self, experiment_name):
+        self.input_data_path = f"{self.data_path_base}/{experiment_name}/{self.data_scenario}/per_length_per_kfold_split/"
+
+
+class SimulatedDataParams(DataScenarioParams):
+    data_scenario = "simulated"
+    simulated_scenario = param.String("five_different_motifs")
+    simulated_exact_file_name = param.String("sim_data_motifs_5_ratio_(0.05, 0.05, 0.15, 0.35, 0.4)_lengths_(8,)_noize_0.45.csv")
+    dummy_allele_name = param.String(default="dummy_allele")
+
+    def update_input_data_path(self, experiment_name):
+        self.input_data_path = f"{self.data_path_base}/{experiment_name}/simulated_data/"
+
+class MixMHCpredDataParams(DataScenarioParams):
+    data_scenario = "MixMHCpred"
+    mixmhc_mixture_name = param.String(default='CD165_DR') # 3865_DM_DR  CD165_DR Maver_1_DR  RA957_D
+    if mixmhc_mixture_name in ['3865_DM_DR']:
+        input_data_path = param.Filename(
+            f"{DataScenarioParams.data_path_base}/Binding data/MixMHC2pred_2023/train_data/current_study.csv")
+    else:
+        input_data_path = param.Filename(
+            f"{DataScenarioParams.data_path_base}/Binding data/MixMHC2pred_2023/train_data/external_studies.csv")
+    dummy_allele_name = param.String(default="mixMHC_dummy_allele")
+
+
+class PreprocessedIEDBDataParams(DataScenarioParams):
+    data_scenario = "IEDB_preprocessed"
+
+    def update_input_data_path(self, experiment_name):
+        self.input_data_path = f"{self.data_path_base}/{experiment_name}/{self.data_scenario}/per_length_per_kfold_split/"
+
+
+
+class ModelTrainingParams(param.Parameterized):
+    algorithm = param.Selector(default="viterbi", objects=["viterbi", "baum_welch"])
+    num_runs = param.Integer(default=50, bounds=(1, None))
+    combination_size = param.Integer(default=1, bounds=(1, None))
+
+    alleles_to_use = param.List(item_type=str)
+    lengths_to_use = param.List(default=[12, 13, 14, 15, 16,17, 18], item_type=int)
+
+    # Modifications_in_architecture
+    groups = param.Integer(default=7, bounds=(1, None))
+    states_per_group = param.Integer(default=1, bounds=(1, None))
+    st_num = param.Integer()
+    model_complexity = param.Integer(default=1, bounds=(1, None))
+    start_cycle = param.Boolean(default=True, doc="include start cycle state")
+    end_cycle = param.Boolean(default=True, doc="include end cycle state")
+    self_cycle = param.Boolean(default=False, doc="Make self transitions for all states")
+    intermediate_cycle = param.Boolean(default=False, doc="include intermediate cycle")
+    anchor_states = param.Boolean(default=True, doc="wether special anchor distribution in 'joiner' state")
+    cycle_chain = param.Boolean(default=False, doc="replace cycles with set of chained distributions")
+    cycle_chain_length = param.Integer(default=10, bounds=(1, None))
+
+    # Modifications in distributions
+    ## turn off/on
+    position_component = param.Boolean(default=False, doc="Experimental: wether to add additional position component as separate distribution for state. You will need provide numbers as weel with labels")
+    freeze_start_end_cycle = param.Boolean(default=False, doc="wether to freeze start and end cycle distributions")
+    freeze_intermediate_cycle = param.Boolean(default=False, doc="wether to freeze intermediate cycle distributions")
+    tie_start_end_cycle_states = param.Boolean(default=False, doc="wether to tie together Start/End cycle states (set the same disribution)")
+    tie_intermediate_cycle_states =  param.Boolean(default=False, doc="wether to tie together intermediate cycle states (set the same disribution)")
+    tie_anchor_states = param.Boolean(default=False, doc="wether to tie anchor states together (set the same disribution)")
+    ## numbers
+    emission_pseudocount = param.Number(default=0.1)
+    transition_pseudocount = param.Number(default=1)
+    anchor_default_pseudocount = param.Number(default=1)
+    cycle_default_pseudocount = param.Number(default=0.1)
+    in_cycle_tr_pseudocount = param.Number(default=0)
+    anchor_top_aas = param.Integer(default=4, bounds=(1,20))
+    cycle_top_aas = param.Integer(default=20, bounds=(1,20))
+    equal_probs_for_cycle = param.Boolean(default=False)
+    equal_probs_for_intermediate_cycle =param.Boolean(default=False)
+
+    # Modifications in the training process
+    lr_decay = param.Number(default=0.0, bounds=(0.0, 1))
+    edge_inertia = param.Number(default=0.4, bounds=(0.0, 1))
+    distribution_inertia = param.Number(default=0.4, bounds=(0.0, 1))
+    min_iters = param.Integer(default=40, bounds=(1,None))
+    maxiters = param.Integer(default=80, bounds=(1, None))
+    use_pseudocounts = param.Boolean(default=True)
+    use_weights = param.Boolean(default=False)
+    minibatch_training = param.Boolean(default=True)
+    batches_per_epoch = param.Integer(bounds=(1, None), default=100)
+    batch_size = param.Integer(bounds=(1,None), default=1)
+    aa_labels_training = param.Boolean(default=True,
+                                       doc="Experimental: wether to keep amino acid labels or convert them to property values. Will change distributions completelly")
+    stop_threshold = 2.5
+
+    decrease_anchor_aas_steps = param.Integer(default=1, bounds=(1,20))
+
+    # Splits
+    trash_model_information_threshold = param.Number(default=0.35)
+    same_model_distance_threshold = param.Number(default=0.05)
+    data_split_strategy = param.Selector(default="median_score_of_best_models", objects=["best_model", "median_score_of_best_models", "single_average_model"])
+    enrichment_steps = param.Integer(default=3, bounds=(1, None))
+    split_decision_models_fraction = param.Number(default=0.4)
+    enrichment_split_decision_models_fraction = param.Number(default=0.3)
+    reassignment_decision_models_fraction = param.Number(default=0.4)
+    statistics_estimate_model_fraction = param.Number(default=0.3)
+    check_model_integrity = param.Boolean(default=False, doc="check for shifts")
+
+
+    # Aux params
+    verbose = param.Boolean(default=False)
+    multiple_check_inpit = param.Boolean(default=True, doc="legacy param from pomegranate. needs to be true for now, but probably can speedup without it")
+    initial_params = param.List(default=None)
+
+
+    @param.depends('groups', 'states_per_group', watch=True, on_init=True)
+    def _update_states_number(self):
+        self.st_num = self.groups * self.states_per_group
+
+    @param.depends('lengths_to_use', watch=True, on_init=True)
+    def _update_stop_threshold_based_on_lengths(self):
+        stop_criteria_for_lengths = [length * 0.2 for length in self.lengths_to_use]
+        self.stop_threshold = sum(stop_criteria_for_lengths) / len(stop_criteria_for_lengths)
+
+    def get_model_common_names(self):
+        selected_params_dict = {
+            "st": self.st_num,
+            "alg": "v" if self.algorithm =="viterbi" else  self.algorithm,
+            "min_iters": self.min_iters
+        }
+        params_string = "-".join([f"{value}-{key}" for key, value in selected_params_dict.items()])
+        lengths_string = f"{min(self.lengths_to_use)}-{max(self.lengths_to_use)}"
+        return "-".join([params_string, lengths_string])
+
+
+class SimpleModelClassIIParams(ModelTrainingParams):
+    #Data related
+    lengths_to_use = [12, 13, 14, 15, 16, 17, 18]
+    #Model related
+    start_cycle = True
+    end_cycle = True
+    intermediate_cycle = False
+    emission_pseudocount = 0.1
+    transition_pseudocount = 1
+    anchor_top_aas = 4
+    anchor_default_pseudocount = 1
+    decrease_anchor_aas_steps = 1
+
+    groups = 7
+    states_per_group = 1
+    model_complexity = 1
+    edge_inertia = 0.4
+    distribution_inertia = 0.4
+    batches_per_epoch = 100
+    batch_size = 1
+
+
+
+
+    def __init__(self, **params):
+        super().__init__(**params)
+
+    @param.depends('alleles_to_use', watch=True, on_init=True)
+    def _update_alleles(self):
+        init_length = len(self.alleles_to_use)
+        self.alleles_to_use = list(sorted([allele_name for allele_name in self.alleles_to_use if defineClass(allele_name) == 'II']))
+        current_length = len(self.alleles_to_use)
+        if init_length != current_length:
+            print(f"{init_length-current_length} of alleles were removed since they are not class II alleles")
+
+class SimpleModelClassIIParamsMixMHC(SimpleModelClassIIParams):
+    enrichment_steps = 3
+    anchor_top_aas = 6
+    data_split_strategy = "median_score_of_best_models"
+    split_decision_models_fraction = 0.2
+    enrichment_split_decision_models_fraction = 0.2
+    statistics_estimate_model_fraction = 0.2
+
+
+    trash_model_information_threshold = 0.55
+    same_model_distance_threshold = 0.08
+    reassignment_decision_models_fraction = 0.2
+    def __init__(self, **params):
+        super().__init__(**params)
+
+
+
+
+class ComplexModelClassIIParams(ModelTrainingParams):
+    #Data related
+    lengths_to_use = [12, 13, 14, 15, 16, 17, 18, 19]
+    #Model related
+    start_cycle = True
+    end_cycle = True
+    intermediate_cycle = False
+    emission_pseudocount = 0.1
+    transition_pseudocount = 1
+    anchor_top_aas = 4
+    anchor_default_pseudocount = 1
+
+    groups = 7
+    states_per_group = 2
+    model_complexity = 2
+    edge_inertia = 0.4
+    distribution_inertia = 0.4
+    batches_per_epoch = 100
+    batch_size = 1
+
+    @param.depends('alleles_to_use', watch=True, on_init=True)
+    def _update_alleles(self):
+        init_length = len(self.alleles_to_use)
+        self.alleles_to_use = [allele_name for allele_name in self.alleles_to_use if defineClass(allele_name) == 'II']
+        current_length = len(self.alleles_to_use)
+        if init_length != current_length:
+            print(f"{init_length-current_length} of alleles were removed since they are not class II alleles")
+
+
+
+
+
+class ExperimentParams(param.Parameterized):
+    experiment_name = param.String()
+    data_scenario_params = param.ClassSelector(default=PreprocessedIEDBDataParams(), class_=DataScenarioParams, is_instance=True, instantiate=True)
+    #Data general params
+    model_training_params = param.ClassSelector(default=SimpleModelClassIIParams(), class_=ModelTrainingParams, is_instance=True, instantiate=True)
+    experiment_result_data_path = param.Foldername(check_exists=False)
+
+    @param.depends('experiment_name', 'data_scenario_params', watch=True, on_init=True)
+    def _update_experiment_path(self):
+        self.data_scenario_params.update_input_data_path(experiment_name=self.experiment_name)
+        self.experiment_result_data_path = f"experiment_results/{self.experiment_name}/{self.data_scenario_params.data_scenario}/"
+
+
+
+
+#Legacy parameter values
+
+# #
+#
+# DataParams = {
+#     "simple_model_class_2": {
+#         "ALLELES": [allele_name for allele_name in ALLELES if defineClass(allele_name) == 'II'],
+#     "TARGET_LENGTHS":    [12, 13, 14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'self_cycle': False,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':0.1,
+#     'transition_pseudocount' : 1,
+#     'anchor_top_aas':4,
+#     'anchor_default_pseudocount': 1,
+#     'in_cycle_tr_pseudocount' : 0,
+#     'cycle_top_aas':20,
+#     'cycle_default_pseudocount': 0.1
+#     },
+#     "class1": {
+#     "ALLELES": [allele_name for allele_name in ALLELES if defineClass(allele_name) == 'I'],
+#     "TARGET_LENGTHS":   [8, 9,10, 11, 12],
+#     'start_cycle': False,
+#     'end_cycle' :False,
+#     'intermediate_cycles' :True,
+#     'emission_pseudocount':50,
+#     'transition_pseudocount' : 0,
+#     'cycle_pseudocount' : 30,
+#     'anchor_top_aas':3,
+#     'anchor_default_pseudocount':50
+# },
+#     "class2": {
+#     "ALLELES":sorted([
+#         'HLA-DQA1*05:01/DQB1*02:01',
+#                     #  'HLA-DRB1*01:01'
+#                       #'HLA-DPA1*02:02/DPB1*05:01'
+#                       ]),
+#     "TARGET_LENGTHS":    [12, 13,14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':50,
+#     'transition_pseudocount' : 50,
+#
+#     'anchor_top_aas':8,
+#     'anchor_default_pseudocount': 50,
+#     'in_cycle_tr_pseudocount' : 300,
+#       'cycle_top_aas':20
+# },
+#     "sucessfull_MixMHCGA": {
+#          "ALLELES":sorted([
+#              #'HLA-DQA1*05:01/DQB1*02:01'
+#         # 'HLA-DRB1*01:01'
+#              DUMMY_ALLELE_NAME
+#        #  'HLA-DPA1*02:02/DPB1*05:01'
+#      ]),
+#   #  "ALLELES":sorted(['HLA-DPA1*02:02/DPB1*05:01']),
+#     "TARGET_LENGTHS":    [12, 13, 14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':0.1,
+#     'transition_pseudocount' : 1,
+#     'anchor_top_aas':4,
+#     'anchor_default_pseudocount': 1,
+#     'in_cycle_tr_pseudocount' : 0,
+#     'cycle_top_aas':20,
+#     'cycle_default_pseudocount': 0.1,
+# },
+#     "class2_batches": {
+#          "ALLELES":sorted([
+#              #'HLA-DQA1*05:01/DQB1*02:01'
+#         # 'HLA-DRB1*01:01'
+#              DUMMY_ALLELE_NAME
+#        #  'HLA-DPA1*02:02/DPB1*05:01'
+#      ]),
+#   #  "ALLELES":sorted(['HLA-DPA1*02:02/DPB1*05:01']),
+#     "TARGET_LENGTHS":    [12, 13, 14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':0.1,
+#     'transition_pseudocount' : 1,
+#     'anchor_top_aas':4,
+#     'anchor_default_pseudocount': 1,
+#     'in_cycle_tr_pseudocount' : 0,
+#     'cycle_top_aas':20,
+#     'cycle_default_pseudocount': 0.1,
+# },
+#     "class2_batches_but_more_states_per_group": {
+#          "ALLELES":sorted([
+#              #'HLA-DQA1*05:01/DQB1*02:01'
+#         # 'HLA-DRB1*01:01'
+#              DUMMY_ALLELE_NAME
+#        #  'HLA-DPA1*02:02/DPB1*05:01'
+#      ]),
+#   #  "ALLELES":sorted(['HLA-DPA1*02:02/DPB1*05:01']),
+#     "TARGET_LENGTHS":    [12, 13, 14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':1,
+#     'transition_pseudocount' : 0,
+#     'anchor_top_aas':4,
+#     'anchor_default_pseudocount': 1,
+#     'in_cycle_tr_pseudocount' : 0,
+#     'cycle_top_aas':20,
+#     'cycle_default_pseudocount': 0.1,
+# },
+#     "anchors_for_real_data_should_be_on_place": {
+#          "ALLELES":sorted([
+#              #'HLA-DQA1*05:01/DQB1*02:01'
+#         # 'HLA-DRB1*01:01'
+#              DUMMY_ALLELE_NAME
+#        #  'HLA-DPA1*02:02/DPB1*05:01'
+#      ]),
+#   #  "ALLELES":sorted(['HLA-DPA1*02:02/DPB1*05:01']),
+#     "TARGET_LENGTHS":    [12, 13, 14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':0.5,
+#     'transition_pseudocount' : 0,
+#     'anchor_top_aas':4,
+#     'anchor_default_pseudocount': 0.5,
+#     'in_cycle_tr_pseudocount' : 0,
+#     'cycle_top_aas':20,
+#     'cycle_default_pseudocount': 0.1,
+# },
+#     "sucessfull_attempt": {
+#          "ALLELES":sorted([
+#              #'HLA-DQA1*05:01/DQB1*02:01'
+#         # 'HLA-DRB1*01:01'
+#              DUMMY_ALLELE_NAME
+#        #  'HLA-DPA1*02:02/DPB1*05:01'
+#      ]),
+#   #  "ALLELES":sorted(['HLA-DPA1*02:02/DPB1*05:01']),
+#     "TARGET_LENGTHS":    [12, 13, 14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':0.1,
+#     'transition_pseudocount' : 1,
+#     'anchor_top_aas':4,
+#     'anchor_default_pseudocount': 1,
+#     'in_cycle_tr_pseudocount' : 0,
+#     'cycle_top_aas':20,
+#     'cycle_default_pseudocount': 0.01,
+# },
+#     "class2_batches_complex": {
+#      "ALLELES":sorted([
+#          'HLA-DRB1*01:01'
+#          #,'HLA-DQA1*05:01/DQB1*02:01'
+#      ]),
+#   #  "ALLELES":sorted(['HLA-DPA1*02:02/DPB1*05:01']),
+#     "TARGET_LENGTHS":    [12, 13, 14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':0.5,
+#     'transition_pseudocount' : 1,
+#     'anchor_top_aas':5,
+#     'anchor_default_pseudocount': 0.5,
+#     'in_cycle_tr_pseudocount' : 0,
+#     'cycle_top_aas':20,
+#     'cycle_default_pseudocount': 0.01,
+# },
+#     "class2_big_batches": {
+#      "ALLELES":sorted([ 'HLA-DQA1*05:01/DQB1*02:01']),
+#     "TARGET_LENGTHS":    [12, 13, 14, 15, 16,17, 18],
+#     'start_cycle': True,
+#     'end_cycle' : True,
+#     'intermediate_cycles' :False,
+#     'emission_pseudocount':10,
+#     'transition_pseudocount' : 1,
+#     'anchor_top_aas':4,
+#     'anchor_default_pseudocount': 0.1,
+#     'in_cycle_tr_pseudocount' : 0,
+#     'cycle_top_aas':20,
+#     'cycle_default_pseudocount': 0.01,
+# }
+# }
+#
+# ModelParams = {
+#     "class_2_complex_model" : {
+#         "groups": 7,
+#         "states_per_group": 2,
+#         "model_complexity": 2,
+#         "alg": algorithm,
+#         "verbose": False,
+#         "lr_decay": 0.0,
+#         "edge_inertia": 0.4,
+#         "distribution_inertia": 0.4,
+#         "min_iters": 50,
+#         "max_iters": 80,
+#         "use_pseudocount": True,
+#         "anchor_states": True,
+#         "tie_anchor_states": False,
+#         "freeze_distr": False, # wether to freeze start and end cycle distributions
+#         "tie_cycle_states": False,
+#         "equal_probs_for_cycle": False,
+#         "equal_probs_for_intermediate_cycle": False,
+#         "tie_intermediate_cycles":False,
+#         "freeze_int_cycle_distr": False,
+#         "position_component": False,
+#         'cycle_chain' : False,
+#         'minibatch_training' : True,
+#         'batches_per_epoch': 100,
+#         'batch_size' : 1,
+#         'multiple_check_input': False
+#     },
+#     "class_2_simple_model" : {
+#         "groups": 7,
+#         "states_per_group": 1,
+#         "model_complexity": 1,
+#         "alg": algorithm,
+#         "verbose": False,
+#         "lr_decay": 0.0,
+#         "edge_inertia": 0.4,
+#         "distribution_inertia": 0.4,
+#         "min_iters": 50,
+#         "max_iters": 80,
+#         "use_pseudocount": True,
+#         "anchor_states": True,
+#         "tie_anchor_states": False,
+#         "freeze_distr": False, # wether to freeze start and end cycle distributions
+#         "tie_cycle_states": False,
+#         "equal_probs_for_cycle": False,
+#         "equal_probs_for_intermediate_cycle": False,
+#         "tie_intermediate_cycles":False,
+#         "freeze_int_cycle_distr": False,
+#         "position_component": False,
+#         'cycle_chain' : False,
+#         'minibatch_training' : True,
+#         'batches_per_epoch': 100,
+#         'batch_size' : 1,
+#         'multiple_check_input': True
+#     }
+# }
+# params = ModelParams[target_model_params]
+# params.update(DataParams[target_data_params])
+# params['st'] = params['groups'] * params['states_per_group']
+#
+# ALLELES = params["ALLELES"]
+# TARGET_LENGTHS=   params["TARGET_LENGTHS"]
+#
+#
+# assert params['st'] % params['groups'] == 0
+# assert params['st'] % params['states_per_group'] == 0
+# assert params['st'] == params['groups'] *  params['states_per_group']
+#
+#

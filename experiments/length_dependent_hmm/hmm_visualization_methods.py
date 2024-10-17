@@ -11,6 +11,7 @@ import networkx as nx
 from pyvis.network import Network
 from collections import defaultdict
 from scipy.stats import norm
+import pyvis
 
 
 def save_figure_to_svg(fig, dir, filename):
@@ -29,7 +30,7 @@ def probs_to_info_matrix(distribution):
 
 
 
-def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True, discrete=True, initial_params=None):
+def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True, discrete=True, initial_params=None, matrix_type='information'):
 
     PATH_TO_SAVE_PICTURES = TARGET_PATH_TO_RESULTS + "/" + model.name + "/"
     if not os.path.exists(PATH_TO_SAVE_PICTURES):
@@ -80,7 +81,10 @@ def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True
                     dummy_df.index.name = "pos"
                     fig, ax = plt.subplots(ncols=1, nrows=1, figsize=(5, 9))
                     # return dummy_df
-                    info_matrix = logomaker.transform_matrix(dummy_df, from_type='probability', to_type='information')
+                    if matrix_type =='information':
+                        info_matrix = logomaker.transform_matrix(dummy_df, from_type='probability', to_type='information')
+                    else:
+                        info_matrix = dummy_df
                     ww_logo = logomaker.Logo(info_matrix,ax=ax,
                                              # font_name='Arial Rounded MT Bold',
                                              #stack_order='small_on_top'
@@ -90,7 +94,10 @@ def plot_distributions_for_states(model, TARGET_PATH_TO_RESULTS, horizontal=True
             elif type(state.distribution) is pomegranate.IndependentComponentsDistribution:
                 list_of_dists = state.distribution.parameters[0]
                 fig, axes = plt.subplots(ncols=1, nrows=len(list_of_dists), figsize=(5, len(list_of_dists)* 3))
+                if type(axes) is not np.ndarray:
+                    axes = np.array([axes])
                 for i, distr in enumerate(list_of_dists):
+                    
 
                     distr_params = distr.parameters
                     mean_value = distr_params[0]
@@ -300,7 +307,11 @@ def make_pyviz_graph(model, TARGET_PATH_TO_RESULTS, precision=4):
                                                       # f"{os.getcwd()}/{TARGET_PATH_TO_RESULTS}/{model.name}/")
 
     nt = Network('500px', '1600', directed=True)
-    nt.from_nx(graph)
+    if pyvis._version.__version__ > '0.1.9':
+        print("Bug in pyvis")
+        nt.from_nx(graph, show_edge_weights=True)
+    else:
+        nt.from_nx(graph)
     nt.show_buttons()
     #nt.show_buttons(filter_=['physics'])
     nt.save_graph(f"{TARGET_PATH_TO_RESULTS}\\{model.name}\\pyviz-pr-{precision}.html")

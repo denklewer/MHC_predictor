@@ -1406,7 +1406,7 @@ def get_peptide_to_paths_df_external_paths(model, peptides, paths_df, edge_value
 
     print(f"\tCalculate probs for peptides")
 
-    for _, path, core_simplified_path, mean_viterbi, mean_bw_probs, tr_prob, path_length, path_pep_cnt  in tqdm(paths_df.itertuples(),
+    for _, path,  tr_prob, path_length, mean_viterbi, mean_bw_probs, path_pep_cnt  in tqdm(paths_df.itertuples(),
                                                                                               total=paths_df.shape[0]):
         curr_path = path.split(">")
         curr_path = curr_path[1:]
@@ -1624,7 +1624,10 @@ def generate_radom_paths_for_model_mark_core(model, n, per_model_important_state
 
 
 def get_all_viterbi_paths_for_model_and_sequences_mark_core(model, peptides, per_model_important_states,
-                                                            edge_value="log_probability", precision=4, unique_paths=True, generate_peptides=False, generate_count=50000):
+                                                            edge_value="log_probability", precision=4,
+                                                            unique_paths=True, generate_peptides=False,
+                                                            generate_count=50000, fill_whole_core=False, cumulative_metric=False,
+                                                            ):
     """
     Wil leave only last peptide in the peptide df if path was duplicated by multiple peptides
     :param model:
@@ -1636,6 +1639,13 @@ def get_all_viterbi_paths_for_model_and_sequences_mark_core(model, peptides, per
     """
     print(f"Model {model.name}")
     model_graph = model.graph
+    if per_model_important_states == None:
+        mark_core = False
+        print("Warning: no important states are not defined, simplified path column will be absent")
+    else:
+        mark_core = True
+    if mark_core:
+        assert unique_paths is False, "If you want core estimates then you want each individual peptide to be counted, not unique paths"
 
     if generate_peptides:
         assert peptides is None, "If you want to generate peptides -- you don't need peptides as argument"
@@ -1691,9 +1701,10 @@ def get_all_viterbi_paths_for_model_and_sequences_mark_core(model, peptides, per
     # mean_bws = list(bw_prob/ cnt for bw_prob, cnt in zip(path_code_to_total_bw_prob.values(), path_code_to_cnt.values()))
 
     for path_code, path_nodes in tqdm(path_code_to_path.items()):
-        count_al = [i for i,node in enumerate(path_nodes[1:]) if node.name in per_model_important_states[model.name]]
-        start_core = count_al[0] if len(count_al) > 0 else np.nan
-        end_core = count_al[-1] if len(count_al) > 0 else np.nan
+        if mark_core:
+            count_al = [i for i,node in enumerate(path_nodes[1:]) if node.name in per_model_important_states[model.name]]
+            start_core = count_al[0] if len(count_al) > 0 else np.nan
+            end_core = count_al[-1] if len(count_al) > 0 else np.nan
         peptide_cnt = path_code_to_cnt[path_code]
         viterbi_prob = path_code_to_total_viterbi_prob[path_code] / peptide_cnt
         bw_prob = path_code_to_total_bw_prob[path_code] / peptide_cnt
@@ -1706,6 +1717,10 @@ def get_all_viterbi_paths_for_model_and_sequences_mark_core(model, peptides, per
         path_nodes_copy = path_nodes.copy()
 
         node_from = path_nodes_copy.pop(0)
+        i=0
+        cumulative_probs = np.zeros(len(path_nodes) -2)
+        cummulative_prob = 0
+
         while path_nodes_copy:
             node_to = path_nodes_copy.pop(0)
             data = model_graph.get_edge_data(node_from, node_to, default=None)
@@ -1713,10 +1728,17 @@ def get_all_viterbi_paths_for_model_and_sequences_mark_core(model, peptides, per
             # print(node_from, node_to,  np.exp(edge['label']), "total_prob", prob_for_path)
             if edge_value == "log_probability":
                 tr_prob_for_path = tr_prob_for_path + log_probability
+                if mark_core:
+                    peptide = path_code_to_peptide[path_code]
+                    if node_to.distribution:
+                        cummulative_prob = cummulative_prob + log_probability + np.log(node_to.distribution.parameters[0][peptide[i]])
+                        cumulative_probs[i] = cummulative_prob
+                        i += 1
             else:
                 tr_prob_for_path = tr_prob_for_path * np.exp(log_probability)
             # print(f"edge {edge}")
             node_from = node_to
+
 
         # normalize by peptide length
         peptide_len = path_length - 2
@@ -1724,30 +1746,40 @@ def get_all_viterbi_paths_for_model_and_sequences_mark_core(model, peptides, per
         bw_prob = bw_prob / peptide_len
         tr_prob_for_path = tr_prob_for_path / peptide_len
 
-        probs_dif = 1- np.round(viterbi_prob-bw_prob,2)
 
-        if np.isnan(start_core) or np.isnan(end_core):
-            simplified_path = np.array([probs_dif if node.name in per_model_important_states[model.name] else 0 for node in path_nodes[1:-1]]).astype(np.float64)
-        else:
-            simplified_path = np.array([probs_dif if node.name in per_model_important_states[model.name] else 0 for node in path_nodes[1:-1]]).astype(np.float64)
-            assert start_core is not np.nan
-            assert end_core is not np.nan
+        # probs_dif = viterbi_prob
 
-        result_simplified_paths.append(simplified_path)
+        if mark_core:
+            probs_dif = 1 - np.round(viterbi_prob-bw_prob,2)
+            if np.isnan(start_core) or np.isnan(end_core):
+                simplified_path = np.array([probs_dif if node.name in per_model_important_states[model.name] else 0 for node in path_nodes[1:-1]]).astype(np.float64)
+
+            else:
+                simplified_path = np.array([probs_dif if node.name in per_model_important_states[model.name] else 0 for node in path_nodes[1:-1]]).astype(np.float64)
+                assert start_core is not np.nan
+                assert end_core is not np.nan
+                if fill_whole_core:
+
+                    simplified_path[start_core:end_core] = probs_dif
+                    if cumulative_metric:
+                        cumulative_probs = cumulative_probs / peptide_len
+                    # simplified_path[start_core:end_core] = cumulative_probs[start_core:end_core]
+                        simplified_path = cumulative_probs
+
+            result_simplified_paths.append(simplified_path)
+            result_start_core.append(start_core)
+            result_end_core.append(end_core)
         result_lens.append(peptide_len)
         result_probs.append(tr_prob_for_path)
         result_viterbi_probs.append(viterbi_prob)
         result_bw_probs.append(bw_prob)
-        result_start_core.append(start_core)
-        result_end_core.append(end_core)
+
         result_cnts.append(path_code_to_cnt[path_code])
         if not unique_paths:
             result_peptides.append(path_code_to_peptide[path_code])
     if unique_paths:
         paths_df = pd.DataFrame(
             {"path": result_paths,
-             "simplified_path": result_simplified_paths,
-             "core_start": result_start_core, "core_end": result_end_core,
              "norm_tr_prob": result_probs, "len": result_lens,
              "norm_viterbi_prob": result_viterbi_probs,
              "norm_bw_prob": result_bw_probs,
@@ -1755,14 +1787,34 @@ def get_all_viterbi_paths_for_model_and_sequences_mark_core(model, peptides, per
     else:
         paths_df = pd.DataFrame(
         {"path": result_paths,
-         "simplified_path": result_simplified_paths,
-         "core_start": result_start_core, "core_end": result_end_core,
          "norm_tr_prob": result_probs, "len": result_lens,
          "norm_viterbi_prob": result_viterbi_probs,
          "norm_bw_prob": result_bw_probs,
          "peptide_cnt": result_cnts}, index=result_peptides)
+    if mark_core:
+        paths_df['simplified_path'] = result_simplified_paths
+        paths_df['core_start'] = result_start_core
+        paths_df['core_end'] = result_end_core
 
     return paths_df
+
+
+def calculate_model_core_guesses(allele_peptides,models_dict,per_model_important_states, selected_peptides=None):
+    total_df = pd.DataFrame(index=allele_peptides)
+    selected_peptide_to_paths = defaultdict(list)
+
+    for i, (model_key, model) in enumerate(models_dict.items()):
+        viterbi_paths = get_all_viterbi_paths_for_model_and_sequences_mark_core(model, allele_peptides, per_model_important_states, unique_paths=False, fill_whole_core=True, cumulative_metric=False)
+        if 'simplified_path' not in total_df.columns:
+            total_df['simplified_path'] = viterbi_paths['simplified_path']
+        else:
+            total_df['simplified_path'] = total_df['simplified_path'].values + viterbi_paths['simplified_path'].values
+        if selected_peptides:
+            for selected_peptide in selected_peptides:
+                selected_peptide_to_paths[selected_peptide].append(viterbi_paths.loc[selected_peptide]['simplified_path'])
+    total_df['peptide'] = total_df.index.values
+
+    return total_df, selected_peptide_to_paths
 
 
 
@@ -1918,7 +1970,7 @@ def get_model_representation2(model, peptides, edge_value="log_probability", top
 
 
 def get_model_representation(model, peptides, paths_df=None, edge_value="log_probability", top_paths=None, precision=4):
-    assert isinstance(peptides, set)
+    assert len(peptides) == len(set(peptides))
     assert edge_value in ['log_probability', 'probability']
     pivot_df, paths_df, emission_matrix, name_to_index = \
         get_peptide_to_paths_df_external_paths(model, peptides, paths_df=paths_df, edge_value=edge_value,

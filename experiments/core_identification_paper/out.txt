@@ -1,0 +1,181 @@
+run 0
+split 0
+train size 11990
+Shuffling for fairness 
+Simple training: Train Length 11990, init_batch_size None
+Example of data ['S', 'L', 'D', 'S', 'A', 'D', 'S', 'F', 'Q', 'S', 'F', 'Y']
+Use pseudocount is True
+[1] Improvement: 55824.635023511364	Time (s): 8.055
+[2] Improvement: 15831.648655768367	Time (s): 8.063
+[3] Improvement: 5718.307330028445	Time (s): 8.477
+[4] Improvement: 1806.4688154973555	Time (s): 7.885
+[5] Improvement: 520.123947437387	Time (s): 7.208
+[6] Improvement: 178.47007972246502	Time (s): 8.379
+[7] Improvement: 77.68687493231846	Time (s): 9.579
+[8] Improvement: 47.968802601331845	Time (s): 11.54
+[9] Improvement: 33.71574417647207	Time (s): 10.51
+[10] Improvement: 31.932019767118618	Time (s): 8.566
+[11] Improvement: 22.538768339320086	Time (s): 7.836
+[12] Improvement: 10.934089602727909	Time (s): 8.006
+[13] Improvement: -0.07769077928969637	Time (s): 7.567
+[14] Improvement: -4.888394054141827	Time (s): 7.489
+[15] Improvement: -8.027846151439007	Time (s): 7.273
+[16] Improvement: -9.20124777307501	Time (s): 7.871
+[17] Improvement: -13.470215454872232	Time (s): 7.666
+[18] Improvement: -11.559099799545947	Time (s): 7.868
+[19] Improvement: -10.190576486696955	Time (s): 8.272
+[20] Improvement: -4.832064542977605	Time (s): 8.459
+[21] Improvement: -7.1235152434092015	Time (s): 7.854
+[22] Improvement: -6.323194505064748	Time (s): 7.758
+[23] Improvement: -5.712758356821723	Time (s): 8.243
+[24] Improvement: -4.7737746819038875	Time (s): 8.11
+[25] Improvement: -3.6024938261834905	Time (s): 8.162
+[26] Improvement: 0.6634174583596177	Time (s): 8.493
+[27] Improvement: 2.2529143342981115	Time (s): 8.067
+[28] Improvement: 8.678526235453319	Time (s): 8.141
+[29] Improvement: 8.967536651121918	Time (s): 7.443
+[30] Improvement: 13.181182905391324	Time (s): 7.511
+[31] Improvement: 14.72247350437101	Time (s): 8.247
+[32] Improvement: 14.103894611005671	Time (s): 7.308
+[33] Improvement: 28.14278370991815	Time (s): 7.266
+[34] Improvement: 37.2968302036752	Time (s): 8.261
+[35] Improvement: 51.16313948482275	Time (s): 7.378
+[36] Improvement: 62.8751982775284	Time (s): 8.044
+[37] Improvement: 80.77056764892768	Time (s): 7.228
+[38] Improvement: 80.94584611541359	Time (s): 8.079
+[39] Improvement: 54.85590025712736	Time (s): 7.277
+[40] Improvement: 39.86936210707063	Time (s): 7.198
+[41] Improvement: 30.458275808545295	Time (s): 8.209
+[42] Improvement: 32.31770273973234	Time (s): 7.286
+[43] Improvement: 27.66146738594398	Time (s): 9.136
+[44] Improvement: 16.219287233951036	Time (s): 7.806
+[45] Improvement: 25.37384649523301	Time (s): 10.64
+[46] Improvement: 22.04948040243471	Time (s): 10.69
+[47] Improvement: -0.04630007810192183	Time (s): 9.554
+Total Training Improvement: 80667.17061322147
+Total Training Time (s): 394.4290
+run 1
+split 0
+train size 11990
+Shuffling for fairness 
+Simple training: Train Length 11990, init_batch_size None
+Example of data ['V', 'L', 'D', 'Q', 'G', 'K', 'I', 'T', 'E', 'Y']
+Use pseudocount is True
+[1] Improvement: 40097.720202284574	Time (s): 9.391
+[2] Improvement: 16295.462809653662	Time (s): 10.91
+[3] Improvement: 7375.62447520881	Time (s): 10.64
+[4] Improvement: 3337.5395864811726	Time (s): 21.06
+[5] Improvement: 1572.2448029406369	Time (s): 47.96
+[6] Improvement: 727.811000626767	Time (s): 63.95
+[7] Improvement: 1603.3282720741117	Time (s): 65.1
+[8] Improvement: -68.02087919897167	Time (s): 58.1
+[9] Improvement: -241.34751569537912	Time (s): 56.98
+[10] Improvement: -221.78464065585285	Time (s): 64.58
+[11] Improvement: -146.7838301549782	Time (s): 61.1
+[12] Improvement: -80.07170545426197	Time (s): 57.61
+[13] Improvement: -30.65127253596438	Time (s): 65.01
+[14] Improvement: -0.007879957731347531	Time (s): 66.13
+[15] Improvement: 16.74486344534671	Time (s): 78.98
+[16] Improvement: 20.26989435480209	Time (s): 8.832
+[17] Improvement: 27.75402981834486	Time (s): 11.32
+[18] Improvement: 26.758885880117305	Time (s): 10.65
+[19] Improvement: 12.417284001247026	Time (s): 9.391
+[20] Improvement: 9.213955351442564	Time (s): 8.129
+[21] Improvement: 3.458757513551973	Time (s): 7.347
+[22] Improvement: -1.6110611871699803	Time (s): 6.837
+[23] Improvement: 9.988889706379268	Time (s): 6.985
+[24] Improvement: 2.7002956646610983	Time (s): 7.07
+[25] Improvement: -3.256865889474284	Time (s): 7.214
+[26] Improvement: -12.264808752690442	Time (s): 7.042
+[27] Improvement: -2.9058959939866327	Time (s): 7.009
+[28] Improvement: -6.353815263253637	Time (s): 7.053
+[29] Improvement: -1.5864743753918447	Time (s): 7.221
+[30] Improvement: -2.4073146829614416	Time (s): 7.668
+Total Training Improvement: 70319.98404520756
+Total Training Time (s): 866.6075
+run 2
+split 0
+train size 11990
+Shuffling for fairness 
+Simple training: Train Length 11990, init_batch_size None
+Example of data ['Y', 'I', 'E', 'I', 'T', 'G', 'A', 'G', 'G', 'K', 'K', 'Y']
+Use pseudocount is True
+[1] Improvement: 37757.30148686067	Time (s): 7.549
+[2] Improvement: 13056.814516533748	Time (s): 8.262
+[3] Improvement: 6094.895622726355	Time (s): 10.03
+[4] Improvement: 3529.548987372953	Time (s): 7.831
+[5] Improvement: 2297.1110895072343	Time (s): 10.11
+[6] Improvement: 1452.1160801009974	Time (s): 9.129
+[7] Improvement: 866.1545117968926	Time (s): 8.369
+[8] Improvement: 586.7441798982327	Time (s): 7.377
+[9] Improvement: 366.727592964482	Time (s): 7.314
+[10] Improvement: 232.95989857026143	Time (s): 8.005
+[11] Improvement: 136.1053040443221	Time (s): 10.85
+[12] Improvement: 95.606564941525	Time (s): 7.885
+[13] Improvement: 72.6432140355464	Time (s): 8.217
+[14] Improvement: 50.853753888455685	Time (s): 8.036
+[15] Improvement: 46.58750151540153	Time (s): 7.666
+[16] Improvement: 29.75835328490939	Time (s): 9.122
+[17] Improvement: 20.879495550470892	Time (s): 8.054
+[18] Improvement: 13.691440067894291	Time (s): 7.898
+[19] Improvement: 6.574766467965674	Time (s): 8.824
+[20] Improvement: 1.5284634102717973	Time (s): 8.37
+[21] Improvement: -0.3414817793527618	Time (s): 7.872
+[22] Improvement: -2.1948650599224493	Time (s): 7.477
+[23] Improvement: -2.3918142173206434	Time (s): 7.321
+[24] Improvement: -1.097305403323844	Time (s): 6.929
+[25] Improvement: -0.8784450805396773	Time (s): 7.171
+[26] Improvement: -1.3828225207980722	Time (s): 7.228
+[27] Improvement: -1.5931545783532783	Time (s): 8.316
+[28] Improvement: -1.2194050554535352	Time (s): 8.022
+[29] Improvement: -1.3557666114647873	Time (s): 8.651
+[30] Improvement: -2.155700587260071	Time (s): 9.568
+Total Training Improvement: 66699.9920626448
+Total Training Time (s): 255.6712
+run 0
+split 0
+train size 8524
+Shuffling for fairness 
+Simple training: Train Length 8524, init_batch_size None
+Example of data ['Y', 'L', 'A', 'L', 'I', 'A', 'T', 'F', 'K']
+Use pseudocount is True
+[1] Improvement: 32244.933100856317	Time (s): 4.692
+[2] Improvement: 13784.247064064344	Time (s): 5.302
+[3] Improvement: 7167.136422114359	Time (s): 4.146
+[4] Improvement: 3388.319428456336	Time (s): 5.026
+[5] Improvement: 1481.3258011907747	Time (s): 5.206
+[6] Improvement: 614.1025245508645	Time (s): 5.196
+[7] Improvement: 235.80073899921263	Time (s): 4.632
+[8] Improvement: 94.92285415681545	Time (s): 3.815
+[9] Improvement: 38.85875472050975	Time (s): 4.427
+[10] Improvement: 13.3836844075704	Time (s): 4.041
+[11] Improvement: 0.7473731042409781	Time (s): 4.105
+[12] Improvement: -8.005714699975215	Time (s): 3.823
+[13] Improvement: -6.916707759053679	Time (s): 3.76
+[14] Improvement: -4.341528135875706	Time (s): 3.778
+[15] Improvement: 2.8317365663533565	Time (s): 3.775
+[16] Improvement: 3.623943830607459	Time (s): 3.756
+[17] Improvement: -0.8344061516399961	Time (s): 3.773
+[18] Improvement: 3.436157774500316	Time (s): 4.197
+[19] Improvement: 8.616407968627755	Time (s): 4.317
+[20] Improvement: 10.15100825310219	Time (s): 4.137
+[21] Improvement: 9.21405924463761	Time (s): 6.207
+[22] Improvement: 8.057758906070376	Time (s): 5.098
+[23] Improvement: 4.16851364064496	Time (s): 4.48
+[24] Improvement: 10.005471682030475	Time (s): 6.125
+[25] Improvement: 6.706630576460157	Time (s): 6.758
+[26] Improvement: 5.8870704943547025	Time (s): 6.33
+[27] Improvement: 4.943749002239201	Time (s): 5.364
+[28] Improvement: 1.7698513838404324	Time (s): 5.467
+[29] Improvement: -3.6011623482918367	Time (s): 5.58
+[30] Improvement: -4.868138299090788	Time (s): 5.891
+Total Training Improvement: 59114.62244855089
+Total Training Time (s): 149.2782
+run 1
+split 0
+train size 8524
+Shuffling for fairness 
+Simple training: Train Length 8524, init_batch_size None
+Example of data ['K', 'L', 'F', 'P', 'G', 'S', 'P', 'A', 'I', 'Y']
+Use pseudocount is True
+[1] Improvement: 26126.237069532188	Time (s): 5.721

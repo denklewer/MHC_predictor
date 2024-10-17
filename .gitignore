@@ -14,3 +14,23 @@ experiments/length_dependent_hmm/gibbs_input/*
 experiments/length_dependent_hmm/gibbs_result/*
 !experiments/length_dependent_hmm/test/*
 experiments/length_dependent_hmm/test/*
+!/experiments/core_identification_simple_model_enrichment/experiment_results/*
+/experiments/core_identification_simple_model_enrichment/experiment_results/*
+!/experiments/core_identification_position_dependent/experiment_results/
+/experiments/core_identification_position_dependent/experiment_results/*
+/experiments/core_identification_paper/experiment_results/
+/experiments/core_identification_geometrical_cycle/experiment_results/
+/experiments/core_identification Tom/experiment_results/
+/experiments/core_identification/experiment_results/
+/experiments/core_clustering_first_paper/experiment_results/
+/experiments/gbm122_processing/trained_models/
+/experiments/length_dependent_hmm/experiment_results/
+/experiments/length_dependent_hmm/test/
+/experiments/training_a_lot_of_alleles/experiment_results/
+/experiments/training_a_lot_of_alleles/test/
+/experiments/core_identification_simple_model_enrichment/test/
+/experiments/core_identification_simple_model_enrichment/model_average/
+/experiments/core_identification_position_dependent/test/
+/experiments/core_identification_paper/test/
+/experiments/core_identification_geometrical_cycle/test/
+/experiments/core_clustering_first_paper/test/

@@ -943,7 +943,10 @@ M rows = ARNDCQEGHILKMFPSTWYV, cols = ARNDCQEGHILKMFPSTWYV
   -0.4 -0.6  0.1  0.4 -0.9  0.0  0.2  0.1 -0.9 -0.9 -1.0  0.1 -0.8 -1.4  0.2 -0.2 -0.3 -1.1 -1.1 -1.0
 //
 H BONM030104
-D Distances between centers of interacting side chains in the antiparallel
+D
+
+
+Distances between centers of interacting side chains in the antiparallel
   orientation
 R PMID:15072433
 A Boniecki, M., Rotkiewicz, P., Skolnick, J. and Kolinski, A.

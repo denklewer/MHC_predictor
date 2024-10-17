@@ -1,0 +1,3921 @@
+Allele HLA-B*27:05
+Binders
+Length 	 Train/Test for splits
+8:	664/166	664/166	664/166	664/166	664/166	
+9:	22761/5691	22761/5691	22762/5690	22762/5690	22762/5690	
+10:	11636/2910	11637/2909	11637/2909	11637/2909	11637/2909	
+11:	7686/1922	7686/1922	7686/1922	7687/1921	7687/1921	
+12:	3841/961	3841/961	3842/960	3842/960	3842/960	
+13:	2306/577	2306/577	2306/577	2307/576	2307/576	
+14:	1702/426	1702/426	1702/426	1703/425	1703/425	
+15:	1404/352	1405/351	1405/351	1405/351	1405/351	
+16:	1157/290	1157/290	1158/289	1158/289	1158/289	
+17:	964/242	965/241	965/241	965/241	965/241	
+18:	755/189	755/189	755/189	755/189	756/188	
+19:	624/157	625/156	625/156	625/156	625/156	
+20:	492/123	492/123	492/123	492/123	492/123	
+21:	402/101	402/101	402/101	403/100	403/100	
+22:	344/86	344/86	344/86	344/86	344/86	
+23:	244/62	245/61	245/61	245/61	245/61	
+24:	180/45	180/45	180/45	180/45	180/45	
+25:	152/38	152/38	152/38	152/38	152/38	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+Non-binders
+Length 	 Train/Test for splits
+8:	72/18	72/18	72/18	72/18	72/18	
+9:	7952/1989	7953/1988	7953/1988	7953/1988	7953/1988	
+10:	2952/738	2952/738	2952/738	2952/738	2952/738	
+11:	1860/465	1860/465	1860/465	1860/465	1860/465	
+12:	1102/276	1102/276	1102/276	1103/275	1103/275	
+13:	845/212	845/212	846/211	846/211	846/211	
+14:	668/167	668/167	668/167	668/167	668/167	
+15:	556/139	556/139	556/139	556/139	556/139	
+16:	471/118	471/118	471/118	471/118	472/117	
+17:	443/111	443/111	443/111	443/111	444/110	
+18:	338/85	338/85	338/85	339/84	339/84	
+19:	298/75	298/75	298/75	299/74	299/74	
+20:	229/58	229/58	230/57	230/57	230/57	
+21:	192/48	192/48	192/48	192/48	192/48	
+22:	176/44	176/44	176/44	176/44	176/44	
+23:	126/32	126/32	126/32	127/31	127/31	
+24:	91/23	91/23	91/23	91/23	92/22	
+25:	83/21	83/21	83/21	83/21	84/20	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+Allele HLA-DRB1*15:01
+Binders
+Length 	 Train/Test for splits
+8:	12/4	13/3	13/3	13/3	13/3	
+9:	80/20	80/20	80/20	80/20	80/20	
+10:	44/12	45/11	45/11	45/11	45/11	
+11:	66/17	66/17	66/17	67/16	67/16	
+12:	141/36	141/36	142/35	142/35	142/35	
+13:	1459/365	1459/365	1459/365	1459/365	1460/364	
+14:	564/142	565/141	565/141	565/141	565/141	
+15:	2902/726	2902/726	2902/726	2903/725	2903/725	
+16:	687/172	687/172	687/172	687/172	688/171	
+17:	496/124	496/124	496/124	496/124	496/124	
+18:	344/86	344/86	344/86	344/86	344/86	
+19:	235/59	235/59	235/59	235/59	236/58	
+20:	352/89	353/88	353/88	353/88	353/88	
+21:	126/32	126/32	126/32	127/31	127/31	
+22:	123/31	123/31	123/31	123/31	124/30	
+23:	112/28	112/28	112/28	112/28	112/28	
+24:	91/23	91/23	91/23	91/23	92/22	
+25:	116/29	116/29	116/29	116/29	116/29	
+26:	7/2	7/2	7/2	7/2	8/1	
+27:	Not enough peptides of length 27
+28:	5/2	5/2	6/1	6/1	6/1	
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	7/2	7/2	7/2	7/2	8/1	
+10:	13/4	13/4	14/3	14/3	14/3	
+11:	8/3	9/2	9/2	9/2	9/2	
+12:	45/12	45/12	46/11	46/11	46/11	
+13:	54805/13702	54805/13702	54806/13701	54806/13701	54806/13701	
+14:	36/10	37/9	37/9	37/9	37/9	
+15:	8059/2015	8059/2015	8059/2015	8059/2015	8060/2014	
+16:	81/21	81/21	82/20	82/20	82/20	
+17:	70/18	70/18	70/18	71/17	71/17	
+18:	50/13	50/13	50/13	51/12	51/12	
+19:	15/4	15/4	15/4	15/4	16/3	
+20:	308/77	308/77	308/77	308/77	308/77	
+21:	21/6	21/6	22/5	22/5	22/5	
+22:	15/4	15/4	15/4	15/4	16/3	
+23:	Not enough peptides of length 23
+24:	10/3	10/3	10/3	11/2	11/2	
+25:	6/2	6/2	6/2	7/1	7/1	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*02:01
+Binders
+Length 	 Train/Test for splits
+8:	2925/732	2925/732	2926/731	2926/731	2926/731	
+9:	32152/8039	32153/8038	32153/8038	32153/8038	32153/8038	
+10:	9005/2252	9005/2252	9006/2251	9006/2251	9006/2251	
+11:	4652/1163	4652/1163	4652/1163	4652/1163	4652/1163	
+12:	1550/388	1550/388	1550/388	1551/387	1551/387	
+13:	841/211	841/211	842/210	842/210	842/210	
+14:	622/156	622/156	622/156	623/155	623/155	
+15:	606/152	606/152	606/152	607/151	607/151	
+16:	426/107	426/107	426/107	427/106	427/106	
+17:	269/68	269/68	270/67	270/67	270/67	
+18:	179/45	179/45	179/45	179/45	180/44	
+19:	116/30	117/29	117/29	117/29	117/29	
+20:	107/27	107/27	107/27	107/27	108/26	
+21:	58/15	58/15	58/15	59/14	59/14	
+22:	35/9	35/9	35/9	35/9	36/8	
+23:	28/8	29/7	29/7	29/7	29/7	
+24:	20/6	21/5	21/5	21/5	21/5	
+25:	16/5	17/4	17/4	17/4	17/4	
+26:	6/2	6/2	6/2	7/1	7/1	
+27:	13/4	13/4	14/3	14/3	14/3	
+28:	8/2	8/2	8/2	8/2	8/2	
+29:	5/2	5/2	6/1	6/1	6/1	
+30:	5/2	5/2	6/1	6/1	6/1	
+Non-binders
+Length 	 Train/Test for splits
+8:	103/26	103/26	103/26	103/26	104/25	
+9:	8152/2038	8152/2038	8152/2038	8152/2038	8152/2038	
+10:	2404/602	2405/601	2405/601	2405/601	2405/601	
+11:	134/34	134/34	134/34	135/33	135/33	
+12:	24/6	24/6	24/6	24/6	24/6	
+13:	5/2	5/2	6/1	6/1	6/1	
+14:	16/5	17/4	17/4	17/4	17/4	
+15:	73/19	73/19	74/18	74/18	74/18	
+16:	28/8	29/7	29/7	29/7	29/7	
+17:	8/2	8/2	8/2	8/2	8/2	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	162/41	162/41	162/41	163/40	163/40	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DRB1*03:01
+Binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	11/3	11/3	11/3	11/3	12/2	
+11:	12/3	12/3	12/3	12/3	12/3	
+12:	120/30	120/30	120/30	120/30	120/30	
+13:	1385/347	1385/347	1386/346	1386/346	1386/346	
+14:	456/115	457/114	457/114	457/114	457/114	
+15:	1194/299	1194/299	1194/299	1195/298	1195/298	
+16:	709/178	709/178	710/177	710/177	710/177	
+17:	582/146	582/146	582/146	583/145	583/145	
+18:	412/103	412/103	412/103	412/103	412/103	
+19:	254/64	254/64	254/64	255/63	255/63	
+20:	366/92	366/92	366/92	367/91	367/91	
+21:	101/26	101/26	102/25	102/25	102/25	
+22:	70/18	70/18	70/18	71/17	71/17	
+23:	14/4	14/4	14/4	15/3	15/3	
+24:	19/5	19/5	19/5	19/5	20/4	
+25:	12/4	13/3	13/3	13/3	13/3	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	12/3	12/3	12/3	12/3	12/3	
+11:	8/2	8/2	8/2	8/2	8/2	
+12:	56/14	56/14	56/14	56/14	56/14	
+13:	54810/13703	54810/13703	54810/13703	54811/13702	54811/13702	
+14:	109/28	109/28	110/27	110/27	110/27	
+15:	1596/399	1596/399	1596/399	1596/399	1596/399	
+16:	101/26	101/26	102/25	102/25	102/25	
+17:	67/17	67/17	67/17	67/17	68/16	
+18:	60/16	61/15	61/15	61/15	61/15	
+19:	44/12	45/11	45/11	45/11	45/11	
+20:	460/116	461/115	461/115	461/115	461/115	
+21:	44/11	44/11	44/11	44/11	44/11	
+22:	12/4	13/3	13/3	13/3	13/3	
+23:	Not enough peptides of length 23
+24:	8/2	8/2	8/2	8/2	8/2	
+25:	8/2	8/2	8/2	8/2	8/2	
+26:	4/2	5/1	5/1	5/1	5/1	
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DRB1*13:02
+Binders
+Length 	 Train/Test for splits
+9:	6/2	6/2	6/2	7/1	7/1	
+10:	25/7	25/7	26/6	26/6	26/6	
+11:	Not enough peptides of length 11
+12:	8/2	8/2	8/2	8/2	8/2	
+13:	1023/256	1023/256	1023/256	1023/256	1024/255	
+14:	57/15	57/15	58/14	58/14	58/14	
+15:	831/208	831/208	831/208	831/208	832/207	
+16:	72/19	73/18	73/18	73/18	73/18	
+17:	88/22	88/22	88/22	88/22	88/22	
+18:	30/8	30/8	30/8	31/7	31/7	
+19:	15/4	15/4	15/4	15/4	16/3	
+20:	29/8	29/8	30/7	30/7	30/7	
+21:	4/2	5/1	5/1	5/1	5/1	
+22:	8/2	8/2	8/2	8/2	8/2	
+23:	6/2	6/2	6/2	7/1	7/1	
+24:	12/3	12/3	12/3	12/3	12/3	
+25:	8/2	8/2	8/2	8/2	8/2	
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	4/2	5/1	5/1	5/1	5/1	
+11:	Not enough peptides of length 11
+12:	32/9	33/8	33/8	33/8	33/8	
+13:	54868/13718	54869/13717	54869/13717	54869/13717	54869/13717	
+14:	24/6	24/6	24/6	24/6	24/6	
+15:	1133/284	1133/284	1134/283	1134/283	1134/283	
+16:	20/5	20/5	20/5	20/5	20/5	
+17:	32/9	33/8	33/8	33/8	33/8	
+18:	16/5	17/4	17/4	17/4	17/4	
+19:	Not enough peptides of length 19
+20:	34/9	34/9	34/9	35/8	35/8	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+Allele HLA-DRB1*13:01
+Binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	17/5	17/5	18/4	18/4	18/4	
+13:	1201/301	1201/301	1202/300	1202/300	1202/300	
+14:	152/38	152/38	152/38	152/38	152/38	
+15:	234/59	234/59	234/59	235/58	235/58	
+16:	218/55	218/55	218/55	219/54	219/54	
+17:	192/48	192/48	192/48	192/48	192/48	
+18:	96/24	96/24	96/24	96/24	96/24	
+19:	41/11	41/11	42/10	42/10	42/10	
+20:	62/16	62/16	62/16	63/15	63/15	
+21:	8/3	9/2	9/2	9/2	9/2	
+22:	4/2	5/1	5/1	5/1	5/1	
+23:	5/2	5/2	6/1	6/1	6/1	
+24:	7/2	7/2	7/2	7/2	8/1	
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	54774/13694	54774/13694	54774/13694	54775/13693	54775/13693	
+14:	30/8	30/8	30/8	31/7	31/7	
+15:	120/30	120/30	120/30	120/30	120/30	
+16:	54/14	54/14	54/14	55/13	55/13	
+17:	23/6	23/6	23/6	23/6	24/5	
+18:	38/10	38/10	38/10	39/9	39/9	
+19:	11/3	11/3	11/3	11/3	12/2	
+20:	80/21	81/20	81/20	81/20	81/20	
+21:	Not enough peptides of length 21
+22:	4/2	5/1	5/1	5/1	5/1	
+23:	Not enough peptides of length 23
+24:	4/2	5/1	5/1	5/1	5/1	
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DRB1*01:03
+Binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	7/2	7/2	7/2	7/2	8/1	
+13:	1129/283	1129/283	1130/282	1130/282	1130/282	
+14:	21/6	21/6	22/5	22/5	22/5	
+15:	27/7	27/7	27/7	27/7	28/6	
+16:	24/7	25/6	25/6	25/6	25/6	
+17:	12/3	12/3	12/3	12/3	12/3	
+18:	7/2	7/2	7/2	7/2	8/1	
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	54743/13686	54743/13686	54743/13686	54743/13686	54744/13685	
+14:	Not enough peptides of length 14
+15:	11/3	11/3	11/3	11/3	12/2	
+16:	12/3	12/3	12/3	12/3	12/3	
+17:	4/2	5/1	5/1	5/1	5/1	
+18:	4/2	5/1	5/1	5/1	5/1	
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+Allele HLA-DRB1*15:02
+Binders
+Length 	 Train/Test for splits
+13:	1113/279	1113/279	1114/278	1114/278	1114/278	
+14:	7/2	7/2	7/2	7/2	8/1	
+15:	Not enough peptides of length 15
+17:	Not enough peptides of length 17
+18:	9/3	9/3	10/2	10/2	10/2	
+19:	Not enough peptides of length 19
+20:	16/4	16/4	16/4	16/4	16/4	
+22:	Not enough peptides of length 22
+26:	Not enough peptides of length 26
+Non-binders
+Length 	 Train/Test for splits
+13:	54740/13686	54741/13685	54741/13685	54741/13685	54741/13685	
+14:	20/6	21/5	21/5	21/5	21/5	
+15:	8/3	9/2	9/2	9/2	9/2	
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	84/21	84/21	84/21	84/21	84/21	
+22:	Not enough peptides of length 22
+26:	Not enough peptides of length 26
+Allele HLA-B*07:02
+Binders
+Length 	 Train/Test for splits
+8:	1761/441	1761/441	1762/440	1762/440	1762/440	
+9:	11532/2883	11532/2883	11532/2883	11532/2883	11532/2883	
+10:	4180/1045	4180/1045	4180/1045	4180/1045	4180/1045	
+11:	2184/546	2184/546	2184/546	2184/546	2184/546	
+12:	911/228	911/228	911/228	911/228	912/227	
+13:	576/145	577/144	577/144	577/144	577/144	
+14:	388/98	389/97	389/97	389/97	389/97	
+15:	343/86	343/86	343/86	343/86	344/85	
+16:	188/47	188/47	188/47	188/47	188/47	
+17:	137/35	137/35	138/34	138/34	138/34	
+18:	76/19	76/19	76/19	76/19	76/19	
+19:	42/11	42/11	42/11	43/10	43/10	
+20:	25/7	25/7	26/6	26/6	26/6	
+21:	14/4	14/4	14/4	15/3	15/3	
+22:	7/2	7/2	7/2	7/2	8/1	
+23:	4/2	5/1	5/1	5/1	5/1	
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+Non-binders
+Length 	 Train/Test for splits
+8:	40/10	40/10	40/10	40/10	40/10	
+9:	3190/798	3190/798	3190/798	3191/797	3191/797	
+10:	308/77	308/77	308/77	308/77	308/77	
+11:	49/13	49/13	50/12	50/12	50/12	
+12:	4/2	5/1	5/1	5/1	5/1	
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+Allele H2-K*b
+Binders
+Length 	 Train/Test for splits
+8:	6921/1731	6921/1731	6922/1730	6922/1730	6922/1730	
+9:	5345/1337	5345/1337	5346/1336	5346/1336	5346/1336	
+10:	1950/488	1950/488	1950/488	1951/487	1951/487	
+11:	1514/379	1514/379	1514/379	1515/378	1515/378	
+12:	1205/302	1205/302	1206/301	1206/301	1206/301	
+13:	1078/270	1078/270	1078/270	1079/269	1079/269	
+14:	971/243	971/243	971/243	971/243	972/242	
+15:	837/210	837/210	838/209	838/209	838/209	
+16:	745/187	745/187	746/186	746/186	746/186	
+17:	601/151	601/151	602/150	602/150	602/150	
+18:	488/122	488/122	488/122	488/122	488/122	
+19:	371/93	371/93	371/93	371/93	372/92	
+20:	321/81	321/81	322/80	322/80	322/80	
+21:	30/8	30/8	30/8	31/7	31/7	
+22:	7/2	7/2	7/2	7/2	8/1	
+23:	7/2	7/2	7/2	7/2	8/1	
+24:	6/2	6/2	6/2	7/1	7/1	
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	768/192	768/192	768/192	768/192	768/192	
+9:	750/188	750/188	750/188	751/187	751/187	
+10:	358/90	358/90	358/90	359/89	359/89	
+11:	126/32	126/32	126/32	127/31	127/31	
+12:	8/3	9/2	9/2	9/2	9/2	
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	10/3	10/3	10/3	11/2	11/2	
+16:	7/2	7/2	7/2	7/2	8/1	
+17:	Not enough peptides of length 17
+18:	12/4	13/3	13/3	13/3	13/3	
+19:	Not enough peptides of length 19
+20:	63/16	63/16	63/16	63/16	64/15	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Allele HLA-B*57:01
+Binders
+Length 	 Train/Test for splits
+8:	689/173	689/173	690/172	690/172	690/172	
+9:	6556/1639	6556/1639	6556/1639	6556/1639	6556/1639	
+10:	4722/1181	4722/1181	4722/1181	4723/1180	4723/1180	
+11:	4254/1064	4254/1064	4254/1064	4255/1063	4255/1063	
+12:	2002/501	2002/501	2002/501	2003/500	2003/500	
+13:	808/203	809/202	809/202	809/202	809/202	
+14:	418/105	418/105	418/105	419/104	419/104	
+15:	345/87	345/87	346/86	346/86	346/86	
+16:	229/58	229/58	230/57	230/57	230/57	
+17:	144/37	145/36	145/36	145/36	145/36	
+18:	99/25	99/25	99/25	99/25	100/24	
+19:	83/21	83/21	83/21	83/21	84/20	
+20:	52/13	52/13	52/13	52/13	52/13	
+21:	44/12	45/11	45/11	45/11	45/11	
+22:	41/11	41/11	42/10	42/10	42/10	
+23:	32/8	32/8	32/8	32/8	32/8	
+24:	27/7	27/7	27/7	27/7	28/6	
+25:	22/6	22/6	22/6	23/5	23/5	
+29:	Not enough peptides of length 29
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	1418/355	1418/355	1418/355	1419/354	1419/354	
+10:	90/23	90/23	90/23	91/22	91/22	
+11:	7/2	7/2	7/2	7/2	8/1	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+29:	Not enough peptides of length 29
+Allele HLA-A*01:01
+Binders
+Length 	 Train/Test for splits
+8:	798/200	798/200	798/200	799/199	799/199	
+9:	5388/1348	5389/1347	5389/1347	5389/1347	5389/1347	
+10:	2776/695	2777/694	2777/694	2777/694	2777/694	
+11:	1700/426	1701/425	1701/425	1701/425	1701/425	
+12:	1328/332	1328/332	1328/332	1328/332	1328/332	
+13:	965/242	965/242	966/241	966/241	966/241	
+14:	602/151	602/151	602/151	603/150	603/150	
+15:	483/121	483/121	483/121	483/121	484/120	
+16:	348/87	348/87	348/87	348/87	348/87	
+17:	210/53	210/53	210/53	211/52	211/52	
+18:	128/33	129/32	129/32	129/32	129/32	
+19:	76/19	76/19	76/19	76/19	76/19	
+20:	54/14	54/14	54/14	55/13	55/13	
+21:	29/8	29/8	30/7	30/7	30/7	
+22:	21/6	21/6	22/5	22/5	22/5	
+23:	17/5	17/5	18/4	18/4	18/4	
+24:	16/4	16/4	16/4	16/4	16/4	
+25:	8/2	8/2	8/2	8/2	8/2	
+26:	7/2	7/2	7/2	7/2	8/1	
+27:	Not enough peptides of length 27
+28:	6/2	6/2	6/2	7/1	7/1	
+29:	4/2	5/1	5/1	5/1	5/1	
+30:	5/2	5/2	6/1	6/1	6/1	
+Non-binders
+Length 	 Train/Test for splits
+8:	19/5	19/5	19/5	19/5	20/4	
+9:	3097/775	3097/775	3098/774	3098/774	3098/774	
+10:	403/101	403/101	403/101	403/101	404/100	
+11:	38/10	38/10	38/10	39/9	39/9	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B*15:02
+Binders
+Length 	 Train/Test for splits
+8:	2380/596	2381/595	2381/595	2381/595	2381/595	
+9:	9641/2411	9641/2411	9642/2410	9642/2410	9642/2410	
+10:	2091/523	2091/523	2091/523	2091/523	2092/522	
+11:	867/217	867/217	867/217	867/217	868/216	
+12:	424/107	425/106	425/106	425/106	425/106	
+13:	445/112	445/112	446/111	446/111	446/111	
+14:	445/112	445/112	446/111	446/111	446/111	
+15:	419/105	419/105	419/105	419/105	420/104	
+16:	356/90	357/89	357/89	357/89	357/89	
+17:	234/59	234/59	234/59	235/58	235/58	
+18:	144/36	144/36	144/36	144/36	144/36	
+19:	80/20	80/20	80/20	80/20	80/20	
+20:	63/16	63/16	63/16	63/16	64/15	
+21:	39/10	39/10	39/10	39/10	40/9	
+22:	23/6	23/6	23/6	23/6	24/5	
+23:	18/5	18/5	18/5	19/4	19/4	
+24:	8/2	8/2	8/2	8/2	8/2	
+25:	8/2	8/2	8/2	8/2	8/2	
+26:	5/2	5/2	6/1	6/1	6/1	
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	35/9	35/9	35/9	35/9	36/8	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele H2-D*b
+Binders
+Length 	 Train/Test for splits
+8:	1502/376	1502/376	1502/376	1503/375	1503/375	
+9:	5766/1442	5766/1442	5766/1442	5767/1441	5767/1441	
+10:	2344/587	2345/586	2345/586	2345/586	2345/586	
+11:	1756/440	1757/439	1757/439	1757/439	1757/439	
+12:	698/175	698/175	698/175	699/174	699/174	
+13:	592/148	592/148	592/148	592/148	592/148	
+14:	535/134	535/134	535/134	535/134	536/133	
+15:	400/100	400/100	400/100	400/100	400/100	
+16:	359/90	359/90	359/90	359/90	360/89	
+17:	285/72	285/72	286/71	286/71	286/71	
+18:	232/58	232/58	232/58	232/58	232/58	
+19:	168/42	168/42	168/42	168/42	168/42	
+20:	151/38	151/38	151/38	151/38	152/37	
+21:	20/6	21/5	21/5	21/5	21/5	
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+25:	Not enough peptides of length 25
+Non-binders
+Length 	 Train/Test for splits
+8:	496/124	496/124	496/124	496/124	496/124	
+9:	949/238	949/238	950/237	950/237	950/237	
+10:	568/143	569/142	569/142	569/142	569/142	
+11:	172/44	173/43	173/43	173/43	173/43	
+12:	8/3	9/2	9/2	9/2	9/2	
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	24/7	25/6	25/6	25/6	25/6	
+16:	10/3	10/3	10/3	11/2	11/2	
+17:	9/3	9/3	10/2	10/2	10/2	
+18:	12/3	12/3	12/3	12/3	12/3	
+19:	Not enough peptides of length 19
+20:	57/15	57/15	58/14	58/14	58/14	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+25:	Not enough peptides of length 25
+Allele HLA-A*24:02
+Binders
+Length 	 Train/Test for splits
+8:	739/185	739/185	739/185	739/185	740/184	
+9:	8384/2096	8384/2096	8384/2096	8384/2096	8384/2096	
+10:	2280/570	2280/570	2280/570	2280/570	2280/570	
+11:	1344/336	1344/336	1344/336	1344/336	1344/336	
+12:	460/116	461/115	461/115	461/115	461/115	
+13:	335/84	335/84	335/84	335/84	336/83	
+14:	218/55	218/55	218/55	219/54	219/54	
+15:	224/57	225/56	225/56	225/56	225/56	
+16:	164/42	165/41	165/41	165/41	165/41	
+17:	100/26	101/25	101/25	101/25	101/25	
+18:	63/16	63/16	63/16	63/16	64/15	
+19:	45/12	45/12	46/11	46/11	46/11	
+20:	30/8	30/8	30/8	31/7	31/7	
+21:	15/4	15/4	15/4	15/4	16/3	
+22:	13/4	13/4	14/3	14/3	14/3	
+23:	10/3	10/3	10/3	11/2	11/2	
+24:	7/2	7/2	7/2	7/2	8/1	
+25:	6/2	6/2	6/2	7/1	7/1	
+26:	6/2	6/2	6/2	7/1	7/1	
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	5/2	5/2	6/1	6/1	6/1	
+30:	5/2	5/2	6/1	6/1	6/1	
+Non-binders
+Length 	 Train/Test for splits
+8:	26/7	26/7	26/7	27/6	27/6	
+9:	2266/567	2266/567	2266/567	2267/566	2267/566	
+10:	344/86	344/86	344/86	344/86	344/86	
+11:	29/8	29/8	30/7	30/7	30/7	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele H2-K*d
+Binders
+Length 	 Train/Test for splits
+8:	2493/624	2493/624	2494/623	2494/623	2494/623	
+9:	5112/1279	5113/1278	5113/1278	5113/1278	5113/1278	
+10:	1560/391	1561/390	1561/390	1561/390	1561/390	
+11:	1224/307	1225/306	1225/306	1225/306	1225/306	
+12:	1012/254	1013/253	1013/253	1013/253	1013/253	
+13:	824/207	825/206	825/206	825/206	825/206	
+14:	742/186	742/186	742/186	743/185	743/185	
+15:	644/162	645/161	645/161	645/161	645/161	
+16:	580/146	581/145	581/145	581/145	581/145	
+17:	444/112	445/111	445/111	445/111	445/111	
+18:	366/92	366/92	366/92	367/91	367/91	
+19:	286/72	286/72	286/72	287/71	287/71	
+20:	262/66	262/66	262/66	263/65	263/65	
+21:	Not enough peptides of length 21
+25:	Not enough peptides of length 25
+Non-binders
+Length 	 Train/Test for splits
+8:	28/7	28/7	28/7	28/7	28/7	
+9:	222/56	222/56	222/56	223/55	223/55	
+10:	76/20	77/19	77/19	77/19	77/19	
+11:	179/45	179/45	179/45	179/45	180/44	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+25:	Not enough peptides of length 25
+Allele HLA-DRB1*01:01
+Binders
+Length 	 Train/Test for splits
+8:	39/10	39/10	39/10	39/10	40/9	
+9:	112/28	112/28	112/28	112/28	112/28	
+10:	123/31	123/31	123/31	123/31	124/30	
+11:	167/42	167/42	167/42	167/42	168/41	
+12:	357/90	357/90	358/89	358/89	358/89	
+13:	812/204	813/203	813/203	813/203	813/203	
+14:	1251/313	1251/313	1251/313	1251/313	1252/312	
+15:	5369/1343	5369/1343	5370/1342	5370/1342	5370/1342	
+16:	1449/363	1449/363	1450/362	1450/362	1450/362	
+17:	991/248	991/248	991/248	991/248	992/247	
+18:	661/166	661/166	662/165	662/165	662/165	
+19:	312/78	312/78	312/78	312/78	312/78	
+20:	413/104	413/104	414/103	414/103	414/103	
+21:	161/41	161/41	162/40	162/40	162/40	
+22:	80/21	81/20	81/20	81/20	81/20	
+23:	60/15	60/15	60/15	60/15	60/15	
+24:	66/17	66/17	66/17	67/16	67/16	
+25:	46/12	46/12	46/12	47/11	47/11	
+26:	12/4	13/3	13/3	13/3	13/3	
+27:	11/3	11/3	11/3	11/3	12/2	
+28:	7/2	7/2	7/2	7/2	8/1	
+29:	Not enough peptides of length 29
+30:	6/2	6/2	6/2	7/1	7/1	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	6/2	6/2	6/2	7/1	7/1	
+10:	10/3	10/3	10/3	11/2	11/2	
+11:	13/4	13/4	14/3	14/3	14/3	
+12:	51/13	51/13	51/13	51/13	52/12	
+13:	99/25	99/25	99/25	99/25	100/24	
+14:	60/16	61/15	61/15	61/15	61/15	
+15:	2667/667	2667/667	2667/667	2667/667	2668/666	
+16:	136/34	136/34	136/34	136/34	136/34	
+17:	96/25	97/24	97/24	97/24	97/24	
+18:	150/38	150/38	150/38	151/37	151/37	
+19:	36/9	36/9	36/9	36/9	36/9	
+20:	461/116	461/116	462/115	462/115	462/115	
+21:	44/11	44/11	44/11	44/11	44/11	
+22:	16/4	16/4	16/4	16/4	16/4	
+23:	6/2	6/2	6/2	7/1	7/1	
+24:	11/3	11/3	11/3	11/3	12/2	
+25:	9/3	9/3	10/2	10/2	10/2	
+26:	5/2	5/2	6/1	6/1	6/1	
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B*40:02
+Binders
+Length 	 Train/Test for splits
+8:	2329/583	2329/583	2330/582	2330/582	2330/582	
+9:	9170/2293	9170/2293	9170/2293	9171/2292	9171/2292	
+10:	2880/720	2880/720	2880/720	2880/720	2880/720	
+11:	1261/316	1261/316	1262/315	1262/315	1262/315	
+12:	315/79	315/79	315/79	315/79	316/78	
+13:	98/25	98/25	98/25	99/24	99/24	
+14:	28/8	29/7	29/7	29/7	29/7	
+15:	23/6	23/6	23/6	23/6	24/5	
+16:	14/4	14/4	14/4	15/3	15/3	
+17:	17/5	17/5	18/4	18/4	18/4	
+18:	5/2	5/2	6/1	6/1	6/1	
+19:	Not enough peptides of length 19
+20:	5/2	5/2	6/1	6/1	6/1	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	111/28	111/28	111/28	111/28	112/27	
+10:	108/27	108/27	108/27	108/27	108/27	
+11:	12/4	13/3	13/3	13/3	13/3	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B*51:01
+Binders
+Length 	 Train/Test for splits
+8:	4570/1143	4570/1143	4570/1143	4571/1142	4571/1142	
+9:	7733/1934	7733/1934	7734/1933	7734/1933	7734/1933	
+10:	1112/279	1113/278	1113/278	1113/278	1113/278	
+11:	511/128	511/128	511/128	511/128	512/127	
+12:	251/63	251/63	251/63	251/63	252/62	
+13:	184/46	184/46	184/46	184/46	184/46	
+14:	137/35	137/35	138/34	138/34	138/34	
+15:	68/18	69/17	69/17	69/17	69/17	
+16:	44/12	45/11	45/11	45/11	45/11	
+17:	28/8	29/7	29/7	29/7	29/7	
+18:	22/6	22/6	22/6	23/5	23/5	
+19:	10/3	10/3	10/3	11/2	11/2	
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+Non-binders
+Length 	 Train/Test for splits
+8:	20/5	20/5	20/5	20/5	20/5	
+9:	1298/325	1298/325	1298/325	1299/324	1299/324	
+10:	285/72	285/72	286/71	286/71	286/71	
+11:	20/6	21/5	21/5	21/5	21/5	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+Allele HLA-B*15:01
+Binders
+Length 	 Train/Test for splits
+8:	545/137	545/137	546/136	546/136	546/136	
+9:	7863/1966	7863/1966	7863/1966	7863/1966	7864/1965	
+10:	2254/564	2254/564	2254/564	2255/563	2255/563	
+11:	908/228	909/227	909/227	909/227	909/227	
+12:	328/83	329/82	329/82	329/82	329/82	
+13:	225/57	225/57	226/56	226/56	226/56	
+14:	137/35	137/35	138/34	138/34	138/34	
+15:	107/27	107/27	107/27	107/27	108/26	
+16:	91/23	91/23	91/23	91/23	92/22	
+17:	77/20	77/20	78/19	78/19	78/19	
+18:	77/20	77/20	78/19	78/19	78/19	
+19:	68/18	69/17	69/17	69/17	69/17	
+20:	56/15	57/14	57/14	57/14	57/14	
+21:	55/14	55/14	55/14	55/14	56/13	
+22:	56/15	57/14	57/14	57/14	57/14	
+23:	32/9	33/8	33/8	33/8	33/8	
+24:	30/8	30/8	30/8	31/7	31/7	
+25:	19/5	19/5	19/5	19/5	20/4	
+26:	14/4	14/4	14/4	15/3	15/3	
+27:	16/5	17/4	17/4	17/4	17/4	
+28:	10/3	10/3	10/3	11/2	11/2	
+29:	7/2	7/2	7/2	7/2	8/1	
+30:	7/2	7/2	7/2	7/2	8/1	
+Non-binders
+Length 	 Train/Test for splits
+8:	5/2	5/2	6/1	6/1	6/1	
+9:	3020/755	3020/755	3020/755	3020/755	3020/755	
+10:	10/3	10/3	10/3	11/2	11/2	
+11:	13/4	13/4	14/3	14/3	14/3	
+12:	4/2	5/1	5/1	5/1	5/1	
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DRB1*07:01
+Binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	5/2	5/2	6/1	6/1	6/1	
+10:	Not enough peptides of length 10
+11:	19/5	19/5	19/5	19/5	20/4	
+12:	148/38	149/37	149/37	149/37	149/37	
+13:	458/115	458/115	458/115	459/114	459/114	
+14:	656/164	656/164	656/164	656/164	656/164	
+15:	3117/780	3117/780	3118/779	3118/779	3118/779	
+16:	900/225	900/225	900/225	900/225	900/225	
+17:	585/147	585/147	586/146	586/146	586/146	
+18:	327/82	327/82	327/82	327/82	328/81	
+19:	180/45	180/45	180/45	180/45	180/45	
+20:	295/74	295/74	295/74	295/74	296/73	
+21:	60/16	61/15	61/15	61/15	61/15	
+22:	41/11	41/11	42/10	42/10	42/10	
+23:	29/8	29/8	30/7	30/7	30/7	
+24:	27/7	27/7	27/7	27/7	28/6	
+25:	22/6	22/6	22/6	23/5	23/5	
+26:	5/2	5/2	6/1	6/1	6/1	
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	12/3	12/3	12/3	12/3	12/3	
+11:	8/2	8/2	8/2	8/2	8/2	
+12:	49/13	49/13	50/12	50/12	50/12	
+13:	68/17	68/17	68/17	68/17	68/17	
+14:	48/13	49/12	49/12	49/12	49/12	
+15:	7903/1976	7903/1976	7903/1976	7903/1976	7904/1975	
+16:	113/29	113/29	114/28	114/28	114/28	
+17:	76/19	76/19	76/19	76/19	76/19	
+18:	69/18	69/18	70/17	70/17	70/17	
+19:	28/7	28/7	28/7	28/7	28/7	
+20:	383/96	383/96	383/96	383/96	384/95	
+21:	17/5	17/5	18/4	18/4	18/4	
+22:	16/4	16/4	16/4	16/4	16/4	
+23:	6/2	6/2	6/2	7/1	7/1	
+24:	9/3	9/3	10/2	10/2	10/2	
+25:	6/2	6/2	6/2	7/1	7/1	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B*40:01
+Binders
+Length 	 Train/Test for splits
+8:	424/107	425/106	425/106	425/106	425/106	
+9:	5906/1477	5906/1477	5906/1477	5907/1476	5907/1476	
+10:	3380/846	3381/845	3381/845	3381/845	3381/845	
+11:	2020/506	2021/505	2021/505	2021/505	2021/505	
+12:	672/168	672/168	672/168	672/168	672/168	
+13:	56/14	56/14	56/14	56/14	56/14	
+14:	20/5	20/5	20/5	20/5	20/5	
+15:	8/3	9/2	9/2	9/2	9/2	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	9/3	9/3	10/2	10/2	10/2	
+9:	2233/559	2233/559	2234/558	2234/558	2234/558	
+10:	220/56	221/55	221/55	221/55	221/55	
+11:	13/4	13/4	14/3	14/3	14/3	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+30:	Not enough peptides of length 30
+Allele HLA-A*11:01
+Binders
+Length 	 Train/Test for splits
+8:	212/54	213/53	213/53	213/53	213/53	
+9:	5750/1438	5750/1438	5750/1438	5751/1437	5751/1437	
+10:	2303/576	2303/576	2303/576	2303/576	2304/575	
+11:	1267/317	1267/317	1267/317	1267/317	1268/316	
+12:	409/103	409/103	410/102	410/102	410/102	
+13:	183/46	183/46	183/46	183/46	184/45	
+14:	100/26	101/25	101/25	101/25	101/25	
+15:	92/23	92/23	92/23	92/23	92/23	
+16:	53/14	53/14	54/13	54/13	54/13	
+17:	45/12	45/12	46/11	46/11	46/11	
+18:	42/11	42/11	42/11	43/10	43/10	
+19:	25/7	25/7	26/6	26/6	26/6	
+20:	21/6	21/6	22/5	22/5	22/5	
+21:	9/3	9/3	10/2	10/2	10/2	
+22:	10/3	10/3	10/3	11/2	11/2	
+23:	Not enough peptides of length 23
+24:	6/2	6/2	6/2	7/1	7/1	
+25:	6/2	6/2	6/2	7/1	7/1	
+26:	4/2	5/1	5/1	5/1	5/1	
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	35/9	35/9	35/9	35/9	36/8	
+9:	3041/761	3041/761	3042/760	3042/760	3042/760	
+10:	672/168	672/168	672/168	672/168	672/168	
+11:	52/14	53/13	53/13	53/13	53/13	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DPA1*01:03/DPB1*04:01
+Binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	39/10	39/10	39/10	39/10	40/9	
+10:	88/22	88/22	88/22	88/22	88/22	
+11:	309/78	309/78	310/77	310/77	310/77	
+12:	800/201	801/200	801/200	801/200	801/200	
+13:	1510/378	1510/378	1510/378	1511/377	1511/377	
+14:	2016/505	2017/504	2017/504	2017/504	2017/504	
+15:	2270/568	2270/568	2270/568	2271/567	2271/567	
+16:	1939/485	1939/485	1939/485	1939/485	1940/484	
+17:	1436/360	1437/359	1437/359	1437/359	1437/359	
+18:	937/235	937/235	938/234	938/234	938/234	
+19:	592/149	593/148	593/148	593/148	593/148	
+20:	380/95	380/95	380/95	380/95	380/95	
+21:	212/53	212/53	212/53	212/53	212/53	
+22:	144/37	145/36	145/36	145/36	145/36	
+23:	76/20	77/19	77/19	77/19	77/19	
+24:	64/16	64/16	64/16	64/16	64/16	
+25:	47/12	47/12	47/12	47/12	48/11	
+26:	25/7	25/7	26/6	26/6	26/6	
+27:	26/7	26/7	26/7	27/6	27/6	
+28:	20/6	21/5	21/5	21/5	21/5	
+29:	16/5	17/4	17/4	17/4	17/4	
+30:	13/4	13/4	14/3	14/3	14/3	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	660/166	661/165	661/165	661/165	661/165	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	10/3	10/3	10/3	11/2	11/2	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*03:01
+Binders
+Length 	 Train/Test for splits
+8:	116/29	116/29	116/29	116/29	116/29	
+9:	5011/1253	5011/1253	5011/1253	5011/1253	5012/1252	
+10:	2265/567	2265/567	2266/566	2266/566	2266/566	
+11:	880/220	880/220	880/220	880/220	880/220	
+12:	252/64	253/63	253/63	253/63	253/63	
+13:	127/32	127/32	127/32	127/32	128/31	
+14:	37/10	37/10	38/9	38/9	38/9	
+15:	16/5	17/4	17/4	17/4	17/4	
+16:	13/4	13/4	14/3	14/3	14/3	
+17:	5/2	5/2	6/1	6/1	6/1	
+18:	5/2	5/2	6/1	6/1	6/1	
+19:	Not enough peptides of length 19
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+Non-binders
+Length 	 Train/Test for splits
+8:	21/6	21/6	22/5	22/5	22/5	
+9:	4034/1009	4034/1009	4034/1009	4035/1008	4035/1008	
+10:	752/189	753/188	753/188	753/188	753/188	
+11:	40/11	41/10	41/10	41/10	41/10	
+12:	7/2	7/2	7/2	7/2	8/1	
+13:	Not enough peptides of length 13
+14:	5/2	5/2	6/1	6/1	6/1	
+15:	6/2	6/2	6/2	7/1	7/1	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+Allele HLA-DRB1*04:01
+Binders
+Length 	 Train/Test for splits
+8:	22/6	22/6	22/6	23/5	23/5	
+9:	88/22	88/22	88/22	88/22	88/22	
+10:	38/10	38/10	38/10	39/9	39/9	
+11:	60/15	60/15	60/15	60/15	60/15	
+12:	220/55	220/55	220/55	220/55	220/55	
+13:	601/151	601/151	602/150	602/150	602/150	
+14:	902/226	902/226	902/226	903/225	903/225	
+15:	2532/633	2532/633	2532/633	2532/633	2532/633	
+16:	1436/359	1436/359	1436/359	1436/359	1436/359	
+17:	1114/279	1114/279	1114/279	1115/278	1115/278	
+18:	753/189	753/189	754/188	754/188	754/188	
+19:	525/132	525/132	526/131	526/131	526/131	
+20:	628/158	629/157	629/157	629/157	629/157	
+21:	272/68	272/68	272/68	272/68	272/68	
+22:	178/45	178/45	178/45	179/44	179/44	
+23:	37/10	37/10	38/9	38/9	38/9	
+24:	34/9	34/9	34/9	35/8	35/8	
+25:	20/6	21/5	21/5	21/5	21/5	
+26:	8/3	9/2	9/2	9/2	9/2	
+27:	7/2	7/2	7/2	7/2	8/1	
+28:	6/2	6/2	6/2	7/1	7/1	
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	16/5	17/4	17/4	17/4	17/4	
+10:	14/4	14/4	14/4	15/3	15/3	
+11:	18/5	18/5	18/5	19/4	19/4	
+12:	57/15	57/15	58/14	58/14	58/14	
+13:	175/44	175/44	175/44	175/44	176/43	
+14:	76/19	76/19	76/19	76/19	76/19	
+15:	2038/510	2038/510	2038/510	2039/509	2039/509	
+16:	168/43	169/42	169/42	169/42	169/42	
+17:	100/25	100/25	100/25	100/25	100/25	
+18:	68/17	68/17	68/17	68/17	68/17	
+19:	52/13	52/13	52/13	52/13	52/13	
+20:	599/150	599/150	599/150	599/150	600/149	
+21:	28/7	28/7	28/7	28/7	28/7	
+22:	13/4	13/4	14/3	14/3	14/3	
+23:	6/2	6/2	6/2	7/1	7/1	
+24:	13/4	13/4	14/3	14/3	14/3	
+25:	8/3	9/2	9/2	9/2	9/2	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B*44:02
+Binders
+Length 	 Train/Test for splits
+8:	227/57	227/57	227/57	227/57	228/56	
+9:	4899/1225	4899/1225	4899/1225	4899/1225	4900/1224	
+10:	2954/739	2954/739	2954/739	2955/738	2955/738	
+11:	1523/381	1523/381	1523/381	1523/381	1524/380	
+12:	465/117	465/117	466/116	466/116	466/116	
+13:	91/23	91/23	91/23	91/23	92/22	
+14:	24/7	25/6	25/6	25/6	25/6	
+15:	20/5	20/5	20/5	20/5	20/5	
+16:	18/5	18/5	18/5	19/4	19/4	
+17:	8/2	8/2	8/2	8/2	8/2	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+Non-binders
+Length 	 Train/Test for splits
+8:	8/2	8/2	8/2	8/2	8/2	
+9:	911/228	911/228	911/228	911/228	912/227	
+10:	212/53	212/53	212/53	212/53	212/53	
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+Allele HLA-DRB1*04:04
+Binders
+Length 	 Train/Test for splits
+8:	22/6	22/6	22/6	23/5	23/5	
+9:	42/11	42/11	42/11	43/10	43/10	
+10:	62/16	62/16	62/16	63/15	63/15	
+11:	82/21	82/21	82/21	83/20	83/20	
+12:	110/28	110/28	110/28	111/27	111/27	
+13:	192/49	193/48	193/48	193/48	193/48	
+14:	258/65	258/65	258/65	259/64	259/64	
+15:	1955/489	1955/489	1955/489	1955/489	1956/488	
+16:	241/61	241/61	242/60	242/60	242/60	
+17:	192/48	192/48	192/48	192/48	192/48	
+18:	121/31	121/31	122/30	122/30	122/30	
+19:	72/19	73/18	73/18	73/18	73/18	
+20:	85/22	85/22	86/21	86/21	86/21	
+21:	47/12	47/12	47/12	47/12	48/11	
+22:	29/8	29/8	30/7	30/7	30/7	
+23:	22/6	22/6	22/6	23/5	23/5	
+24:	13/4	13/4	14/3	14/3	14/3	
+25:	12/3	12/3	12/3	12/3	12/3	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	9/3	9/3	10/2	10/2	10/2	
+11:	8/2	8/2	8/2	8/2	8/2	
+12:	42/11	42/11	42/11	43/10	43/10	
+13:	44/12	45/11	45/11	45/11	45/11	
+14:	11/3	11/3	11/3	11/3	12/2	
+15:	7228/1808	7229/1807	7229/1807	7229/1807	7229/1807	
+16:	8/2	8/2	8/2	8/2	8/2	
+17:	27/7	27/7	27/7	27/7	28/6	
+18:	6/2	6/2	6/2	7/1	7/1	
+19:	Not enough peptides of length 19
+20:	122/31	122/31	122/31	123/30	123/30	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DPA1*02:02/DPB1*05:01
+Binders
+Length 	 Train/Test for splits
+9:	28/8	29/7	29/7	29/7	29/7	
+10:	67/17	67/17	67/17	67/17	68/16	
+11:	252/63	252/63	252/63	252/63	252/63	
+12:	595/149	595/149	595/149	595/149	596/148	
+13:	1123/281	1123/281	1123/281	1123/281	1124/280	
+14:	1830/458	1830/458	1830/458	1831/457	1831/457	
+15:	2160/541	2161/540	2161/540	2161/540	2161/540	
+16:	1502/376	1502/376	1502/376	1503/375	1503/375	
+17:	924/231	924/231	924/231	924/231	924/231	
+18:	553/139	553/139	554/138	554/138	554/138	
+19:	308/78	309/77	309/77	309/77	309/77	
+20:	168/42	168/42	168/42	168/42	168/42	
+21:	90/23	90/23	90/23	91/22	91/22	
+22:	48/13	49/12	49/12	49/12	49/12	
+23:	36/9	36/9	36/9	36/9	36/9	
+24:	13/4	13/4	14/3	14/3	14/3	
+25:	17/5	17/5	18/4	18/4	18/4	
+26:	8/2	8/2	8/2	8/2	8/2	
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	1043/261	1043/261	1043/261	1043/261	1044/260	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele H2-AA*b/AB*b
+Binders
+Length 	 Train/Test for splits
+8:	353/89	353/89	354/88	354/88	354/88	
+9:	454/114	454/114	454/114	455/113	455/113	
+10:	452/113	452/113	452/113	452/113	452/113	
+11:	449/113	449/113	450/112	450/112	450/112	
+12:	530/133	530/133	530/133	531/132	531/132	
+13:	677/170	677/170	678/169	678/169	678/169	
+14:	984/246	984/246	984/246	984/246	984/246	
+15:	1392/348	1392/348	1392/348	1392/348	1392/348	
+16:	1268/317	1268/317	1268/317	1268/317	1268/317	
+17:	941/236	941/236	942/235	942/235	942/235	
+18:	584/146	584/146	584/146	584/146	584/146	
+19:	412/103	412/103	412/103	412/103	412/103	
+20:	296/74	296/74	296/74	296/74	296/74	
+21:	208/53	209/52	209/52	209/52	209/52	
+22:	144/36	144/36	144/36	144/36	144/36	
+23:	104/26	104/26	104/26	104/26	104/26	
+24:	88/22	88/22	88/22	88/22	88/22	
+25:	60/15	60/15	60/15	60/15	60/15	
+26:	45/12	45/12	46/11	46/11	46/11	
+27:	43/11	43/11	43/11	43/11	44/10	
+28:	28/8	29/7	29/7	29/7	29/7	
+29:	24/6	24/6	24/6	24/6	24/6	
+30:	19/5	19/5	19/5	19/5	20/4	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	124/31	124/31	124/31	124/31	124/31	
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	7/2	7/2	7/2	7/2	8/1	
+14:	5/2	5/2	6/1	6/1	6/1	
+15:	484/122	485/121	485/121	485/121	485/121	
+16:	32/8	32/8	32/8	32/8	32/8	
+17:	22/6	22/6	22/6	23/5	23/5	
+18:	Not enough peptides of length 18
+19:	4/2	5/1	5/1	5/1	5/1	
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-C*05:01
+Binders
+Length 	 Train/Test for splits
+8:	1313/329	1313/329	1314/328	1314/328	1314/328	
+9:	6410/1603	6410/1603	6410/1603	6411/1602	6411/1602	
+10:	1076/269	1076/269	1076/269	1076/269	1076/269	
+11:	426/107	426/107	426/107	427/106	427/106	
+12:	126/32	126/32	126/32	127/31	127/31	
+13:	66/17	66/17	66/17	67/16	67/16	
+14:	69/18	69/18	70/17	70/17	70/17	
+15:	7/2	7/2	7/2	7/2	8/1	
+16:	4/2	5/1	5/1	5/1	5/1	
+17:	6/2	6/2	6/2	7/1	7/1	
+18:	6/2	6/2	6/2	7/1	7/1	
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	84/22	85/21	85/21	85/21	85/21	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*29:02
+Binders
+Length 	 Train/Test for splits
+8:	218/55	218/55	218/55	219/54	219/54	
+9:	5607/1402	5607/1402	5607/1402	5607/1402	5608/1401	
+10:	1313/329	1313/329	1314/328	1314/328	1314/328	
+11:	536/134	536/134	536/134	536/134	536/134	
+12:	183/46	183/46	183/46	183/46	184/45	
+13:	222/56	222/56	222/56	223/55	223/55	
+14:	64/17	65/16	65/16	65/16	65/16	
+15:	12/3	12/3	12/3	12/3	12/3	
+16:	6/2	6/2	6/2	7/1	7/1	
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	862/216	862/216	862/216	863/215	863/215	
+10:	207/52	207/52	207/52	207/52	208/51	
+11:	9/3	9/3	10/2	10/2	10/2	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+Allele HLA-B*44:03
+Binders
+Length 	 Train/Test for splits
+8:	250/63	250/63	250/63	251/62	251/62	
+9:	4332/1084	4333/1083	4333/1083	4333/1083	4333/1083	
+10:	2705/677	2705/677	2706/676	2706/676	2706/676	
+11:	1047/262	1047/262	1047/262	1047/262	1048/261	
+12:	282/71	282/71	282/71	283/70	283/70	
+13:	69/18	69/18	70/17	70/17	70/17	
+14:	30/8	30/8	30/8	31/7	31/7	
+15:	11/3	11/3	11/3	11/3	12/2	
+16:	4/2	5/1	5/1	5/1	5/1	
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+21:	Not enough peptides of length 21
+Non-binders
+Length 	 Train/Test for splits
+8:	8/3	9/2	9/2	9/2	9/2	
+9:	279/70	279/70	279/70	279/70	280/69	
+10:	177/45	177/45	178/44	178/44	178/44	
+11:	15/4	15/4	15/4	15/4	16/3	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+21:	Not enough peptides of length 21
+Allele HLA-A*68:02
+Binders
+Length 	 Train/Test for splits
+8:	104/26	104/26	104/26	104/26	104/26	
+9:	2998/750	2998/750	2998/750	2999/749	2999/749	
+10:	1200/300	1200/300	1200/300	1200/300	1200/300	
+11:	364/92	365/91	365/91	365/91	365/91	
+12:	256/64	256/64	256/64	256/64	256/64	
+13:	148/38	149/37	149/37	149/37	149/37	
+14:	117/30	117/30	118/29	118/29	118/29	
+15:	112/29	113/28	113/28	113/28	113/28	
+16:	95/24	95/24	95/24	95/24	96/23	
+17:	65/17	65/17	66/16	66/16	66/16	
+18:	51/13	51/13	51/13	51/13	52/12	
+19:	28/7	28/7	28/7	28/7	28/7	
+20:	16/4	16/4	16/4	16/4	16/4	
+21:	6/2	6/2	6/2	7/1	7/1	
+22:	4/2	5/1	5/1	5/1	5/1	
+23:	5/2	5/2	6/1	6/1	6/1	
+Non-binders
+Length 	 Train/Test for splits
+8:	35/9	35/9	35/9	35/9	36/8	
+9:	2261/566	2261/566	2262/565	2262/565	2262/565	
+10:	1258/315	1258/315	1258/315	1259/314	1259/314	
+11:	30/8	30/8	30/8	31/7	31/7	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+Allele HLA-C*12:02
+Binders
+Length 	 Train/Test for splits
+8:	798/200	798/200	798/200	799/199	799/199	
+9:	5650/1413	5650/1413	5650/1413	5651/1412	5651/1412	
+10:	1171/293	1171/293	1171/293	1171/293	1172/292	
+11:	840/210	840/210	840/210	840/210	840/210	
+12:	442/111	442/111	442/111	443/110	443/110	
+13:	10/3	10/3	10/3	11/2	11/2	
+14:	9/3	9/3	10/2	10/2	10/2	
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+Allele HLA-B*08:01
+Binders
+Length 	 Train/Test for splits
+8:	1631/408	1631/408	1631/408	1631/408	1632/407	
+9:	4444/1111	4444/1111	4444/1111	4444/1111	4444/1111	
+10:	380/96	381/95	381/95	381/95	381/95	
+11:	198/50	198/50	198/50	199/49	199/49	
+12:	138/35	138/35	138/35	139/34	139/34	
+13:	5/2	5/2	6/1	6/1	6/1	
+14:	5/2	5/2	6/1	6/1	6/1	
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+Non-binders
+Length 	 Train/Test for splits
+8:	20/6	21/5	21/5	21/5	21/5	
+9:	1864/466	1864/466	1864/466	1864/466	1864/466	
+10:	116/30	117/29	117/29	117/29	117/29	
+11:	16/4	16/4	16/4	16/4	16/4	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+Allele HLA-B*58:01
+Binders
+Length 	 Train/Test for splits
+8:	403/101	403/101	403/101	403/101	404/100	
+9:	3018/755	3018/755	3018/755	3019/754	3019/754	
+10:	1154/289	1154/289	1154/289	1155/288	1155/288	
+11:	724/182	725/181	725/181	725/181	725/181	
+12:	271/68	271/68	271/68	271/68	272/67	
+13:	94/24	94/24	94/24	95/23	95/23	
+14:	43/11	43/11	43/11	43/11	44/10	
+15:	44/12	45/11	45/11	45/11	45/11	
+16:	31/8	31/8	31/8	31/8	32/7	
+17:	15/4	15/4	15/4	15/4	16/3	
+18:	18/5	18/5	18/5	19/4	19/4	
+19:	8/2	8/2	8/2	8/2	8/2	
+20:	7/2	7/2	7/2	7/2	8/1	
+21:	4/2	5/1	5/1	5/1	5/1	
+22:	5/2	5/2	6/1	6/1	6/1	
+23:	6/2	6/2	6/2	7/1	7/1	
+24:	4/2	5/1	5/1	5/1	5/1	
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	5/2	5/2	6/1	6/1	6/1	
+9:	2352/588	2352/588	2352/588	2352/588	2352/588	
+10:	92/23	92/23	92/23	92/23	92/23	
+11:	25/7	25/7	26/6	26/6	26/6	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DRA*01:01/DRB1*04:01
+Binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	5/2	5/2	6/1	6/1	6/1	
+12:	4/2	5/1	5/1	5/1	5/1	
+13:	3365/842	3365/842	3366/841	3366/841	3366/841	
+14:	11/3	11/3	11/3	11/3	12/2	
+15:	4631/1158	4631/1158	4631/1158	4631/1158	4632/1157	
+16:	19/5	19/5	19/5	19/5	20/4	
+17:	60/15	60/15	60/15	60/15	60/15	
+18:	20/5	20/5	20/5	20/5	20/5	
+19:	12/3	12/3	12/3	12/3	12/3	
+20:	9/3	9/3	10/2	10/2	10/2	
+21:	4/2	5/1	5/1	5/1	5/1	
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	28/7	28/7	28/7	28/7	28/7	
+14:	Not enough peptides of length 14
+15:	19/5	19/5	19/5	19/5	20/4	
+16:	Not enough peptides of length 16
+17:	104/26	104/26	104/26	104/26	104/26	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	7/2	7/2	7/2	7/2	8/1	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+Allele HLA-DPA1*02:01/DPB1*14:01
+Binders
+Length 	 Train/Test for splits
+9:	9/3	9/3	10/2	10/2	10/2	
+10:	17/5	17/5	18/4	18/4	18/4	
+11:	50/13	50/13	50/13	51/12	51/12	
+12:	241/61	241/61	242/60	242/60	242/60	
+13:	721/181	721/181	722/180	722/180	722/180	
+14:	1206/302	1206/302	1206/302	1207/301	1207/301	
+15:	1618/405	1618/405	1618/405	1619/404	1619/404	
+16:	1547/387	1547/387	1547/387	1547/387	1548/386	
+17:	1153/289	1153/289	1154/288	1154/288	1154/288	
+18:	713/179	713/179	714/178	714/178	714/178	
+19:	372/93	372/93	372/93	372/93	372/93	
+20:	209/53	209/53	210/52	210/52	210/52	
+21:	120/30	120/30	120/30	120/30	120/30	
+22:	79/20	79/20	79/20	79/20	80/19	
+23:	42/11	42/11	42/11	43/10	43/10	
+24:	25/7	25/7	26/6	26/6	26/6	
+25:	20/6	21/5	21/5	21/5	21/5	
+26:	8/3	9/2	9/2	9/2	9/2	
+27:	11/3	11/3	11/3	11/3	12/2	
+28:	11/3	11/3	11/3	11/3	12/2	
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DQ
+Binders
+Length 	 Train/Test for splits
+8:	8/2	8/2	8/2	8/2	8/2	
+9:	100/26	101/25	101/25	101/25	101/25	
+10:	154/39	154/39	154/39	155/38	155/38	
+11:	261/66	261/66	262/65	262/65	262/65	
+12:	450/113	450/113	450/113	451/112	451/112	
+13:	850/213	850/213	850/213	851/212	851/212	
+14:	1272/319	1273/318	1273/318	1273/318	1273/318	
+15:	1479/370	1479/370	1479/370	1479/370	1480/369	
+16:	1244/311	1244/311	1244/311	1244/311	1244/311	
+17:	812/203	812/203	812/203	812/203	812/203	
+18:	492/124	493/123	493/123	493/123	493/123	
+19:	313/79	313/79	314/78	314/78	314/78	
+20:	215/54	215/54	215/54	215/54	216/53	
+21:	144/36	144/36	144/36	144/36	144/36	
+22:	95/24	95/24	95/24	95/24	96/23	
+23:	74/19	74/19	74/19	75/18	75/18	
+24:	47/12	47/12	47/12	47/12	48/11	
+25:	42/11	42/11	42/11	43/10	43/10	
+26:	28/8	29/7	29/7	29/7	29/7	
+27:	27/7	27/7	27/7	27/7	28/6	
+28:	21/6	21/6	22/5	22/5	22/5	
+29:	23/6	23/6	23/6	23/6	24/5	
+30:	16/5	17/4	17/4	17/4	17/4	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DPA1*01:03/DPB1*02:01
+Binders
+Length 	 Train/Test for splits
+9:	18/5	18/5	18/5	19/4	19/4	
+10:	32/8	32/8	32/8	32/8	32/8	
+11:	94/24	94/24	94/24	95/23	95/23	
+12:	275/69	275/69	275/69	275/69	276/68	
+13:	708/177	708/177	708/177	708/177	708/177	
+14:	1156/289	1156/289	1156/289	1156/289	1156/289	
+15:	1512/378	1512/378	1512/378	1512/378	1512/378	
+16:	1246/312	1246/312	1246/312	1247/311	1247/311	
+17:	966/242	966/242	966/242	967/241	967/241	
+18:	595/149	595/149	595/149	595/149	596/148	
+19:	364/92	365/91	365/91	365/91	365/91	
+20:	212/54	213/53	213/53	213/53	213/53	
+21:	126/32	126/32	126/32	127/31	127/31	
+22:	81/21	81/21	82/20	82/20	82/20	
+23:	52/14	53/13	53/13	53/13	53/13	
+24:	39/10	39/10	39/10	39/10	40/9	
+25:	24/7	25/6	25/6	25/6	25/6	
+26:	11/3	11/3	11/3	11/3	12/2	
+27:	10/3	10/3	10/3	11/2	11/2	
+28:	8/2	8/2	8/2	8/2	8/2	
+29:	8/3	9/2	9/2	9/2	9/2	
+30:	7/2	7/2	7/2	7/2	8/1	
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	4/2	5/1	5/1	5/1	5/1	
+14:	Not enough peptides of length 14
+15:	527/132	527/132	527/132	527/132	528/131	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*02:03
+Binders
+Length 	 Train/Test for splits
+8:	57/15	57/15	58/14	58/14	58/14	
+9:	3181/796	3181/796	3182/795	3182/795	3182/795	
+10:	1537/385	1537/385	1538/384	1538/384	1538/384	
+11:	128/33	129/32	129/32	129/32	129/32	
+12:	58/15	58/15	58/15	59/14	59/14	
+13:	20/5	20/5	20/5	20/5	20/5	
+14:	8/3	9/2	9/2	9/2	9/2	
+15:	6/2	6/2	6/2	7/1	7/1	
+16:	Not enough peptides of length 16
+17:	5/2	5/2	6/1	6/1	6/1	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	4/2	5/1	5/1	5/1	5/1	
+21:	4/2	5/1	5/1	5/1	5/1	
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+25:	Not enough peptides of length 25
+Non-binders
+Length 	 Train/Test for splits
+8:	30/8	30/8	30/8	31/7	31/7	
+9:	1666/417	1666/417	1666/417	1667/416	1667/416	
+10:	868/217	868/217	868/217	868/217	868/217	
+11:	23/6	23/6	23/6	23/6	24/5	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+25:	Not enough peptides of length 25
+Allele H2-K*k
+Binders
+Length 	 Train/Test for splits
+8:	2734/684	2734/684	2734/684	2735/683	2735/683	
+9:	2539/635	2539/635	2539/635	2539/635	2540/634	
+10:	579/145	579/145	579/145	579/145	580/144	
+11:	368/93	369/92	369/92	369/92	369/92	
+12:	231/58	231/58	231/58	231/58	232/57	
+13:	148/38	149/37	149/37	149/37	149/37	
+14:	94/24	94/24	94/24	95/23	95/23	
+15:	87/22	87/22	87/22	87/22	88/21	
+16:	79/20	79/20	79/20	79/20	80/19	
+17:	59/15	59/15	59/15	59/15	60/14	
+18:	44/12	45/11	45/11	45/11	45/11	
+19:	36/9	36/9	36/9	36/9	36/9	
+20:	32/9	33/8	33/8	33/8	33/8	
+23:	Not enough peptides of length 23
+Non-binders
+Length 	 Train/Test for splits
+8:	52/13	52/13	52/13	52/13	52/13	
+9:	88/23	89/22	89/22	89/22	89/22	
+10:	26/7	26/7	26/7	27/6	27/6	
+11:	20/5	20/5	20/5	20/5	20/5	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+23:	Not enough peptides of length 23
+Allele HLA-DPA1*01:03/DPB1*03:01
+Binders
+Length 	 Train/Test for splits
+9:	6/2	6/2	6/2	7/1	7/1	
+10:	17/5	17/5	18/4	18/4	18/4	
+11:	88/23	89/22	89/22	89/22	89/22	
+12:	358/90	358/90	358/90	359/89	359/89	
+13:	769/193	769/193	770/192	770/192	770/192	
+14:	1184/297	1185/296	1185/296	1185/296	1185/296	
+15:	1397/350	1397/350	1398/349	1398/349	1398/349	
+16:	1155/289	1155/289	1155/289	1155/289	1156/288	
+17:	821/206	821/206	822/205	822/205	822/205	
+18:	546/137	546/137	546/137	547/136	547/136	
+19:	331/83	331/83	331/83	331/83	332/82	
+20:	212/54	213/53	213/53	213/53	213/53	
+21:	134/34	134/34	134/34	135/33	135/33	
+22:	88/23	89/22	89/22	89/22	89/22	
+23:	56/14	56/14	56/14	56/14	56/14	
+24:	36/10	37/9	37/9	37/9	37/9	
+25:	29/8	29/8	30/7	30/7	30/7	
+26:	19/5	19/5	19/5	19/5	20/4	
+27:	14/4	14/4	14/4	15/3	15/3	
+28:	16/4	16/4	16/4	16/4	16/4	
+29:	13/4	13/4	14/3	14/3	14/3	
+30:	16/4	16/4	16/4	16/4	16/4	
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	80/21	81/20	81/20	81/20	81/20	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele H2-D*q
+Binders
+Length 	 Train/Test for splits
+8:	584/147	585/146	585/146	585/146	585/146	
+9:	3490/873	3490/873	3490/873	3491/872	3491/872	
+10:	1660/415	1660/415	1660/415	1660/415	1660/415	
+11:	1546/387	1546/387	1546/387	1547/386	1547/386	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+Allele HLA-DQA1*02:01/DQB1*02:02
+Binders
+Length 	 Train/Test for splits
+8:	15/4	15/4	15/4	15/4	16/3	
+9:	181/46	181/46	182/45	182/45	182/45	
+10:	200/50	200/50	200/50	200/50	200/50	
+11:	288/72	288/72	288/72	288/72	288/72	
+12:	513/129	513/129	514/128	514/128	514/128	
+13:	877/220	877/220	878/219	878/219	878/219	
+14:	1128/282	1128/282	1128/282	1128/282	1128/282	
+15:	1164/292	1165/291	1165/291	1165/291	1165/291	
+16:	942/236	942/236	942/236	943/235	943/235	
+17:	691/173	691/173	691/173	691/173	692/172	
+18:	360/90	360/90	360/90	360/90	360/90	
+19:	226/57	226/57	226/57	227/56	227/56	
+20:	147/37	147/37	147/37	147/37	148/36	
+21:	89/23	89/23	90/22	90/22	90/22	
+22:	54/14	54/14	54/14	55/13	55/13	
+23:	32/9	33/8	33/8	33/8	33/8	
+24:	17/5	17/5	18/4	18/4	18/4	
+25:	14/4	14/4	14/4	15/3	15/3	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	110/28	110/28	110/28	111/27	111/27	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+Allele HLA-A*31:01
+Binders
+Length 	 Train/Test for splits
+8:	80/20	80/20	80/20	80/20	80/20	
+9:	1755/439	1755/439	1755/439	1755/439	1756/438	
+10:	827/207	827/207	827/207	827/207	828/206	
+11:	561/141	561/141	562/140	562/140	562/140	
+12:	205/52	205/52	206/51	206/51	206/51	
+13:	93/24	93/24	94/23	94/23	94/23	
+14:	66/17	66/17	66/17	67/16	67/16	
+15:	60/16	61/15	61/15	61/15	61/15	
+16:	45/12	45/12	46/11	46/11	46/11	
+17:	20/6	21/5	21/5	21/5	21/5	
+18:	8/2	8/2	8/2	8/2	8/2	
+19:	Not enough peptides of length 19
+21:	Not enough peptides of length 21
+23:	Not enough peptides of length 23
+Non-binders
+Length 	 Train/Test for splits
+8:	6/2	6/2	6/2	7/1	7/1	
+9:	2368/593	2369/592	2369/592	2369/592	2369/592	
+10:	774/194	774/194	774/194	775/193	775/193	
+11:	20/5	20/5	20/5	20/5	20/5	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+21:	Not enough peptides of length 21
+23:	Not enough peptides of length 23
+Allele HLA-DRB1*11:01
+Binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	43/11	43/11	43/11	43/11	44/10	
+10:	Not enough peptides of length 10
+11:	4/2	5/1	5/1	5/1	5/1	
+12:	48/12	48/12	48/12	48/12	48/12	
+13:	255/64	255/64	255/64	255/64	256/63	
+14:	475/119	475/119	475/119	475/119	476/118	
+15:	1564/391	1564/391	1564/391	1564/391	1564/391	
+16:	524/132	525/131	525/131	525/131	525/131	
+17:	392/99	393/98	393/98	393/98	393/98	
+18:	276/69	276/69	276/69	276/69	276/69	
+19:	151/38	151/38	151/38	151/38	152/37	
+20:	316/80	317/79	317/79	317/79	317/79	
+21:	56/14	56/14	56/14	56/14	56/14	
+22:	40/10	40/10	40/10	40/10	40/10	
+23:	40/10	40/10	40/10	40/10	40/10	
+24:	41/11	41/11	42/10	42/10	42/10	
+25:	39/10	39/10	39/10	39/10	40/9	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	5/2	5/2	6/1	6/1	6/1	
+10:	16/5	17/4	17/4	17/4	17/4	
+11:	11/3	11/3	11/3	11/3	12/2	
+12:	47/12	47/12	47/12	47/12	48/11	
+13:	96/24	96/24	96/24	96/24	96/24	
+14:	46/12	46/12	46/12	47/11	47/11	
+15:	1712/428	1712/428	1712/428	1712/428	1712/428	
+16:	94/24	94/24	94/24	95/23	95/23	
+17:	61/16	61/16	62/15	62/15	62/15	
+18:	58/15	58/15	58/15	59/14	59/14	
+19:	17/5	17/5	18/4	18/4	18/4	
+20:	327/82	327/82	327/82	327/82	328/81	
+21:	10/3	10/3	10/3	11/2	11/2	
+22:	11/3	11/3	11/3	11/3	12/2	
+23:	Not enough peptides of length 23
+24:	5/2	5/2	6/1	6/1	6/1	
+25:	14/4	14/4	14/4	15/3	15/3	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-C*03:04
+Binders
+Length 	 Train/Test for splits
+8:	475/119	475/119	475/119	475/119	476/118	
+9:	5455/1364	5455/1364	5455/1364	5455/1364	5456/1363	
+10:	399/100	399/100	399/100	399/100	400/99	
+11:	175/44	175/44	175/44	175/44	176/43	
+12:	37/10	37/10	38/9	38/9	38/9	
+13:	21/6	21/6	22/5	22/5	22/5	
+14:	9/3	9/3	10/2	10/2	10/2	
+15:	33/9	33/9	34/8	34/8	34/8	
+16:	4/2	5/1	5/1	5/1	5/1	
+17:	4/2	5/1	5/1	5/1	5/1	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	6/2	6/2	6/2	7/1	7/1	
+9:	16/5	17/4	17/4	17/4	17/4	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	135/34	135/34	135/34	135/34	136/33	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DQA1*05:05/DQB1*03:01
+Binders
+Length 	 Train/Test for splits
+8:	16/5	17/4	17/4	17/4	17/4	
+9:	148/37	148/37	148/37	148/37	148/37	
+10:	128/33	129/32	129/32	129/32	129/32	
+11:	220/56	221/55	221/55	221/55	221/55	
+12:	397/100	397/100	398/99	398/99	398/99	
+13:	784/197	785/196	785/196	785/196	785/196	
+14:	1100/275	1100/275	1100/275	1100/275	1100/275	
+15:	1122/281	1122/281	1122/281	1123/280	1123/280	
+16:	977/245	977/245	978/244	978/244	978/244	
+17:	693/174	693/174	694/173	694/173	694/173	
+18:	408/103	409/102	409/102	409/102	409/102	
+19:	250/63	250/63	250/63	251/62	251/62	
+20:	166/42	166/42	166/42	167/41	167/41	
+21:	104/26	104/26	104/26	104/26	104/26	
+22:	67/17	67/17	67/17	67/17	68/16	
+23:	34/9	34/9	34/9	35/8	35/8	
+24:	23/6	23/6	23/6	23/6	24/5	
+25:	19/5	19/5	19/5	19/5	20/4	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+Allele HLA-DQA1*03:01/DQB1*03:02
+Binders
+Length 	 Train/Test for splits
+8:	25/7	25/7	26/6	26/6	26/6	
+9:	136/34	136/34	136/34	136/34	136/34	
+10:	164/42	165/41	165/41	165/41	165/41	
+11:	252/63	252/63	252/63	252/63	252/63	
+12:	472/119	473/118	473/118	473/118	473/118	
+13:	675/169	675/169	675/169	675/169	676/168	
+14:	706/177	706/177	706/177	707/176	707/176	
+15:	963/241	963/241	963/241	963/241	964/240	
+16:	588/148	589/147	589/147	589/147	589/147	
+17:	338/85	338/85	338/85	339/84	339/84	
+18:	182/46	182/46	182/46	183/45	183/45	
+19:	87/22	87/22	87/22	87/22	88/21	
+20:	64/16	64/16	64/16	64/16	64/16	
+21:	37/10	37/10	38/9	38/9	38/9	
+22:	31/8	31/8	31/8	31/8	32/7	
+23:	21/6	21/6	22/5	22/5	22/5	
+24:	20/5	20/5	20/5	20/5	20/5	
+25:	12/4	13/3	13/3	13/3	13/3	
+26:	16/5	17/4	17/4	17/4	17/4	
+27:	11/3	11/3	11/3	11/3	12/2	
+28:	6/2	6/2	6/2	7/1	7/1	
+29:	7/2	7/2	7/2	7/2	8/1	
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	6/2	6/2	6/2	7/1	7/1	
+12:	Not enough peptides of length 12
+13:	25/7	25/7	26/6	26/6	26/6	
+14:	9/3	9/3	10/2	10/2	10/2	
+15:	1617/405	1617/405	1618/404	1618/404	1618/404	
+16:	11/3	11/3	11/3	11/3	12/2	
+17:	6/2	6/2	6/2	7/1	7/1	
+18:	Not enough peptides of length 18
+19:	4/2	5/1	5/1	5/1	5/1	
+20:	87/22	87/22	87/22	87/22	88/21	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DPA1*02:01/DPB1*10:01
+Binders
+Length 	 Train/Test for splits
+9:	15/4	15/4	15/4	15/4	16/3	
+10:	44/11	44/11	44/11	44/11	44/11	
+11:	89/23	89/23	90/22	90/22	90/22	
+12:	221/56	221/56	222/55	222/55	222/55	
+13:	620/155	620/155	620/155	620/155	620/155	
+14:	968/242	968/242	968/242	968/242	968/242	
+15:	1244/311	1244/311	1244/311	1244/311	1244/311	
+16:	1177/295	1177/295	1178/294	1178/294	1178/294	
+17:	886/222	886/222	886/222	887/221	887/221	
+18:	532/134	533/133	533/133	533/133	533/133	
+19:	282/71	282/71	282/71	283/70	283/70	
+20:	160/41	161/40	161/40	161/40	161/40	
+21:	83/21	83/21	83/21	83/21	84/20	
+22:	52/14	53/13	53/13	53/13	53/13	
+23:	27/7	27/7	27/7	27/7	28/6	
+24:	11/3	11/3	11/3	11/3	12/2	
+25:	5/2	5/2	6/1	6/1	6/1	
+26:	11/3	11/3	11/3	11/3	12/2	
+27:	7/2	7/2	7/2	7/2	8/1	
+28:	Not enough peptides of length 28
+29:	6/2	6/2	6/2	7/1	7/1	
+30:	4/2	5/1	5/1	5/1	5/1	
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*02:02
+Binders
+Length 	 Train/Test for splits
+8:	52/13	52/13	52/13	52/13	52/13	
+9:	2788/697	2788/697	2788/697	2788/697	2788/697	
+10:	1120/281	1121/280	1121/280	1121/280	1121/280	
+11:	225/57	225/57	226/56	226/56	226/56	
+12:	66/17	66/17	66/17	67/16	67/16	
+13:	31/8	31/8	31/8	31/8	32/7	
+14:	12/4	13/3	13/3	13/3	13/3	
+15:	12/3	12/3	12/3	12/3	12/3	
+16:	8/3	9/2	9/2	9/2	9/2	
+17:	4/2	5/1	5/1	5/1	5/1	
+18:	4/2	5/1	5/1	5/1	5/1	
+19:	5/2	5/2	6/1	6/1	6/1	
+20:	7/2	7/2	7/2	7/2	8/1	
+21:	Not enough peptides of length 21
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	33/9	33/9	34/8	34/8	34/8	
+9:	1044/261	1044/261	1044/261	1044/261	1044/261	
+10:	860/215	860/215	860/215	860/215	860/215	
+11:	12/4	13/3	13/3	13/3	13/3	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*02:06
+Binders
+Length 	 Train/Test for splits
+8:	20/5	20/5	20/5	20/5	20/5	
+9:	2564/642	2565/641	2565/641	2565/641	2565/641	
+10:	941/236	941/236	942/235	942/235	942/235	
+11:	151/38	151/38	151/38	151/38	152/37	
+12:	13/4	13/4	14/3	14/3	14/3	
+13:	5/2	5/2	6/1	6/1	6/1	
+14:	6/2	6/2	6/2	7/1	7/1	
+15:	8/2	8/2	8/2	8/2	8/2	
+16:	4/2	5/1	5/1	5/1	5/1	
+17:	6/2	6/2	6/2	7/1	7/1	
+18:	8/2	8/2	8/2	8/2	8/2	
+19:	6/2	6/2	6/2	7/1	7/1	
+20:	4/2	5/1	5/1	5/1	5/1	
+21:	4/2	5/1	5/1	5/1	5/1	
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	36/10	37/9	37/9	37/9	37/9	
+9:	1328/332	1328/332	1328/332	1328/332	1328/332	
+10:	1044/262	1045/261	1045/261	1045/261	1045/261	
+11:	21/6	21/6	22/5	22/5	22/5	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Allele SLA-1*13:01
+Binders
+Length 	 Train/Test for splits
+8:	297/75	297/75	298/74	298/74	298/74	
+9:	948/238	949/237	949/237	949/237	949/237	
+10:	828/208	829/207	829/207	829/207	829/207	
+11:	626/157	626/157	626/157	627/156	627/156	
+12:	449/113	449/113	450/112	450/112	450/112	
+13:	391/98	391/98	391/98	391/98	392/97	
+14:	341/86	341/86	342/85	342/85	342/85	
+15:	265/67	265/67	266/66	266/66	266/66	
+16:	218/55	218/55	218/55	219/54	219/54	
+17:	172/43	172/43	172/43	172/43	172/43	
+18:	145/37	145/37	146/36	146/36	146/36	
+19:	109/28	109/28	110/27	110/27	110/27	
+20:	100/26	101/25	101/25	101/25	101/25	
+21:	70/18	70/18	70/18	71/17	71/17	
+22:	61/16	61/16	62/15	62/15	62/15	
+23:	56/14	56/14	56/14	56/14	56/14	
+24:	43/11	43/11	43/11	43/11	44/10	
+25:	21/6	21/6	22/5	22/5	22/5	
+26:	15/4	15/4	15/4	15/4	16/3	
+27:	8/3	9/2	9/2	9/2	9/2	
+28:	11/3	11/3	11/3	11/3	12/2	
+29:	7/2	7/2	7/2	7/2	8/1	
+30:	8/2	8/2	8/2	8/2	8/2	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	5/2	5/2	6/1	6/1	6/1	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DPA1*02:01/DPB1*13:01
+Binders
+Length 	 Train/Test for splits
+9:	21/6	21/6	22/5	22/5	22/5	
+10:	25/7	25/7	26/6	26/6	26/6	
+11:	59/15	59/15	59/15	59/15	60/14	
+12:	236/60	237/59	237/59	237/59	237/59	
+13:	560/141	561/140	561/140	561/140	561/140	
+14:	902/226	902/226	902/226	903/225	903/225	
+15:	1260/315	1260/315	1260/315	1260/315	1260/315	
+16:	1101/276	1101/276	1102/275	1102/275	1102/275	
+17:	780/196	781/195	781/195	781/195	781/195	
+18:	425/107	425/107	426/106	426/106	426/106	
+19:	228/58	229/57	229/57	229/57	229/57	
+20:	133/34	133/34	134/33	134/33	134/33	
+21:	62/16	62/16	62/16	63/15	63/15	
+22:	47/12	47/12	47/12	47/12	48/11	
+23:	32/8	32/8	32/8	32/8	32/8	
+24:	20/6	21/5	21/5	21/5	21/5	
+25:	11/3	11/3	11/3	11/3	12/2	
+26:	7/2	7/2	7/2	7/2	8/1	
+27:	4/2	5/1	5/1	5/1	5/1	
+28:	10/3	10/3	10/3	11/2	11/2	
+29:	8/2	8/2	8/2	8/2	8/2	
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B*57:03
+Binders
+Length 	 Train/Test for splits
+8:	248/62	248/62	248/62	248/62	248/62	
+9:	2685/672	2685/672	2686/671	2686/671	2686/671	
+10:	1365/342	1365/342	1366/341	1366/341	1366/341	
+11:	1041/261	1041/261	1042/260	1042/260	1042/260	
+12:	254/64	254/64	254/64	255/63	255/63	
+13:	88/22	88/22	88/22	88/22	88/22	
+14:	41/11	41/11	42/10	42/10	42/10	
+15:	34/9	34/9	34/9	35/8	35/8	
+16:	19/5	19/5	19/5	19/5	20/4	
+17:	20/5	20/5	20/5	20/5	20/5	
+18:	16/5	17/4	17/4	17/4	17/4	
+19:	5/2	5/2	6/1	6/1	6/1	
+20:	4/2	5/1	5/1	5/1	5/1	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	4/2	5/1	5/1	5/1	5/1	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DPA1*02:01/DPB1*01:01
+Binders
+Length 	 Train/Test for splits
+9:	5/2	5/2	6/1	6/1	6/1	
+10:	20/6	21/5	21/5	21/5	21/5	
+11:	68/18	69/17	69/17	69/17	69/17	
+12:	271/68	271/68	271/68	271/68	272/67	
+13:	535/134	535/134	535/134	535/134	536/133	
+14:	859/215	859/215	859/215	859/215	860/214	
+15:	1296/324	1296/324	1296/324	1296/324	1296/324	
+16:	963/241	963/241	963/241	963/241	964/240	
+17:	596/150	597/149	597/149	597/149	597/149	
+18:	280/70	280/70	280/70	280/70	280/70	
+19:	136/34	136/34	136/34	136/34	136/34	
+20:	78/20	78/20	78/20	79/19	79/19	
+21:	38/10	38/10	38/10	39/9	39/9	
+22:	21/6	21/6	22/5	22/5	22/5	
+23:	16/5	17/4	17/4	17/4	17/4	
+24:	8/3	9/2	9/2	9/2	9/2	
+25:	8/2	8/2	8/2	8/2	8/2	
+26:	5/2	5/2	6/1	6/1	6/1	
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	632/158	632/158	632/158	632/158	632/158	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B*18:01
+Binders
+Length 	 Train/Test for splits
+8:	1651/413	1651/413	1651/413	1651/413	1652/412	
+9:	2106/527	2106/527	2106/527	2107/526	2107/526	
+10:	290/73	290/73	290/73	291/72	291/72	
+11:	130/33	130/33	130/33	131/32	131/32	
+12:	36/9	36/9	36/9	36/9	36/9	
+13:	11/3	11/3	11/3	11/3	12/2	
+14:	9/3	9/3	10/2	10/2	10/2	
+15:	9/3	9/3	10/2	10/2	10/2	
+16:	6/2	6/2	6/2	7/1	7/1	
+17:	8/2	8/2	8/2	8/2	8/2	
+18:	4/2	5/1	5/1	5/1	5/1	
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	1354/339	1354/339	1354/339	1355/338	1355/338	
+10:	168/43	169/42	169/42	169/42	169/42	
+11:	17/5	17/5	18/4	18/4	18/4	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Allele HLA-DRB5*01:01
+Binders
+Length 	 Train/Test for splits
+8:	28/7	28/7	28/7	28/7	28/7	
+9:	144/37	145/36	145/36	145/36	145/36	
+10:	76/19	76/19	76/19	76/19	76/19	
+11:	96/24	96/24	96/24	96/24	96/24	
+12:	141/36	141/36	142/35	142/35	142/35	
+13:	269/68	269/68	270/67	270/67	270/67	
+14:	397/100	397/100	398/99	398/99	398/99	
+15:	1325/332	1325/332	1326/331	1326/331	1326/331	
+16:	541/136	541/136	542/135	542/135	542/135	
+17:	367/92	367/92	367/92	367/92	368/91	
+18:	234/59	234/59	234/59	235/58	235/58	
+19:	154/39	154/39	154/39	155/38	155/38	
+20:	137/35	137/35	138/34	138/34	138/34	
+21:	85/22	85/22	86/21	86/21	86/21	
+22:	48/13	49/12	49/12	49/12	49/12	
+23:	57/15	57/15	58/14	58/14	58/14	
+24:	56/15	57/14	57/14	57/14	57/14	
+25:	102/26	102/26	102/26	103/25	103/25	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	4/2	5/1	5/1	5/1	5/1	
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	6/2	6/2	6/2	7/1	7/1	
+11:	29/8	29/8	30/7	30/7	30/7	
+12:	31/8	31/8	31/8	31/8	32/7	
+13:	56/14	56/14	56/14	56/14	56/14	
+14:	18/5	18/5	18/5	19/4	19/4	
+15:	1015/254	1015/254	1015/254	1015/254	1016/253	
+16:	88/22	88/22	88/22	88/22	88/22	
+17:	38/10	38/10	38/10	39/9	39/9	
+18:	24/7	25/6	25/6	25/6	25/6	
+19:	8/2	8/2	8/2	8/2	8/2	
+20:	108/28	109/27	109/27	109/27	109/27	
+21:	4/2	5/1	5/1	5/1	5/1	
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*68:01
+Binders
+Length 	 Train/Test for splits
+8:	37/10	37/10	38/9	38/9	38/9	
+9:	2067/517	2067/517	2067/517	2067/517	2068/516	
+10:	1360/341	1361/340	1361/340	1361/340	1361/340	
+11:	356/89	356/89	356/89	356/89	356/89	
+12:	135/34	135/34	135/34	135/34	136/33	
+13:	69/18	69/18	70/17	70/17	70/17	
+14:	45/12	45/12	46/11	46/11	46/11	
+15:	12/4	13/3	13/3	13/3	13/3	
+16:	9/3	9/3	10/2	10/2	10/2	
+17:	9/3	9/3	10/2	10/2	10/2	
+18:	9/3	9/3	10/2	10/2	10/2	
+19:	5/2	5/2	6/1	6/1	6/1	
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	907/227	907/227	907/227	907/227	908/226	
+10:	627/157	627/157	627/157	627/157	628/156	
+11:	4/2	5/1	5/1	5/1	5/1	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DPA1*01:03/DPB1*04:02
+Binders
+Length 	 Train/Test for splits
+9:	17/5	17/5	18/4	18/4	18/4	
+10:	24/6	24/6	24/6	24/6	24/6	
+11:	44/12	45/11	45/11	45/11	45/11	
+12:	147/37	147/37	147/37	147/37	148/36	
+13:	417/105	417/105	418/104	418/104	418/104	
+14:	808/202	808/202	808/202	808/202	808/202	
+15:	1108/277	1108/277	1108/277	1108/277	1108/277	
+16:	1110/278	1110/278	1110/278	1111/277	1111/277	
+17:	851/213	851/213	851/213	851/213	852/212	
+18:	478/120	478/120	478/120	479/119	479/119	
+19:	254/64	254/64	254/64	255/63	255/63	
+20:	136/35	137/34	137/34	137/34	137/34	
+21:	79/20	79/20	79/20	79/20	80/19	
+22:	52/13	52/13	52/13	52/13	52/13	
+23:	32/9	33/8	33/8	33/8	33/8	
+24:	32/8	32/8	32/8	32/8	32/8	
+25:	19/5	19/5	19/5	19/5	20/4	
+26:	5/2	5/2	6/1	6/1	6/1	
+27:	12/3	12/3	12/3	12/3	12/3	
+28:	4/2	5/1	5/1	5/1	5/1	
+29:	Not enough peptides of length 29
+30:	4/2	5/1	5/1	5/1	5/1	
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	29/8	29/8	30/7	30/7	30/7	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*33:03
+Binders
+Length 	 Train/Test for splits
+8:	257/65	257/65	258/64	258/64	258/64	
+9:	2151/538	2151/538	2151/538	2151/538	2152/537	
+10:	871/218	871/218	871/218	871/218	872/217	
+11:	1099/275	1099/275	1099/275	1099/275	1100/274	
+12:	346/87	346/87	346/87	347/86	347/86	
+13:	195/49	195/49	195/49	195/49	196/48	
+14:	122/31	122/31	122/31	123/30	123/30	
+15:	100/25	100/25	100/25	100/25	100/25	
+16:	108/28	109/27	109/27	109/27	109/27	
+17:	78/20	78/20	78/20	79/19	79/19	
+18:	64/16	64/16	64/16	64/16	64/16	
+19:	60/16	61/15	61/15	61/15	61/15	
+20:	37/10	37/10	38/9	38/9	38/9	
+21:	39/10	39/10	39/10	39/10	40/9	
+22:	32/9	33/8	33/8	33/8	33/8	
+23:	32/8	32/8	32/8	32/8	32/8	
+24:	20/5	20/5	20/5	20/5	20/5	
+25:	20/6	21/5	21/5	21/5	21/5	
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	15/4	15/4	15/4	15/4	16/3	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+Allele HLA-B*35:01
+Binders
+Length 	 Train/Test for splits
+8:	145/37	145/37	146/36	146/36	146/36	
+9:	2534/634	2534/634	2534/634	2535/633	2535/633	
+10:	704/177	705/176	705/176	705/176	705/176	
+11:	375/94	375/94	375/94	375/94	376/93	
+12:	126/32	126/32	126/32	127/31	127/31	
+13:	56/15	57/14	57/14	57/14	57/14	
+14:	44/11	44/11	44/11	44/11	44/11	
+15:	39/10	39/10	39/10	39/10	40/9	
+16:	36/10	37/9	37/9	37/9	37/9	
+17:	22/6	22/6	22/6	23/5	23/5	
+18:	8/2	8/2	8/2	8/2	8/2	
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+24:	Not enough peptides of length 24
+Non-binders
+Length 	 Train/Test for splits
+8:	28/8	29/7	29/7	29/7	29/7	
+9:	1164/292	1165/291	1165/291	1165/291	1165/291	
+10:	246/62	246/62	246/62	247/61	247/61	
+11:	36/9	36/9	36/9	36/9	36/9	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+24:	Not enough peptides of length 24
+Allele HLA-DRB1*04:05
+Binders
+Length 	 Train/Test for splits
+8:	12/3	12/3	12/3	12/3	12/3	
+9:	20/5	20/5	20/5	20/5	20/5	
+10:	38/10	38/10	38/10	39/9	39/9	
+11:	52/14	53/13	53/13	53/13	53/13	
+12:	168/43	169/42	169/42	169/42	169/42	
+13:	358/90	358/90	358/90	359/89	359/89	
+14:	545/137	545/137	546/136	546/136	546/136	
+15:	1255/314	1255/314	1255/314	1255/314	1256/313	
+16:	615/154	615/154	615/154	615/154	616/153	
+17:	413/104	413/104	414/103	414/103	414/103	
+18:	258/65	258/65	258/65	259/64	259/64	
+19:	170/43	170/43	170/43	171/42	171/42	
+20:	140/36	141/35	141/35	141/35	141/35	
+21:	75/19	75/19	75/19	75/19	76/18	
+22:	48/13	49/12	49/12	49/12	49/12	
+23:	42/11	42/11	42/11	43/10	43/10	
+24:	28/7	28/7	28/7	28/7	28/7	
+25:	24/7	25/6	25/6	25/6	25/6	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	8/3	9/2	9/2	9/2	9/2	
+12:	36/10	37/9	37/9	37/9	37/9	
+13:	24/7	25/6	25/6	25/6	25/6	
+14:	8/2	8/2	8/2	8/2	8/2	
+15:	1003/251	1003/251	1003/251	1003/251	1004/250	
+16:	16/5	17/4	17/4	17/4	17/4	
+17:	34/9	34/9	34/9	35/8	35/8	
+18:	8/3	9/2	9/2	9/2	9/2	
+19:	Not enough peptides of length 19
+20:	146/37	146/37	146/37	147/36	147/36	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+Allele HLA-DPA1*02:01/DPB1*09:01
+Binders
+Length 	 Train/Test for splits
+9:	9/3	9/3	10/2	10/2	10/2	
+10:	13/4	13/4	14/3	14/3	14/3	
+11:	44/12	45/11	45/11	45/11	45/11	
+12:	175/44	175/44	175/44	175/44	176/43	
+13:	546/137	546/137	546/137	547/136	547/136	
+14:	875/219	875/219	875/219	875/219	876/218	
+15:	1109/278	1109/278	1110/277	1110/277	1110/277	
+16:	964/241	964/241	964/241	964/241	964/241	
+17:	647/162	647/162	647/162	647/162	648/161	
+18:	372/93	372/93	372/93	372/93	372/93	
+19:	180/45	180/45	180/45	180/45	180/45	
+20:	109/28	109/28	110/27	110/27	110/27	
+21:	58/15	58/15	58/15	59/14	59/14	
+22:	31/8	31/8	31/8	31/8	32/7	
+23:	26/7	26/7	26/7	27/6	27/6	
+24:	12/4	13/3	13/3	13/3	13/3	
+25:	9/3	9/3	10/2	10/2	10/2	
+26:	8/2	8/2	8/2	8/2	8/2	
+27:	8/2	8/2	8/2	8/2	8/2	
+28:	5/2	5/2	6/1	6/1	6/1	
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B*27:09
+Binders
+Length 	 Train/Test for splits
+8:	76/20	77/19	77/19	77/19	77/19	
+9:	2567/642	2567/642	2567/642	2567/642	2568/641	
+10:	921/231	921/231	922/230	922/230	922/230	
+11:	608/153	609/152	609/152	609/152	609/152	
+12:	267/67	267/67	267/67	267/67	268/66	
+13:	147/37	147/37	147/37	147/37	148/36	
+14:	102/26	102/26	102/26	103/25	103/25	
+15:	84/22	85/21	85/21	85/21	85/21	
+16:	90/23	90/23	90/23	91/22	91/22	
+17:	74/19	74/19	74/19	75/18	75/18	
+18:	62/16	62/16	62/16	63/15	63/15	
+19:	52/13	52/13	52/13	52/13	52/13	
+20:	50/13	50/13	50/13	51/12	51/12	
+21:	32/8	32/8	32/8	32/8	32/8	
+22:	20/5	20/5	20/5	20/5	20/5	
+23:	13/4	13/4	14/3	14/3	14/3	
+24:	16/5	17/4	17/4	17/4	17/4	
+25:	13/4	13/4	14/3	14/3	14/3	
+29:	Not enough peptides of length 29
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	12/3	12/3	12/3	12/3	12/3	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+29:	Not enough peptides of length 29
+Allele HLA-DPA1*02:01/DPB1*17:01
+Binders
+Length 	 Train/Test for splits
+9:	20/5	20/5	20/5	20/5	20/5	
+10:	18/5	18/5	18/5	19/4	19/4	
+11:	59/15	59/15	59/15	59/15	60/14	
+12:	160/40	160/40	160/40	160/40	160/40	
+13:	526/132	526/132	526/132	527/131	527/131	
+14:	840/211	841/210	841/210	841/210	841/210	
+15:	993/249	993/249	994/248	994/248	994/248	
+16:	900/225	900/225	900/225	900/225	900/225	
+17:	662/166	662/166	662/166	663/165	663/165	
+18:	404/102	405/101	405/101	405/101	405/101	
+19:	219/55	219/55	219/55	219/55	220/54	
+20:	127/32	127/32	127/32	127/32	128/31	
+21:	80/20	80/20	80/20	80/20	80/20	
+22:	45/12	45/12	46/11	46/11	46/11	
+23:	35/9	35/9	35/9	35/9	36/8	
+24:	16/5	17/4	17/4	17/4	17/4	
+25:	16/4	16/4	16/4	16/4	16/4	
+26:	8/2	8/2	8/2	8/2	8/2	
+27:	9/3	9/3	10/2	10/2	10/2	
+28:	5/2	5/2	6/1	6/1	6/1	
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DRA*01:01/DRB1*04:02
+Binders
+Length 	 Train/Test for splits
+13:	2180/546	2181/545	2181/545	2181/545	2181/545	
+15:	2959/740	2959/740	2959/740	2959/740	2960/739	
+Non-binders
+Length 	 Train/Test for splits
+13:	Not enough peptides of length 13
+15:	Not enough peptides of length 15
+Allele HLA-A*02:07
+Binders
+Length 	 Train/Test for splits
+8:	85/22	85/22	86/21	86/21	86/21	
+9:	3511/878	3511/878	3511/878	3511/878	3512/877	
+10:	631/158	631/158	631/158	631/158	632/157	
+11:	527/132	527/132	527/132	527/132	528/131	
+12:	76/19	76/19	76/19	76/19	76/19	
+13:	32/8	32/8	32/8	32/8	32/8	
+14:	28/8	29/7	29/7	29/7	29/7	
+15:	20/5	20/5	20/5	20/5	20/5	
+16:	26/7	26/7	26/7	27/6	27/6	
+17:	17/5	17/5	18/4	18/4	18/4	
+18:	10/3	10/3	10/3	11/2	11/2	
+19:	6/2	6/2	6/2	7/1	7/1	
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	29/8	29/8	30/7	30/7	30/7	
+10:	39/10	39/10	39/10	39/10	40/9	
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+Allele HLA-DRA*01:01/DRB1*01:01
+Binders
+Length 	 Train/Test for splits
+8:	18/5	18/5	18/5	19/4	19/4	
+9:	22/6	22/6	22/6	23/5	23/5	
+10:	29/8	29/8	30/7	30/7	30/7	
+11:	43/11	43/11	43/11	43/11	44/10	
+12:	146/37	146/37	146/37	147/36	147/36	
+13:	372/94	373/93	373/93	373/93	373/93	
+14:	775/194	775/194	775/194	775/194	776/193	
+15:	988/247	988/247	988/247	988/247	988/247	
+16:	939/235	939/235	939/235	939/235	940/234	
+17:	676/169	676/169	676/169	676/169	676/169	
+18:	392/99	393/98	393/98	393/98	393/98	
+19:	185/47	185/47	186/46	186/46	186/46	
+20:	107/27	107/27	107/27	107/27	108/26	
+21:	61/16	61/16	62/15	62/15	62/15	
+22:	39/10	39/10	39/10	39/10	40/9	
+23:	28/8	29/7	29/7	29/7	29/7	
+24:	14/4	14/4	14/4	15/3	15/3	
+25:	4/2	5/1	5/1	5/1	5/1	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	7/2	7/2	7/2	7/2	8/1	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	20/6	21/5	21/5	21/5	21/5	
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	8/2	8/2	8/2	8/2	8/2	
+16:	Not enough peptides of length 16
+17:	10/3	10/3	10/3	11/2	11/2	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	8/3	9/2	9/2	9/2	9/2	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-DQA1*05:01/DQB1*02:01
+Binders
+Length 	 Train/Test for splits
+8:	15/4	15/4	15/4	15/4	16/3	
+9:	127/32	127/32	127/32	127/32	128/31	
+10:	123/31	123/31	123/31	123/31	124/30	
+11:	168/43	169/42	169/42	169/42	169/42	
+12:	290/73	290/73	290/73	291/72	291/72	
+13:	461/116	461/116	462/115	462/115	462/115	
+14:	600/151	601/150	601/150	601/150	601/150	
+15:	747/187	747/187	747/187	747/187	748/186	
+16:	477/120	477/120	478/119	478/119	478/119	
+17:	361/91	361/91	362/90	362/90	362/90	
+18:	171/43	171/43	171/43	171/43	172/42	
+19:	124/32	125/31	125/31	125/31	125/31	
+20:	88/22	88/22	88/22	88/22	88/22	
+21:	60/15	60/15	60/15	60/15	60/15	
+22:	38/10	38/10	38/10	39/9	39/9	
+23:	31/8	31/8	31/8	31/8	32/7	
+24:	23/6	23/6	23/6	23/6	24/5	
+25:	19/5	19/5	19/5	19/5	20/4	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	7/2	7/2	7/2	7/2	8/1	
+10:	47/12	47/12	47/12	47/12	48/11	
+11:	24/7	25/6	25/6	25/6	25/6	
+12:	14/4	14/4	14/4	15/3	15/3	
+13:	34/9	34/9	34/9	35/8	35/8	
+14:	11/3	11/3	11/3	11/3	12/2	
+15:	739/185	739/185	739/185	739/185	740/184	
+16:	24/6	24/6	24/6	24/6	24/6	
+17:	18/5	18/5	18/5	19/4	19/4	
+18:	6/2	6/2	6/2	7/1	7/1	
+19:	9/3	9/3	10/2	10/2	10/2	
+20:	36/10	37/9	37/9	37/9	37/9	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+30:	Not enough peptides of length 30
+Allele HLA-A*26:01
+Binders
+Length 	 Train/Test for splits
+8:	17/5	17/5	18/4	18/4	18/4	
+9:	1104/276	1104/276	1104/276	1104/276	1104/276	
+10:	467/117	467/117	467/117	467/117	468/116	
+11:	160/41	161/40	161/40	161/40	161/40	
+12:	68/17	68/17	68/17	68/17	68/17	
+13:	23/6	23/6	23/6	23/6	24/5	
+14:	14/4	14/4	14/4	15/3	15/3	
+15:	15/4	15/4	15/4	15/4	16/3	
+16:	5/2	5/2	6/1	6/1	6/1	
+17:	8/2	8/2	8/2	8/2	8/2	
+18:	Not enough peptides of length 18
+19:	6/2	6/2	6/2	7/1	7/1	
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	2556/639	2556/639	2556/639	2556/639	2556/639	
+10:	341/86	341/86	342/85	342/85	342/85	
+11:	4/2	5/1	5/1	5/1	5/1	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-B7
+Binders
+Length 	 Train/Test for splits
+8:	122/31	122/31	122/31	123/30	123/30	
+9:	1987/497	1987/497	1987/497	1987/497	1988/496	
+10:	747/187	747/187	747/187	747/187	748/186	
+11:	529/133	529/133	530/132	530/132	530/132	
+12:	249/63	249/63	250/62	250/62	250/62	
+13:	152/39	153/38	153/38	153/38	153/38	
+14:	122/31	122/31	122/31	123/30	123/30	
+15:	108/28	109/27	109/27	109/27	109/27	
+16:	82/21	82/21	82/21	83/20	83/20	
+17:	80/21	81/20	81/20	81/20	81/20	
+18:	72/18	72/18	72/18	72/18	72/18	
+19:	63/16	63/16	63/16	63/16	64/15	
+20:	60/16	61/15	61/15	61/15	61/15	
+21:	52/13	52/13	52/13	52/13	52/13	
+22:	44/12	45/11	45/11	45/11	45/11	
+23:	29/8	29/8	30/7	30/7	30/7	
+24:	14/4	14/4	14/4	15/3	15/3	
+25:	12/3	12/3	12/3	12/3	12/3	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	26/7	26/7	26/7	27/6	27/6	
+10:	18/5	18/5	18/5	19/4	19/4	
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	13/4	13/4	14/3	14/3	14/3	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	60/15	60/15	60/15	60/15	60/15	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+Allele HLA-B*49:01
+Binders
+Length 	 Train/Test for splits
+8:	563/141	563/141	563/141	563/141	564/140	
+9:	2925/732	2925/732	2926/731	2926/731	2926/731	
+10:	734/184	734/184	734/184	735/183	735/183	
+11:	187/47	187/47	187/47	187/47	188/46	
+12:	52/14	53/13	53/13	53/13	53/13	
+13:	22/6	22/6	22/6	23/5	23/5	
+14:	12/3	12/3	12/3	12/3	12/3	
+15:	6/2	6/2	6/2	7/1	7/1	
+16:	8/3	9/2	9/2	9/2	9/2	
+17:	6/2	6/2	6/2	7/1	7/1	
+18:	10/3	10/3	10/3	11/2	11/2	
+19:	8/2	8/2	8/2	8/2	8/2	
+20:	4/2	5/1	5/1	5/1	5/1	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Allele HLA-DRB3*02:02
+Binders
+Length 	 Train/Test for splits
+9:	4/2	5/1	5/1	5/1	5/1	
+11:	Not enough peptides of length 11
+12:	68/17	68/17	68/17	68/17	68/17	
+13:	247/62	247/62	247/62	247/62	248/61	
+14:	456/114	456/114	456/114	456/114	456/114	
+15:	800/201	801/200	801/200	801/200	801/200	
+16:	647/162	647/162	647/162	647/162	648/161	
+17:	539/135	539/135	539/135	539/135	540/134	
+18:	356/89	356/89	356/89	356/89	356/89	
+19:	235/59	235/59	235/59	235/59	236/58	
+20:	160/40	160/40	160/40	160/40	160/40	
+21:	95/24	95/24	95/24	95/24	96/23	
+22:	72/18	72/18	72/18	72/18	72/18	
+23:	28/7	28/7	28/7	28/7	28/7	
+24:	23/6	23/6	23/6	23/6	24/5	
+25:	20/6	21/5	21/5	21/5	21/5	
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	802/201	802/201	802/201	803/200	803/200	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+Allele HLA-C*08:02
+Binders
+Length 	 Train/Test for splits
+8:	920/230	920/230	920/230	920/230	920/230	
+9:	2767/692	2767/692	2767/692	2767/692	2768/691	
+10:	428/107	428/107	428/107	428/107	428/107	
+11:	170/43	170/43	170/43	171/42	171/42	
+12:	54/14	54/14	54/14	55/13	55/13	
+13:	26/7	26/7	26/7	27/6	27/6	
+14:	12/4	13/3	13/3	13/3	13/3	
+15:	12/3	12/3	12/3	12/3	12/3	
+16:	9/3	9/3	10/2	10/2	10/2	
+17:	16/5	17/4	17/4	17/4	17/4	
+18:	12/3	12/3	12/3	12/3	12/3	
+19:	6/2	6/2	6/2	7/1	7/1	
+20:	5/2	5/2	6/1	6/1	6/1	
+21:	4/2	5/1	5/1	5/1	5/1	
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	4/2	5/1	5/1	5/1	5/1	
+25:	6/2	6/2	6/2	7/1	7/1	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	48/13	49/12	49/12	49/12	49/12	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-C*16:01
+Binders
+Length 	 Train/Test for splits
+8:	901/226	901/226	902/225	902/225	902/225	
+9:	2852/713	2852/713	2852/713	2852/713	2852/713	
+10:	292/73	292/73	292/73	292/73	292/73	
+11:	156/39	156/39	156/39	156/39	156/39	
+12:	62/16	62/16	62/16	63/15	63/15	
+13:	42/11	42/11	42/11	43/10	43/10	
+14:	29/8	29/8	30/7	30/7	30/7	
+15:	28/8	29/7	29/7	29/7	29/7	
+16:	23/6	23/6	23/6	23/6	24/5	
+17:	20/6	21/5	21/5	21/5	21/5	
+18:	16/5	17/4	17/4	17/4	17/4	
+19:	10/3	10/3	10/3	11/2	11/2	
+20:	12/3	12/3	12/3	12/3	12/3	
+21:	8/3	9/2	9/2	9/2	9/2	
+22:	8/2	8/2	8/2	8/2	8/2	
+23:	11/3	11/3	11/3	11/3	12/2	
+24:	7/2	7/2	7/2	7/2	8/1	
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele Trvu-UB*01:01
+Binders
+Length 	 Train/Test for splits
+8:	4/2	5/1	5/1	5/1	5/1	
+9:	4468/1117	4468/1117	4468/1117	4468/1117	4468/1117	
+10:	Not enough peptides of length 10
+Non-binders
+Length 	 Train/Test for splits
+8:	4/2	5/1	5/1	5/1	5/1	
+9:	12/4	13/3	13/3	13/3	13/3	
+10:	Not enough peptides of length 10
+Allele HLA-DRB1*08:01
+Binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	19/5	19/5	19/5	19/5	20/4	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	101/26	101/26	102/25	102/25	102/25	
+13:	332/83	332/83	332/83	332/83	332/83	
+14:	576/144	576/144	576/144	576/144	576/144	
+15:	722/181	722/181	722/181	723/180	723/180	
+16:	741/186	741/186	742/185	742/185	742/185	
+17:	628/157	628/157	628/157	628/157	628/157	
+18:	447/112	447/112	447/112	447/112	448/111	
+19:	297/75	297/75	298/74	298/74	298/74	
+20:	197/50	197/50	198/49	198/49	198/49	
+21:	131/33	131/33	131/33	131/33	132/32	
+22:	81/21	81/21	82/20	82/20	82/20	
+23:	5/2	5/2	6/1	6/1	6/1	
+24:	5/2	5/2	6/1	6/1	6/1	
+25:	4/2	5/1	5/1	5/1	5/1	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	44/12	45/11	45/11	45/11	45/11	
+14:	6/2	6/2	6/2	7/1	7/1	
+15:	39/10	39/10	39/10	39/10	40/9	
+16:	14/4	14/4	14/4	15/3	15/3	
+17:	20/5	20/5	20/5	20/5	20/5	
+18:	16/5	17/4	17/4	17/4	17/4	
+19:	8/3	9/2	9/2	9/2	9/2	
+20:	8/2	8/2	8/2	8/2	8/2	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+Allele HLA-A*32:01
+Binders
+Length 	 Train/Test for splits
+8:	34/9	34/9	34/9	35/8	35/8	
+9:	3016/755	3017/754	3017/754	3017/754	3017/754	
+10:	412/104	413/103	413/103	413/103	413/103	
+11:	314/79	314/79	314/79	315/78	315/78	
+12:	61/16	61/16	62/15	62/15	62/15	
+13:	68/18	69/17	69/17	69/17	69/17	
+14:	19/5	19/5	19/5	19/5	20/4	
+15:	7/2	7/2	7/2	7/2	8/1	
+16:	6/2	6/2	6/2	7/1	7/1	
+17:	8/3	9/2	9/2	9/2	9/2	
+18:	6/2	6/2	6/2	7/1	7/1	
+19:	4/2	5/1	5/1	5/1	5/1	
+20:	Not enough peptides of length 20
+21:	4/2	5/1	5/1	5/1	5/1	
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	202/51	202/51	202/51	203/50	203/50	
+10:	156/40	157/39	157/39	157/39	157/39	
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+30:	Not enough peptides of length 30
+Allele HLA-C*14:02
+Binders
+Length 	 Train/Test for splits
+8:	498/125	498/125	498/125	499/124	499/124	
+9:	3252/814	3253/813	3253/813	3253/813	3253/813	
+10:	384/97	385/96	385/96	385/96	385/96	
+11:	72/18	72/18	72/18	72/18	72/18	
+12:	22/6	22/6	22/6	23/5	23/5	
+13:	14/4	14/4	14/4	15/3	15/3	
+14:	8/2	8/2	8/2	8/2	8/2	
+15:	Not enough peptides of length 15
+16:	5/2	5/2	6/1	6/1	6/1	
+17:	6/2	6/2	6/2	7/1	7/1	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	4/2	5/1	5/1	5/1	5/1	
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	39/10	39/10	39/10	39/10	40/9	
+10:	Not enough peptides of length 10
+11:	4/2	5/1	5/1	5/1	5/1	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-A*30:01
+Binders
+Length 	 Train/Test for splits
+8:	33/9	33/9	34/8	34/8	34/8	
+9:	2108/528	2109/527	2109/527	2109/527	2109/527	
+10:	489/123	489/123	490/122	490/122	490/122	
+11:	192/49	193/48	193/48	193/48	193/48	
+12:	56/14	56/14	56/14	56/14	56/14	
+13:	20/6	21/5	21/5	21/5	21/5	
+14:	14/4	14/4	14/4	15/3	15/3	
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	7/2	7/2	7/2	7/2	8/1	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	6/2	6/2	6/2	7/1	7/1	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	1139/285	1139/285	1139/285	1139/285	1140/284	
+10:	156/40	157/39	157/39	157/39	157/39	
+11:	16/5	17/4	17/4	17/4	17/4	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Allele HLA-A*33:01
+Binders
+Length 	 Train/Test for splits
+8:	98/25	98/25	98/25	99/24	99/24	
+9:	1314/329	1314/329	1314/329	1315/328	1315/328	
+10:	472/119	473/118	473/118	473/118	473/118	
+11:	364/91	364/91	364/91	364/91	364/91	
+12:	80/20	80/20	80/20	80/20	80/20	
+13:	48/12	48/12	48/12	48/12	48/12	
+14:	22/6	22/6	22/6	23/5	23/5	
+15:	6/2	6/2	6/2	7/1	7/1	
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	883/221	883/221	883/221	883/221	884/220	
+10:	920/230	920/230	920/230	920/230	920/230	
+11:	6/2	6/2	6/2	7/1	7/1	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele HLA-C*12:03
+Binders
+Length 	 Train/Test for splits
+8:	198/50	198/50	198/50	199/49	199/49	
+9:	3653/914	3653/914	3654/913	3654/913	3654/913	
+10:	168/42	168/42	168/42	168/42	168/42	
+11:	80/21	81/20	81/20	81/20	81/20	
+12:	20/6	21/5	21/5	21/5	21/5	
+13:	9/3	9/3	10/2	10/2	10/2	
+14:	4/2	5/1	5/1	5/1	5/1	
+15:	7/2	7/2	7/2	7/2	8/1	
+16:	5/2	5/2	6/1	6/1	6/1	
+17:	10/3	10/3	10/3	11/2	11/2	
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	4/2	5/1	5/1	5/1	5/1	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	23/6	23/6	23/6	23/6	24/5	
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Allele HLA-C*06:02
+Binders
+Length 	 Train/Test for splits
+8:	178/45	178/45	178/45	179/44	179/44	
+9:	2277/570	2277/570	2278/569	2278/569	2278/569	
+10:	208/53	209/52	209/52	209/52	209/52	
+11:	121/31	121/31	122/30	122/30	122/30	
+12:	127/32	127/32	127/32	127/32	128/31	
+13:	127/32	127/32	127/32	127/32	128/31	
+14:	146/37	146/37	146/37	147/36	147/36	
+15:	177/45	177/45	178/44	178/44	178/44	
+16:	205/52	205/52	206/51	206/51	206/51	
+17:	143/36	143/36	143/36	143/36	144/35	
+18:	97/25	97/25	98/24	98/24	98/24	
+19:	59/15	59/15	59/15	59/15	60/14	
+20:	34/9	34/9	34/9	35/8	35/8	
+21:	20/5	20/5	20/5	20/5	20/5	
+22:	17/5	17/5	18/4	18/4	18/4	
+23:	19/5	19/5	19/5	19/5	20/4	
+24:	12/4	13/3	13/3	13/3	13/3	
+25:	7/2	7/2	7/2	7/2	8/1	
+26:	4/2	5/1	5/1	5/1	5/1	
+27:	4/2	5/1	5/1	5/1	5/1	
+28:	7/2	7/2	7/2	7/2	8/1	
+29:	Not enough peptides of length 29
+30:	6/2	6/2	6/2	7/1	7/1	
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	100/25	100/25	100/25	100/25	100/25	
+10:	5/2	5/2	6/1	6/1	6/1	
+11:	4/2	5/1	5/1	5/1	5/1	
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Allele SLA-1*04:01
+Binders
+Length 	 Train/Test for splits
+8:	262/66	262/66	262/66	263/65	263/65	
+9:	1503/376	1503/376	1503/376	1503/376	1504/375	
+10:	1024/256	1024/256	1024/256	1024/256	1024/256	
+11:	334/84	334/84	334/84	335/83	335/83	
+12:	170/43	170/43	170/43	171/42	171/42	
+13:	112/28	112/28	112/28	112/28	112/28	
+14:	93/24	93/24	94/23	94/23	94/23	
+15:	48/13	49/12	49/12	49/12	49/12	
+16:	34/9	34/9	34/9	35/8	35/8	
+17:	40/11	41/10	41/10	41/10	41/10	
+18:	28/7	28/7	28/7	28/7	28/7	
+19:	19/5	19/5	19/5	19/5	20/4	
+20:	29/8	29/8	30/7	30/7	30/7	
+21:	13/4	13/4	14/3	14/3	14/3	
+22:	4/2	5/1	5/1	5/1	5/1	
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	18/5	18/5	18/5	19/4	19/4	
+10:	20/6	21/5	21/5	21/5	21/5	
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	Not enough peptides of length 24
+Allele HLA-A*23:01
+Binders
+Length 	 Train/Test for splits
+8:	83/21	83/21	83/21	83/21	84/20	
+9:	1662/416	1662/416	1662/416	1663/415	1663/415	
+10:	634/159	634/159	634/159	635/158	635/158	
+11:	358/90	358/90	358/90	359/89	359/89	
+12:	114/29	114/29	114/29	115/28	115/28	
+13:	62/16	62/16	62/16	63/15	63/15	
+14:	26/7	26/7	26/7	27/6	27/6	
+15:	15/4	15/4	15/4	15/4	16/3	
+16:	17/5	17/5	18/4	18/4	18/4	
+17:	15/4	15/4	15/4	15/4	16/3	
+18:	12/4	13/3	13/3	13/3	13/3	
+19:	5/2	5/2	6/1	6/1	6/1	
+20:	5/2	5/2	6/1	6/1	6/1	
+21:	7/2	7/2	7/2	7/2	8/1	
+22:	6/2	6/2	6/2	7/1	7/1	
+23:	Not enough peptides of length 23
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+8:	Not enough peptides of length 8
+9:	781/196	781/196	782/195	782/195	782/195	
+10:	231/58	231/58	231/58	231/58	232/57	
+11:	Not enough peptides of length 11
+12:	Not enough peptides of length 12
+13:	Not enough peptides of length 13
+14:	Not enough peptides of length 14
+15:	Not enough peptides of length 15
+16:	Not enough peptides of length 16
+17:	Not enough peptides of length 17
+18:	Not enough peptides of length 18
+19:	Not enough peptides of length 19
+20:	Not enough peptides of length 20
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+30:	Not enough peptides of length 30
+Allele HLA-DRB3*01:01
+Binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	7/2	7/2	7/2	7/2	8/1	
+12:	132/34	133/33	133/33	133/33	133/33	
+13:	248/63	249/62	249/62	249/62	249/62	
+14:	345/87	345/87	346/86	346/86	346/86	
+15:	652/164	653/163	653/163	653/163	653/163	
+16:	343/86	343/86	343/86	343/86	344/85	
+17:	266/67	266/67	266/67	267/66	267/66	
+18:	185/47	185/47	186/46	186/46	186/46	
+19:	119/30	119/30	119/30	119/30	120/29	
+20:	74/19	74/19	74/19	75/18	75/18	
+21:	46/12	46/12	46/12	47/11	47/11	
+22:	29/8	29/8	30/7	30/7	30/7	
+23:	19/5	19/5	19/5	19/5	20/4	
+24:	14/4	14/4	14/4	15/3	15/3	
+25:	16/5	17/4	17/4	17/4	17/4	
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
+Non-binders
+Length 	 Train/Test for splits
+9:	Not enough peptides of length 9
+10:	Not enough peptides of length 10
+11:	Not enough peptides of length 11
+12:	40/11	41/10	41/10	41/10	41/10	
+13:	54/14	54/14	54/14	55/13	55/13	
+14:	9/3	9/3	10/2	10/2	10/2	
+15:	1302/326	1302/326	1302/326	1303/325	1303/325	
+16:	46/12	46/12	46/12	47/11	47/11	
+17:	34/9	34/9	34/9	35/8	35/8	
+18:	25/7	25/7	26/6	26/6	26/6	
+19:	6/2	6/2	6/2	7/1	7/1	
+20:	35/9	35/9	35/9	35/9	36/8	
+21:	Not enough peptides of length 21
+22:	Not enough peptides of length 22
+23:	Not enough peptides of length 23
+24:	4/2	5/1	5/1	5/1	5/1	
+25:	Not enough peptides of length 25
+26:	Not enough peptides of length 26
+27:	Not enough peptides of length 27
+28:	Not enough peptides of length 28
+29:	Not enough peptides of length 29
+30:	Not enough peptides of length 30
