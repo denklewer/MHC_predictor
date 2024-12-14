@@ -42,8 +42,9 @@ def make_logo_for_data(binders_array, name, ax=None):
     matrix = logomaker.alignment_to_matrix(binders_array)
     info_matrix = logomaker.transform_matrix(matrix, from_type='counts', to_type='information')
     prob_matrix = logomaker.transform_matrix(matrix, from_type='counts', to_type='probability')
-    ww_logo = logomaker.Logo(info_matrix, font_name='Arial Rounded MT Bold', flip_below=True, ax=ax)
+    ww_logo = logomaker.Logo(info_matrix, font_name='Liberation Sans Narrow', flip_below=True, ax=ax)
     ww_logo.ax.set_title(f"{name}, {len(binders_array)}")
+    return ww_logo
 
 
 def split_to_dicts(per_allele_df, ALLELES, TARGET_LENGTHS, TOTAL_SPLITS):

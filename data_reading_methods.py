@@ -108,14 +108,16 @@ def get_train_test_data(experiment_params :ExperimentParams):
         additional_return.append(per_allele_df)
     elif isinstance(data_params, MixMHCpredDataParams):
         mixture_name = data_params.mixmhc_mixture_name
-        dummy_allele_name = mixture_name
+        dummy_allele_name = data_params.dummy_allele_name
         df = pd.read_csv(DATA_PATH, sep=';')
         print(df.columns)
         df = df.loc[
             df.Peptide.str.match("^[ACDEFGHIKLMNPQRSTVWY]+$")
         ]
+        print("Total table length", len(df))
         #Filter out selected mixture
-        df = df.loc[df.Sample_IDs.str.contains(mixture_name + "[^_].*")]
+        df = df.loc[df.Sample_IDs.str.split(', ').apply(lambda x: mixture_name in x),]
+        print("Filtered for given mixture", len(df))
         sample_data = pd.DataFrame(
             {"peptide": df.Peptide.values,
              "old_sample_id": df.Sample_IDs,
@@ -144,6 +146,7 @@ def get_train_test_data(experiment_params :ExperimentParams):
                                                                   TARGET_LENGTHS=TARGET_LENGTHS,
                                                                   TOTAL_SPLITS=np.arange(TOTAL_SPLITS))
         additional_return.append(per_allele_df)
+        additional_return.append(df)
     return per_allele_per_kfold_per_length_binders_train,  per_allele_per_kfold_per_length_binders_test, additional_return
 
 ## Methods to split and join the data
