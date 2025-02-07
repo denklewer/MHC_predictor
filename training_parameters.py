@@ -114,7 +114,11 @@ class ModelTrainingParams(param.Parameterized):
     split_decision_models_fraction = param.Number(default=0.4)
     enrichment_split_decision_models_fraction = param.Number(default=0.3)
     reassignment_decision_models_fraction = param.Number(default=0.4)
+
+
     statistics_estimate_model_fraction = param.Number(default=0.3)
+
+
     check_model_integrity = param.Boolean(default=False, doc="check for shifts")
 
 

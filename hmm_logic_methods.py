@@ -87,10 +87,6 @@ def train_model_prepared(
             sequence_generator = BatchedDataGenerator(sample_X,
                                                       batches_per_epoch=batches_per_epoch,
                                                       batch_size=batch_size)
-            # print(f"Mini_batch: Train Length {len(sequence_generator)}, "
-            #       f"batch_size {sequence_generator.batch_size}, batches_per_epoch {sequence_generator.batches_per_epoch}")
-            #batch_example = next(sequence_generator.batches())
-         #   print("Example of batch", batch_example)
             sequence_generator.reset()
         else:
             sequence_generator = sample_X
@@ -2781,11 +2777,14 @@ def make_single_split_and_enrich(per_name_models,
     name_to_distance2 = {model_name : distance /(2*(allele_to_info_value1[model_name_to_allele2[model_name]] + allele_to_info_value2[model_name_to_allele2[model_name]])) for model_name, distance in name_to_distance2.items()}
 
     path_to_save_pictures = f"{experiment_params.experiment_result_data_path}"
+
     info_threshold = model_training_params.trash_model_information_threshold
     distance_threshold = model_training_params.same_model_distance_threshold
 
     passed_filter1 = {key for key, info_value in name_to_info_value1.items() if info_value > info_threshold}
     passed_filter2 = {key for key, info_value in name_to_info_value2.items() if info_value > info_threshold}
+
+
     print(f"For branch 1 {len(passed_filter1)} models passed the info filter out of {len(per_name_models1)}")
     print(f"For branch 2 {len(passed_filter2)} models passed the info filter out of {len(per_name_models2)}")
 
