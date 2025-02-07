@@ -1,11 +1,17 @@
 import param
 from peptides_utils import defineClass
-from copy import copy, deepcopy
+
+
 class DataScenarioParams(param.Parameterized):
-    data_scenario = param.Selector(objects=["simulated", "simulated_preprocessed", "MixMHCpred", "preprocessed_IEDB"])
-    data_path_base =param.Foldername('G:/My Drive/Work/ITMO/data', check_exists=False)
-    input_data_path = param.Foldername(check_exists=False)
+    data_scenario = param.Selector(objects=["simulated",
+                                            "simulated_preprocessed",
+                                            "MixMHCpred",
+                                            "preprocessed_IEDB"])
+    data_path_base = param.Foldername('/storage1/fs1/martyomov/Active/IndividualBackUps/denisk/data/binding_data',
+                                      check_exists=False)
+    input_data_path = param.Foldername(check_exists = False)
     splits_to_read = param.Integer(default=1)
+    extra = param.Dict(dict())
 
     def update_input_data_path(self, experiment_name):
         pass
@@ -29,24 +35,87 @@ class SimulatedDataParams(DataScenarioParams):
     def update_input_data_path(self, experiment_name):
         self.input_data_path = f"{self.data_path_base}/{experiment_name}/simulated_data/"
 
+
 class MixMHCpredDataParams(DataScenarioParams):
     data_scenario = "MixMHCpred"
-    mixmhc_mixture_name = param.String(default='CD165_DR') # 3865_DM_DR  CD165_DR Maver_1_DR  RA957_D
+    mixmhc_mixture_name = param.String(default='112') # 3865_DM_DR  CD165_DR Maver_1_DR  RA957_D
+
+    def __init__(self, **params):
+        super().__init__(**params)
+        self.extra['mono_samples'] = [
+        "MAPTAC_expi293_3",
+        "MAPTAC_expi293_31",
+        "MAPTAC_expi293_11",
+        "MAPTAC_expi293_17",
+        "MAPTAC_expi293_18",
+        "MAPTAC_expi293_21",
+        "MAPTAC_expi293_25",
+        "MAPTAC_expi293_27",
+        "MAPTAC_expi293_34",
+        "MAPTAC_expi293_32",
+        "MAPTAC_expi293_35",
+        "MAPTAC_expi293_31",
+        ]
+        self.extra['mixed_samples'] = [
+        "9087_DR",
+        "JESI_DR",
+        "CD165_DR",
+        "C1R_DR",
+        "MCL030",
+        "NeonDC_lung_1",
+        "IHW09013",
+        ]
+        self.extra['mixed_samples_dict'] = {
+        "9087_DR":"DRB1*03:01_DRB3*01:01",
+        "JESI_DR":"DRB1*15:01_DRB1*10:01",
+        "CD165_DR":"DRB3*02:02_DRB1*11:01",
+        "C1R_DR":"DRB3*02:02_DRB1*12:01",
+        "MCL030":"DRB3*01:01_DRB1*13:03",
+        "NeonDC_lung_1":"DRB4*01:01_DRB1*07:01",
+        "IHW09013":"DRB5*01:01_DRB1*15:01"
+        }
+
+
+
+        
+        self.extra['mono_alleles_dict'] = {
+           "MAPTAC_expi293_3"  :"DRB1*03:01",
+            "MAPTAC_expi293_31":"DRB3*01:01",
+            "MAPTAC_expi293_11":"DRB1*07:01",
+            "MAPTAC_expi293_17":"DRB1*10:01",
+            "MAPTAC_expi293_18":"DRB1*11:01",
+            "MAPTAC_expi293_21":"DRB1*12:01",
+            "MAPTAC_expi293_25":"DRB1*13:03",
+            "MAPTAC_expi293_27":"DRB1*15:01",
+            "MAPTAC_expi293_34":"DRB4*01:01",
+            "MAPTAC_expi293_32":"DRB3*02:02",
+            "MAPTAC_expi293_35":"DRB5*01:01",
+            "MAPTAC_expi293_31":"DRB3*01:01"
+        }
+
     if mixmhc_mixture_name in ['3865_DM_DR']:
         input_data_path = param.Filename(
-            f"{DataScenarioParams.data_path_base}/Binding data/MixMHC2pred_2023/train_data/current_study.csv")
+            f"{DataScenarioParams.data_path_base}/MixMHC2pred_2023/train_data/current_study.csv")
     else:
         input_data_path = param.Filename(
-            f"{DataScenarioParams.data_path_base}/Binding data/MixMHC2pred_2023/train_data/external_studies.csv")
+            f"{DataScenarioParams.data_path_base}/MixMHC2pred_2023/train_data/external_studies.csv")
+
     dummy_allele_name = param.String(default="mixMHC_dummy_allele")
 
+    @param.depends('mixmhc_mixture_name', watch=True, on_init=False)
+    def update_mixture_name(self):
+        if self.mixmhc_mixture_name in self.extra['mono_samples']:
+            self.dummy_allele_name = "mixMHC_" + self.extra['mono_alleles_dict'][self.mixmhc_mixture_name].replace('-', '_').replace('*', '_').replace(':', '_')
+        elif self.mixmhc_mixture_name in self.extra['mixed_samples']:
+            self.dummy_allele_name = "mixMHC_" + self.extra['mixed_samples_dict'][self.mixmhc_mixture_name].replace('-', '_').replace('*', '_').replace(':', '_')
+        else:
+            self.dummy_allele_name = self.mixmhc_mixture_name
 
 class PreprocessedIEDBDataParams(DataScenarioParams):
     data_scenario = "IEDB_preprocessed"
 
     def update_input_data_path(self, experiment_name):
         self.input_data_path = f"{self.data_path_base}/{experiment_name}/{self.data_scenario}/per_length_per_kfold_split/"
-
 
 
 class ModelTrainingParams(param.Parameterized):
@@ -71,12 +140,13 @@ class ModelTrainingParams(param.Parameterized):
     cycle_chain_length = param.Integer(default=10, bounds=(1, None))
 
     # Modifications in distributions
-    ## turn off/on
-    position_component = param.Boolean(default=False, doc="Experimental: wether to add additional position component as separate distribution for state. You will need provide numbers as weel with labels")
+    # turn off/on
+    position_component = param.Boolean(default=False,
+                                       doc="Experimental: wether to add additional position component as separate distribution for state. You will need provide numbers as weel with labels")
     freeze_start_end_cycle = param.Boolean(default=False, doc="wether to freeze start and end cycle distributions")
     freeze_intermediate_cycle = param.Boolean(default=False, doc="wether to freeze intermediate cycle distributions")
     tie_start_end_cycle_states = param.Boolean(default=False, doc="wether to tie together Start/End cycle states (set the same disribution)")
-    tie_intermediate_cycle_states =  param.Boolean(default=False, doc="wether to tie together intermediate cycle states (set the same disribution)")
+    tie_intermediate_cycle_states = param.Boolean(default=False, doc="wether to tie together intermediate cycle states (set the same disribution)")
     tie_anchor_states = param.Boolean(default=False, doc="wether to tie anchor states together (set the same disribution)")
     ## numbers
     emission_pseudocount = param.Number(default=0.1)
@@ -84,22 +154,22 @@ class ModelTrainingParams(param.Parameterized):
     anchor_default_pseudocount = param.Number(default=1)
     cycle_default_pseudocount = param.Number(default=0.1)
     in_cycle_tr_pseudocount = param.Number(default=0)
-    anchor_top_aas = param.Integer(default=4, bounds=(1,20))
-    cycle_top_aas = param.Integer(default=20, bounds=(1,20))
+    anchor_top_aas = param.Integer(default=4, bounds=(1, 20))
+    cycle_top_aas = param.Integer(default=20, bounds=(1, 20))
     equal_probs_for_cycle = param.Boolean(default=False)
-    equal_probs_for_intermediate_cycle =param.Boolean(default=False)
+    equal_probs_for_intermediate_cycle = param.Boolean(default = False)
 
     # Modifications in the training process
     lr_decay = param.Number(default=0.0, bounds=(0.0, 1))
     edge_inertia = param.Number(default=0.4, bounds=(0.0, 1))
     distribution_inertia = param.Number(default=0.4, bounds=(0.0, 1))
-    min_iters = param.Integer(default=40, bounds=(1,None))
+    min_iters = param.Integer(default=40, bounds=(1, None))
     maxiters = param.Integer(default=80, bounds=(1, None))
     use_pseudocounts = param.Boolean(default=True)
     use_weights = param.Boolean(default=False)
     minibatch_training = param.Boolean(default=True)
     batches_per_epoch = param.Integer(bounds=(1, None), default=100)
-    batch_size = param.Integer(bounds=(1,None), default=1)
+    batch_size = param.Integer(bounds=(1, None), default=1)
     aa_labels_training = param.Boolean(default=True,
                                        doc="Experimental: wether to keep amino acid labels or convert them to property values. Will change distributions completelly")
     stop_threshold = 2.5
@@ -150,7 +220,7 @@ class ModelTrainingParams(param.Parameterized):
 
 class SimpleModelClassIIParams(ModelTrainingParams):
     #Data related
-    lengths_to_use = [12, 13, 14, 15, 16, 17, 18]
+    lengths_to_use = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     #Model related
     start_cycle = True
     end_cycle = True
@@ -190,6 +260,23 @@ class SimpleModelClassIIParamsMixMHC(SimpleModelClassIIParams):
     split_decision_models_fraction = 0.2
     enrichment_split_decision_models_fraction = 0.2
     statistics_estimate_model_fraction = 0.2
+
+
+    trash_model_information_threshold = 0.55
+    same_model_distance_threshold = 0.08
+    reassignment_decision_models_fraction = 0.2
+    def __init__(self, **params):
+        super().__init__(**params)
+
+
+class SimpleModelClassIIParamsMixMHCsmall(SimpleModelClassIIParams):
+    enrichment_steps = 3
+    anchor_top_aas = 4
+    data_split_strategy = "median_score_of_best_models"
+    split_decision_models_fraction = 0.2
+    enrichment_split_decision_models_fraction = 0.2
+    statistics_estimate_model_fraction = 0.2
+    emission_pseudocount = 0.1
 
 
     trash_model_information_threshold = 0.55

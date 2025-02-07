@@ -1,5 +1,3 @@
-IP_ADDRESS="$(ip a s eth0 | awk '/inet / {print$2}' | cut -d/ -f1)"
-
-jupyter lab --ip $IP_ADDRESS --port 8888 --no-browser
+jupyter lab --port 8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin=*
 # password is in /home/denklewer/.jupyter/config files  
 

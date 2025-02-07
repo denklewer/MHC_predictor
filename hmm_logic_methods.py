@@ -2116,7 +2116,7 @@ def prepare_multiple_models(experiment_params : ExperimentParams, custom_models_
                 per_allele_per_run_per_split_prepared_models[allele_name][run_index][split_num] = prepared_model
     return per_allele_per_run_per_split_prepared_models
 
-def check_model_alignment(current_model, allele_data_df):
+def check_model_alignment(current_model, allele_data_df, allele_name):
     model_states = [state for state in current_model.states if
                     (state.distribution is not None) and (
                             type(state.distribution) is not DiscreteDistributionCycle)]
@@ -2169,10 +2169,10 @@ def check_model_alignment(current_model, allele_data_df):
                                              from_type='counts', to_type='information',
                                              background=get_frequencies(count_df.shape[0]).set_index(count_df.index))
     fig, axes = plt.subplots(ncols=1, nrows=1, figsize=(5, 6))
-    ww_logo = logomaker.Logo(info_matrix, font_name='Arial Rounded MT Bold', flip_below=True,
+    ww_logo = logomaker.Logo(info_matrix, font_name='Liberation Sans Narrow', flip_below=True,
                              ax=axes)
-    ww_logo.ax.set_title(f"test")
-    return info_matrix, viterbi_paths
+    ww_logo.ax.set_title(f"{allele_name}, peptides num used: {len(allele_data_df)}")
+    return info_matrix, viterbi_paths, fig
 
 
 
@@ -2239,17 +2239,32 @@ def check_models_integrity_and_shift_params(per_split_models, allele_data_df, ex
         info_vector = info_matrix.sum(axis=1).values
         dummy_threshold = 0.5
         new_core_count_df = None
-        if sum(info_vector[:left_part] > dummy_threshold) > 0:
+        per_pos_sum = np.zeros(len(info_vector)-current_core_length + 1) # 1....16xxxx25
+        print(f"Will calculate sliding window sum for f{len(per_pos_sum)} positions with original vector of size {len(info_vector)}")
+        for pos in range(len(per_pos_sum)):
+            if pos == 0 :
+                print(f"calculate shifts for fragments of length {len(info_vector[pos:pos+current_core_length])}")
+            per_pos_sum[pos] = sum(info_vector[pos:pos+current_core_length])
+        max_core_start_pos = np.argmax(per_pos_sum)
+        
+        if max_core_start_pos < left_part:
             print("Seems to be shift to the left, since there is an alignment hit outside the model frame")
             print("Shifting model frame to the best pick leftwise")
-            better_pos_numerical_index = info_vector[: left_part].argmax()
-            new_core_count_df = count_df.iloc[left_part - better_pos_numerical_index - 1:left_part + current_core_length + better_pos_numerical_index - 1, :].copy()
-
-        if sum(info_vector[-right_part:] > dummy_threshold) > 0:
+            #better_pos_numerical_index = info_vector[: left_part].argmax()
+            better_pos_numerical_index = max_core_start_pos
+            # new_core_count_df = count_df.iloc[left_part - better_pos_numerical_index - 1:left_part + current_core_length + better_pos_numerical_index - 1, :].copy()
+            new_core_count_df = count_df.iloc[better_pos_numerical_index:current_core_length + better_pos_numerical_index, :].copy()
+            print(f"shape of new matrix f{new_core_count_df.shape}")
+        if max_core_start_pos > left_part:
+             # if sum(info_vector[-right_part:] > dummy_threshold) > 0:
             print("Seems to be shift to the right, since there is an alignment hit outside the model frame")
             print("Shifting model frame to the best pick rightwise")
-            better_pos_numerical_index = info_vector[-right_part:].argmax()
-            new_core_count_df = count_df.iloc[left_part + better_pos_numerical_index + 1:left_part + current_core_length + better_pos_numerical_index + 1, :].copy()
+            better_pos_numerical_index = max_core_start_pos
+            new_core_count_df = count_df.iloc[better_pos_numerical_index:current_core_length + better_pos_numerical_index , :].copy()
+            print(f"shape of new matrix f{new_core_count_df.shape}")
+
+
+            # new_core_count_df = count_df.iloc[left_part + better_pos_numerical_index + 1:left_part + current_core_length + better_pos_numerical_index + 1, :].copy()
 
 
         # reinitialize model with new distributions
@@ -2837,6 +2852,7 @@ def hierarchically_train_splited_models(per_name_models, train_data, test_data, 
     orig_stdout = sys.stdout
     data_scenario_params : DataScenarioParams = experiment_params.data_scenario_params
     model_training_params : ModelTrainingParams = experiment_params.model_training_params
+    per_layer_split_diagnostic = dict()
     with open('out.txt', 'w') as f:
         #  sys.stdout = f
         # try single split and multiple enrichments
@@ -2888,6 +2904,11 @@ def hierarchically_train_splited_models(per_name_models, train_data, test_data, 
             if len(finalized_models) > 0:
                 print(f"Some models were finalized, add previous step models to result collection")
                 result_models[iteration] = {name: model for name, model in per_name_current_models.items() if name in finalized_models}
+            elif layer_counter == (total_layers_to_do - 1):
+                print(f"We are out of iterations and will finish at the end of the level just dump what we had remaining for this branch")
+                result_models[f'{iteration}1'] = {name: model for name, model in per_name_models1.items()}
+                result_models[f'{iteration}2'] = {name: model for name, model in per_name_models2.items()}
+
 
             if (len(iteration_deque) == 0) or (len(iteration) < len(iteration_deque[0])):  # we finished the whole layer
                 print("finished layer")
@@ -2895,16 +2916,19 @@ def hierarchically_train_splited_models(per_name_models, train_data, test_data, 
                 print(f"length of new models to be used for analysis {len(current_total_models)}")
                 if len(current_total_models) == 0:
                     print("Could not produce any new models for these parameters. finish here")
-                    return
+                    return result_models, per_layer_split_diagnostic
                 for iter, cur_result_models_dict in result_models.items():
                     current_total_models.update(cur_result_models_dict)
                 # get result pictures for the layer
                 per_allele_scores_data = get_all_scores_and_sort_by_best(train_data, current_total_models)
-                plot_split_diagnostics(per_allele_data_df=per_allele_scores_data, ann_df=additional_data)
+                rest , fig = plot_split_diagnostics(per_allele_data_df=per_allele_scores_data, ann_df=additional_data)
+                print("diagnostic method finished")
+                per_layer_split_diagnostic[layer_counter] = fig
 
                 layer_counter = layer_counter + 1
                 if layer_counter >= total_layers_to_do:
-                    return
+                    #Finalize results
+                    return result_models, per_layer_split_diagnostic
 
                 # Prepare for the new  layer
 
@@ -2950,6 +2974,6 @@ def hierarchically_train_splited_models(per_name_models, train_data, test_data, 
                     data_deque[model_num] = new_train_data
                 current_total_models = dict()
                     # nor we want to reorder all peptides according to scores of 2-4-6-8
-    return(result_models)
+    return result_models, per_layer_split_diagnostic
     # sys.stdout = orig_stdout
 

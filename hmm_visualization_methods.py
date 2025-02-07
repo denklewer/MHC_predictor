@@ -341,12 +341,12 @@ def convert_graph_to_good_format(model, logo_pictures_path, use_logos=True, prec
 
 
 def make_pyviz_graph(model, TARGET_PATH_TO_RESULTS, precision=4, prefefined_hierarchical_layout=True):
-    graph, name_to_level = convert_graph_to_good_format(model, f"..\\{model.name}\\", precision=precision)
+    graph, name_to_level = convert_graph_to_good_format(model, f"..\\{model.name}/", precision=precision)
                                                       # f"{os.getcwd()}/{TARGET_PATH_TO_RESULTS}/{model.name}/")
 
     nt = Network('500px', '1600', directed=True)
     if pyvis._version.__version__ > '0.1.9':
-        print("Bug in pyvis")
+        #Bug in pyvis
         nt.from_nx(graph, show_edge_weights=True)
     else:
         nt.from_nx(graph)
@@ -378,12 +378,12 @@ def make_pyviz_graph(model, TARGET_PATH_TO_RESULTS, precision=4, prefefined_hier
         nt.show_buttons()
 
 
-    path_to_save_html = f"{TARGET_PATH_TO_RESULTS}\\result_html_files"
+    path_to_save_html = f"{TARGET_PATH_TO_RESULTS}/result_html_files"
     if not os.path.exists(path_to_save_html):
         os.makedirs(path_to_save_html)
 
 
-    nt.save_graph(f"{path_to_save_html}\\{model.name}-{precision}.html")
+    nt.save_graph(f"{path_to_save_html}/{model.name}-{precision}.html")
     # nt.show(f"{TARGET_PATH_TO_RESULTS}\\{model.name}\\pyviz.html")
     return nt
 
@@ -444,7 +444,13 @@ def plot_split_diagnostics(per_allele_data_df, ann_df):
     for allele_name in per_allele_data_df.keys():
         df = per_allele_data_df[allele_name]
         target_df = df[[col for col in df.columns if col.startswith("model")]]
-        sns.clustermap(target_df).fig.suptitle(f"Summary of {len(df.columns)} models")
+
+        g =  sns.clustermap(target_df)
+        ax = g.ax_heatmap
+        ax.set_title(f"Summary of {len(df.columns)} models")
+        g.fig.set_size_inches(20, 10)
+        g.fig.subplots_adjust(right=0.5)
+        ax = g.fig.add_axes([0.55, 0.05, 0.42, 0.92])
         pca = PCA(n_components=2)
         pca_result = pca.fit_transform(target_df.values)
         ann_df = ann_df[0][allele_name]
@@ -453,12 +459,13 @@ def plot_split_diagnostics(per_allele_data_df, ann_df):
         ann_df = ann_df[['peptide', 'allele']]
         annotated_df = df.merge(ann_df, on='peptide', how='left', validate='1:1')
         to_plot = pd.DataFrame({"x": pca_result[:, 0], "y": pca_result[:, 1], "allele":annotated_df.allele.values})
-        sns.jointplot(to_plot, x="x", y="y", hue="allele", kind='kde').fig.suptitle(f"PCA of df for {len(df.columns)} models")
+        #sns.jointplot(to_plot, x="x", y="y", hue="allele", kind='kde').fig.suptitle(f"PCA of df for {len(df.columns)} models")
         fit = umap.UMAP()
         u = fit.fit_transform(target_df.values)
         to_plot = pd.DataFrame({"x": u[:, 0], "y": u[:, 1], "allele": annotated_df.allele.values, "peptide": annotated_df.peptide.values})
-        sns.jointplot(to_plot, x="x", y="y", hue='allele', kind='kde').fig.suptitle(f"UMAP of df for {len(df.columns)} models")
-        return to_plot
+        p = sns.kdeplot(to_plot, x="x", y="y", hue='allele', ax=ax)
+        ax.set_title(f"UMAP of df for {len(df.columns)} models")
+        return to_plot, g.fig
 
 
 def save_all_visualization_results(per_name_models,
@@ -503,10 +510,10 @@ def save_all_visualization_results(per_name_models,
 
 def plot_info_matrices_to_file(info_matrix1, info_matrix2, folder_to_save, main_title, filename):
     fig, axes = plt.subplots(ncols=1, nrows=2, figsize=(5, 6))
-    ww_logo = logomaker.Logo(info_matrix1, font_name='Arial Rounded MT Bold', flip_below=True,
+    ww_logo = logomaker.Logo(info_matrix1, font_name='Liberation Sans Narrow', flip_below=True,
                              ax=axes[0])
     ww_logo.ax.set_title(f"branch 1")
-    ww_logo = logomaker.Logo(info_matrix2, font_name='Arial Rounded MT Bold', flip_below=True,
+    ww_logo = logomaker.Logo(info_matrix2, font_name='Liberation Sans Narrow', flip_below=True,
                              ax=axes[1])
     ww_logo.ax.set_title(f"branch 2")
     fig.suptitle(main_title)
