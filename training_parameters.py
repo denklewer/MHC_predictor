@@ -95,10 +95,10 @@ class MixMHCpredDataParams(DataScenarioParams):
 
     if mixmhc_mixture_name in ['3865_DM_DR']:
         input_data_path = param.Filename(
-            f"{DataScenarioParams.data_path_base}/MixMHC2pred_2023/train_data/current_study.csv")
+            f"{DataScenarioParams.data_path_base}/MixMHC2pred_2023/train_data/current_study.csv", check_exists=False)
     else:
         input_data_path = param.Filename(
-            f"{DataScenarioParams.data_path_base}/MixMHC2pred_2023/train_data/external_studies.csv")
+            f"{DataScenarioParams.data_path_base}/MixMHC2pred_2023/train_data/external_studies.csv", check_exists=False)
 
     dummy_allele_name = param.String(default="mixMHC_dummy_allele")
 

@@ -465,7 +465,7 @@ def plot_split_diagnostics(per_allele_data_df, ann_df):
         to_plot = pd.DataFrame({"x": u[:, 0], "y": u[:, 1], "allele": annotated_df.allele.values, "peptide": annotated_df.peptide.values})
         p = sns.kdeplot(to_plot, x="x", y="y", hue='allele', ax=ax)
         ax.set_title(f"UMAP of df for {len(df.columns)} models")
-        return to_plot, g.fig
+        return to_plot, g.figcombos
 
 
 def save_all_visualization_results(per_name_models,

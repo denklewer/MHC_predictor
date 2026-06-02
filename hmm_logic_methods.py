@@ -1230,7 +1230,7 @@ def save_model(TARGET_PATH_TO_RESULTS, model, history=None, p_model_folder=None)
         os.makedirs(MODEL_FOLDER)
     with open(f"{MODEL_FOLDER}/model.json", 'w+') as f:
         json.dump(json_object, f)
-    if history:
+    if history is not None:
         history_df = pd.DataFrame()
         history_df['total_improvement'] = history.total_improvement
         history_df['improvements'] = history.improvements
@@ -1248,11 +1248,13 @@ def save_model(TARGET_PATH_TO_RESULTS, model, history=None, p_model_folder=None)
 
 def load_model(TARGET_PATH_TO_RESULTS, model_name):
     MODEL_FOLDER = f"{TARGET_PATH_TO_RESULTS}{model_name}/"
-    with open(f"{MODEL_FOLDER}/model.json") as f:
+    return(load_model_by_name(f"{MODEL_FOLDER}/model.json"))
+
+def load_model_by_name(model_name):
+    with open(model_name) as f:
         json_object = json.load(f)
         model = HiddenMarkovModel.from_json(json_object)
     return model
-
 
 ## Paths finding
 def get_all_paths_with_probs(model, edge_value="log_probability", cutoff=None, precision=4, min_path_length=9,
